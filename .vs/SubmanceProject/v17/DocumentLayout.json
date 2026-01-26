@@ -1,0 +1,164 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.infrastructure\\security\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|solutionrelative:submance.infrastructure\\security\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.infrastructure\\security\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|solutionrelative:submance.infrastructure\\security\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.infrastructure\\submance.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|solutionrelative:submance.infrastructure\\submance.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\auth\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\auth\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\auth\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\auth\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\common\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\common\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\submance.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\submance.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.domain\\submance.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|solutionrelative:submance.domain\\submance.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "PasswordHasher.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Security\\PasswordHasher.cs",
+              "RelativeDocumentMoniker": "Submance.Infrastructure\\Security\\PasswordHasher.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Security\\PasswordHasher.cs",
+              "RelativeToolTip": "Submance.Infrastructure\\Security\\PasswordHasher.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-26T08:57:46.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "JwtTokenService.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Security\\JwtTokenService.cs",
+              "RelativeDocumentMoniker": "Submance.Infrastructure\\Security\\JwtTokenService.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Security\\JwtTokenService.cs",
+              "RelativeToolTip": "Submance.Infrastructure\\Security\\JwtTokenService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-26T08:57:38.254Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ITokenService.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Auth\\ITokenService.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Auth\\ITokenService.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Auth\\ITokenService.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Auth\\ITokenService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-26T08:53:44.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IAuthService.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Auth\\IAuthService.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Auth\\IAuthService.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Auth\\IAuthService.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Auth\\IAuthService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-26T08:53:35.229Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "JwtSettings.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Common\\JwtSettings.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Common\\JwtSettings.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Common\\JwtSettings.cs",
+              "RelativeToolTip": "Submance.Application\\Common\\JwtSettings.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-26T08:52:53.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Submance.Application",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Submance.Application.csproj",
+              "RelativeDocumentMoniker": "Submance.Application\\Submance.Application.csproj",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Submance.Application.csproj",
+              "RelativeToolTip": "Submance.Application\\Submance.Application.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-26T08:52:39.367Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Submance.Infrastructure",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Submance.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "Submance.Infrastructure\\Submance.Infrastructure.csproj",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Submance.Infrastructure.csproj",
+              "RelativeToolTip": "Submance.Infrastructure\\Submance.Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-26T08:49:32.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Submance.Domain",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Submance.Domain.csproj",
+              "RelativeDocumentMoniker": "Submance.Domain\\Submance.Domain.csproj",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Submance.Domain.csproj",
+              "RelativeToolTip": "Submance.Domain\\Submance.Domain.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-26T08:51:03.658Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
