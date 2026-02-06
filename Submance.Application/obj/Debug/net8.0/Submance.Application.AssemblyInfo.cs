@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Submance.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa472d1cd1d57a01b7537fca8f8854ed96e6d90c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Submance.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Submance.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

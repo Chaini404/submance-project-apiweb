@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Submance.Application.Interfaces.Auth
+namespace Submance.Domain.Enums
 {
-    internal class IAuthService
+    public enum EstadoCancion
     {
+        Pendiente = 1,
+        Aprobada = 2,
+        Rechazada = 3
     }
 }
