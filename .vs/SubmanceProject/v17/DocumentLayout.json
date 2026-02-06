@@ -3,6 +3,186 @@
   "WorkspaceRootPath": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.infrastructure\\repositories\\cancionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|solutionrelative:submance.infrastructure\\repositories\\cancionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.infrastructure\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|solutionrelative:submance.infrastructure\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.infrastructure\\repositories\\rolrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|solutionrelative:submance.infrastructure\\repositories\\rolrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.infrastructure\\repositories\\revisionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|solutionrelative:submance.infrastructure\\repositories\\revisionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.infrastructure\\repositories\\generorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|solutionrelative:submance.infrastructure\\repositories\\generorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.infrastructure\\repositories\\artistarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|solutionrelative:submance.infrastructure\\repositories\\artistarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.infrastructure\\repositories\\albumrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|solutionrelative:submance.infrastructure\\repositories\\albumrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.infrastructure\\data\\dbconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|solutionrelative:submance.infrastructure\\data\\dbconnectionfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\repositories\\iartistarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\repositories\\iartistarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.domain\\entities\\artista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|solutionrelative:submance.domain\\entities\\artista.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B206D69-AAD8-4B33-B8A9-D81411C426A9}|SubmanceProjectApi\\SubmanceProject.Api.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submanceprojectapi\\database\\schema.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{5B206D69-AAD8-4B33-B8A9-D81411C426A9}|SubmanceProjectApi\\SubmanceProject.Api.csproj|solutionrelative:submanceprojectapi\\database\\schema.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\repositories\\ialbumrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\repositories\\ialbumrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.domain\\entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|solutionrelative:submance.domain\\entities\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\repositories\\iusuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\repositories\\iusuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\repositories\\irolrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\repositories\\irolrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.domain\\entities\\album.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|solutionrelative:submance.domain\\entities\\album.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B206D69-AAD8-4B33-B8A9-D81411C426A9}|SubmanceProjectApi\\SubmanceProject.Api.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submanceprojectapi\\database\\data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{5B206D69-AAD8-4B33-B8A9-D81411C426A9}|SubmanceProjectApi\\SubmanceProject.Api.csproj|solutionrelative:submanceprojectapi\\database\\data.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B206D69-AAD8-4B33-B8A9-D81411C426A9}|SubmanceProjectApi\\SubmanceProject.Api.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submanceprojectapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5B206D69-AAD8-4B33-B8A9-D81411C426A9}|SubmanceProjectApi\\SubmanceProject.Api.csproj|solutionrelative:submanceprojectapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.infrastructure\\submance.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|solutionrelative:submance.infrastructure\\submance.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B206D69-AAD8-4B33-B8A9-D81411C426A9}|SubmanceProjectApi\\SubmanceProject.Api.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submanceprojectapi\\submanceproject.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{5B206D69-AAD8-4B33-B8A9-D81411C426A9}|SubmanceProjectApi\\SubmanceProject.Api.csproj|solutionrelative:submanceprojectapi\\submanceproject.api.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B206D69-AAD8-4B33-B8A9-D81411C426A9}|SubmanceProjectApi\\SubmanceProject.Api.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submanceprojectapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B206D69-AAD8-4B33-B8A9-D81411C426A9}|SubmanceProjectApi\\SubmanceProject.Api.csproj|solutionrelative:submanceprojectapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\repositories\\irevisionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\repositories\\irevisionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\repositories\\igenerorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\repositories\\igenerorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\repositories\\icancionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\repositories\\icancionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\submance.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\submance.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\dtos\\revision\\revisionrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\dtos\\revision\\revisionrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\dtos\\genero\\generorequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\dtos\\genero\\generorequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\dtos\\cancion\\cancionpendientedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\dtos\\cancion\\cancionpendientedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\dtos\\artista\\artistaresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\dtos\\artista\\artistaresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\dtos\\artista\\artistarequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\dtos\\artista\\artistarequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\dtos\\usuario\\usuarioresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\dtos\\usuario\\usuarioresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\services\\ialbumservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\services\\ialbumservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\services\\iusuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\services\\iusuarioservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\services\\igeneroservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\services\\igeneroservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\services\\icancionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\services\\icancionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\services\\iartistaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\services\\iartistaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\dtos\\album\\albumresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\dtos\\album\\albumresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\dtos\\album\\albumrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\dtos\\album\\albumrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.domain\\enums\\estadocancion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|solutionrelative:submance.domain\\enums\\estadocancion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\services\\cancionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\services\\cancionservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.domain\\entities\\revision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|solutionrelative:submance.domain\\entities\\revision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.domain\\enums\\resultadorevision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|solutionrelative:submance.domain\\enums\\resultadorevision.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.domain\\entities\\cancion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|solutionrelative:submance.domain\\entities\\cancion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.domain\\entities\\genero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|solutionrelative:submance.domain\\entities\\genero.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.domain\\entities\\rol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|solutionrelative:submance.domain\\entities\\rol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.infrastructure\\security\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|solutionrelative:submance.infrastructure\\security\\jwttokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,28 +191,64 @@
       "RelativeMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|solutionrelative:submance.infrastructure\\security\\passwordhasher.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.infrastructure\\submance.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{4EBE2F38-33C6-4439-BA34-72199D8638C5}|Submance.Infrastructure\\Submance.Infrastructure.csproj|solutionrelative:submance.infrastructure\\submance.infrastructure.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\services\\auth\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\services\\auth\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\auth\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\auth\\itokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\auth\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\auth\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\interfaces\\services\\auth\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\interfaces\\services\\auth\\iauthservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\common\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\common\\jwtsettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.application\\submance.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{CE6035BB-B02E-455C-89BA-23B5610783C6}|Submance.Application\\Submance.Application.csproj|solutionrelative:submance.application\\submance.application.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|d:\\proyectos - cibertec\\proyecto - exf4\\submanceproject\\submance.domain\\submance.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{0F3FD729-9220-4A87-AEB0-0C4BCF7A4DED}|Submance.Domain\\Submance.Domain.csproj|solutionrelative:submance.domain\\submance.domain.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\CancionResponseDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Submance.Application\\DTOs\\CancionResponseDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\RevisionRequestDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Submance.Application\\DTOs\\RevisionRequestDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\GeneroRequestDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Submance.Application\\DTOs\\GeneroRequestDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\CancionPendienteDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Submance.Application\\DTOs\\CancionPendienteDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\RevisionResponseDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Submance.Application\\DTOs\\RevisionResponseDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\CancionRequestDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Submance.Application\\DTOs\\CancionRequestDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\GeneroResponseDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Submance.Application\\DTOs\\GeneroResponseDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\ArtistaResponseDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Submance.Application\\DTOs\\ArtistaResponseDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\ArtistaRequestDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Submance.Application\\DTOs\\ArtistaRequestDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\UsuarioResponseDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Submance.Application\\DTOs\\UsuarioResponseDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\UsuarioRequestDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Submance.Application\\DTOs\\UsuarioRequestDto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +262,668 @@
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RevisionRepository.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Repositories\\RevisionRepository.cs",
+              "RelativeDocumentMoniker": "Submance.Infrastructure\\Repositories\\RevisionRepository.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Repositories\\RevisionRepository.cs",
+              "RelativeToolTip": "Submance.Infrastructure\\Repositories\\RevisionRepository.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAIwFUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T21:06:01.683Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CancionRepository.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Repositories\\CancionRepository.cs",
+              "RelativeDocumentMoniker": "Submance.Infrastructure\\Repositories\\CancionRepository.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Repositories\\CancionRepository.cs",
+              "RelativeToolTip": "Submance.Infrastructure\\Repositories\\CancionRepository.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAA1wKsAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T21:00:49.298Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GeneroRepository.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Repositories\\GeneroRepository.cs",
+              "RelativeDocumentMoniker": "Submance.Infrastructure\\Repositories\\GeneroRepository.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Repositories\\GeneroRepository.cs",
+              "RelativeToolTip": "Submance.Infrastructure\\Repositories\\GeneroRepository.cs",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAmwF4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T21:04:57.947Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RolRepository.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Repositories\\RolRepository.cs",
+              "RelativeDocumentMoniker": "Submance.Infrastructure\\Repositories\\RolRepository.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Repositories\\RolRepository.cs",
+              "RelativeToolTip": "Submance.Infrastructure\\Repositories\\RolRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T17:47:28.879Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "UsuarioRepository.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Repositories\\UsuarioRepository.cs",
+              "RelativeDocumentMoniker": "Submance.Infrastructure\\Repositories\\UsuarioRepository.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Repositories\\UsuarioRepository.cs",
+              "RelativeToolTip": "Submance.Infrastructure\\Repositories\\UsuarioRepository.cs",
+              "ViewState": "AgIAAKEAAAAAAAAAAAAuwJwAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:33:55.276Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ArtistaRepository.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Repositories\\ArtistaRepository.cs",
+              "RelativeDocumentMoniker": "Submance.Infrastructure\\Repositories\\ArtistaRepository.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Repositories\\ArtistaRepository.cs",
+              "RelativeToolTip": "Submance.Infrastructure\\Repositories\\ArtistaRepository.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAgwA8AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T20:55:51.236Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AlbumRepository.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Repositories\\AlbumRepository.cs",
+              "RelativeDocumentMoniker": "Submance.Infrastructure\\Repositories\\AlbumRepository.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Repositories\\AlbumRepository.cs",
+              "RelativeToolTip": "Submance.Infrastructure\\Repositories\\AlbumRepository.cs",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAmwIsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T16:44:20.368Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DbConnectionFactory.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Data\\DbConnectionFactory.cs",
+              "RelativeDocumentMoniker": "Submance.Infrastructure\\Data\\DbConnectionFactory.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Data\\DbConnectionFactory.cs",
+              "RelativeToolTip": "Submance.Infrastructure\\Data\\DbConnectionFactory.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAmwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T17:10:21.229Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IArtistaRepository.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Repositories\\IArtistaRepository.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Repositories\\IArtistaRepository.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Repositories\\IArtistaRepository.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Repositories\\IArtistaRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:12:49.359Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Artista.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Entities\\Artista.cs",
+              "RelativeDocumentMoniker": "Submance.Domain\\Entities\\Artista.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Entities\\Artista.cs",
+              "RelativeToolTip": "Submance.Domain\\Entities\\Artista.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAUwBoAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T18:42:04.031Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "schema.sql",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\SubmanceProjectApi\\Database\\schema.sql",
+              "RelativeDocumentMoniker": "SubmanceProjectApi\\Database\\schema.sql",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\SubmanceProjectApi\\Database\\schema.sql",
+              "RelativeToolTip": "SubmanceProjectApi\\Database\\schema.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-02-03T19:05:27.625Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "IAlbumRepository.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Repositories\\IAlbumRepository.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Repositories\\IAlbumRepository.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Repositories\\IAlbumRepository.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Repositories\\IAlbumRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T20:49:31.691Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Entities\\Usuario.cs",
+              "RelativeDocumentMoniker": "Submance.Domain\\Entities\\Usuario.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Entities\\Usuario.cs",
+              "RelativeToolTip": "Submance.Domain\\Entities\\Usuario.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwBwAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T18:41:56.631Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IUsuarioRepository.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Repositories\\IUsuarioRepository.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Repositories\\IUsuarioRepository.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Repositories\\IUsuarioRepository.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Repositories\\IUsuarioRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T20:49:19.176Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IRolRepository.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Repositories\\IRolRepository.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Repositories\\IRolRepository.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Repositories\\IRolRepository.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Repositories\\IRolRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T20:49:06.106Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Album.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Entities\\Album.cs",
+              "RelativeDocumentMoniker": "Submance.Domain\\Entities\\Album.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Entities\\Album.cs",
+              "RelativeToolTip": "Submance.Domain\\Entities\\Album.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T18:42:24.595Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "data.sql",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\SubmanceProjectApi\\Database\\data.sql",
+              "RelativeDocumentMoniker": "SubmanceProjectApi\\Database\\data.sql",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\SubmanceProjectApi\\Database\\data.sql",
+              "RelativeToolTip": "SubmanceProjectApi\\Database\\data.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2026-02-03T19:05:00.293Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\SubmanceProjectApi\\appsettings.json",
+              "RelativeDocumentMoniker": "SubmanceProjectApi\\appsettings.json",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\SubmanceProjectApi\\appsettings.json",
+              "RelativeToolTip": "SubmanceProjectApi\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-02-05T17:23:23.059Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Submance.Infrastructure.csproj",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Submance.Infrastructure.csproj",
+              "RelativeDocumentMoniker": "Submance.Infrastructure\\Submance.Infrastructure.csproj",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Submance.Infrastructure.csproj",
+              "RelativeToolTip": "Submance.Infrastructure\\Submance.Infrastructure.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-26T08:49:32.276Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "SubmanceProject.Api.csproj",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\SubmanceProjectApi\\SubmanceProject.Api.csproj",
+              "RelativeDocumentMoniker": "SubmanceProjectApi\\SubmanceProject.Api.csproj",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\SubmanceProjectApi\\SubmanceProject.Api.csproj",
+              "RelativeToolTip": "SubmanceProjectApi\\SubmanceProject.Api.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-30T19:00:38.005Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\SubmanceProjectApi\\Program.cs",
+              "RelativeDocumentMoniker": "SubmanceProjectApi\\Program.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\SubmanceProjectApi\\Program.cs",
+              "RelativeToolTip": "SubmanceProjectApi\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T17:26:23.571Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "IGeneroRepository.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Repositories\\IGeneroRepository.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Repositories\\IGeneroRepository.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Repositories\\IGeneroRepository.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Repositories\\IGeneroRepository.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T20:50:09.539Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "IRevisionRepository.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Repositories\\IRevisionRepository.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Repositories\\IRevisionRepository.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Repositories\\IRevisionRepository.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Repositories\\IRevisionRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T20:49:57.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ICancionRepository.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Repositories\\ICancionRepository.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Repositories\\ICancionRepository.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Repositories\\ICancionRepository.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Repositories\\ICancionRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAwwBEAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T20:49:42.036Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Submance.Application.csproj",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Submance.Application.csproj",
+              "RelativeDocumentMoniker": "Submance.Application\\Submance.Application.csproj",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Submance.Application.csproj",
+              "RelativeToolTip": "Submance.Application\\Submance.Application.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-01-26T08:52:39.367Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "RevisionRequestDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Revision\\RevisionRequestDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\Revision\\RevisionRequestDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Revision\\RevisionRequestDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\Revision\\RevisionRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T16:40:34.285Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "GeneroRequestDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Genero\\GeneroRequestDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\Genero\\GeneroRequestDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Genero\\GeneroRequestDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\Genero\\GeneroRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T16:40:34.035Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "CancionPendienteDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Cancion\\CancionPendienteDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\Cancion\\CancionPendienteDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Cancion\\CancionPendienteDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\Cancion\\CancionPendienteDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T16:40:33.774Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "ArtistaResponseDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Artista\\ArtistaResponseDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\Artista\\ArtistaResponseDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Artista\\ArtistaResponseDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\Artista\\ArtistaResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T16:40:33.391Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "ArtistaRequestDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Artista\\ArtistaRequestDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\Artista\\ArtistaRequestDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Artista\\ArtistaRequestDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\Artista\\ArtistaRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T16:40:33.034Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "UsuarioResponseDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Usuario\\UsuarioResponseDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\Usuario\\UsuarioResponseDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Usuario\\UsuarioResponseDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\Usuario\\UsuarioResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-05T16:40:24.799Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "IAlbumService.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Services\\IAlbumService.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Services\\IAlbumService.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Services\\IAlbumService.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Services\\IAlbumService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-03T19:27:27.774Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "IUsuarioService.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Services\\IUsuarioService.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Services\\IUsuarioService.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Services\\IUsuarioService.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Services\\IUsuarioService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwBEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-03T19:27:57.627Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "IGeneroService.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Services\\IGeneroService.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Services\\IGeneroService.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Services\\IGeneroService.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Services\\IGeneroService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-03T19:27:43.478Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "ICancionService.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Services\\ICancionService.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Services\\ICancionService.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Services\\ICancionService.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Services\\ICancionService.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAxwBQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T19:10:51.639Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "IArtistaService.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Services\\IArtistaService.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Services\\IArtistaService.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Services\\IArtistaService.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Services\\IArtistaService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-03T19:27:35.421Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "AlbumResponseDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Album\\AlbumResponseDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\Album\\AlbumResponseDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Album\\AlbumResponseDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\Album\\AlbumResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:17:45.796Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "AlbumRequestDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Album\\AlbumRequestDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\Album\\AlbumRequestDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\Album\\AlbumRequestDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\Album\\AlbumRequestDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:17:33.572Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 51,
+              "Title": "CancionResponseDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\CancionResponseDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\CancionResponseDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\CancionResponseDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\CancionResponseDto.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:18:13.583Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 52,
+              "Title": "RevisionRequestDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\RevisionRequestDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\RevisionRequestDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\RevisionRequestDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\RevisionRequestDto.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:18:27.652Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 53,
+              "Title": "GeneroRequestDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\GeneroRequestDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\GeneroRequestDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\GeneroRequestDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\GeneroRequestDto.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:17:04.516Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 54,
+              "Title": "CancionPendienteDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\CancionPendienteDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\CancionPendienteDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\CancionPendienteDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\CancionPendienteDto.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:18:52.424Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "EstadoCancion.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Enums\\EstadoCancion.cs",
+              "RelativeDocumentMoniker": "Submance.Domain\\Enums\\EstadoCancion.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Enums\\EstadoCancion.cs",
+              "RelativeToolTip": "Submance.Domain\\Enums\\EstadoCancion.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T18:54:34.363Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 39,
+              "Title": "CancionService.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Services\\CancionService.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Services\\CancionService.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Services\\CancionService.cs",
+              "RelativeToolTip": "Submance.Application\\Services\\CancionService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:35:21.239Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 55,
+              "Title": "RevisionResponseDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\RevisionResponseDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\RevisionResponseDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\RevisionResponseDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\RevisionResponseDto.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:18:40.338Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 56,
+              "Title": "CancionRequestDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\CancionRequestDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\CancionRequestDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\CancionRequestDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\CancionRequestDto.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:17:59.253Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 57,
+              "Title": "GeneroResponseDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\GeneroResponseDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\GeneroResponseDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\GeneroResponseDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\GeneroResponseDto.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:17:20.448Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 58,
+              "Title": "ArtistaResponseDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\ArtistaResponseDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\ArtistaResponseDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\ArtistaResponseDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\ArtistaResponseDto.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:16:50.611Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 59,
+              "Title": "ArtistaRequestDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\ArtistaRequestDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\ArtistaRequestDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\ArtistaRequestDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\ArtistaRequestDto.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:15:34.326Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 60,
+              "Title": "UsuarioResponseDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\UsuarioResponseDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\UsuarioResponseDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\UsuarioResponseDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\UsuarioResponseDto.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:15:20.634Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 61,
+              "Title": "UsuarioRequestDto.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\UsuarioRequestDto.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\DTOs\\UsuarioRequestDto.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\DTOs\\UsuarioRequestDto.cs",
+              "RelativeToolTip": "Submance.Application\\DTOs\\UsuarioRequestDto.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T21:03:45.058Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 41,
+              "Title": "ResultadoRevision.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Enums\\ResultadoRevision.cs",
+              "RelativeDocumentMoniker": "Submance.Domain\\Enums\\ResultadoRevision.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Enums\\ResultadoRevision.cs",
+              "RelativeToolTip": "Submance.Domain\\Enums\\ResultadoRevision.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T18:56:12.011Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 40,
+              "Title": "Revision.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Entities\\Revision.cs",
+              "RelativeDocumentMoniker": "Submance.Domain\\Entities\\Revision.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Entities\\Revision.cs",
+              "RelativeToolTip": "Submance.Domain\\Entities\\Revision.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAADwvxUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T18:42:41.303Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
+              "Title": "Cancion.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Entities\\Cancion.cs",
+              "RelativeDocumentMoniker": "Submance.Domain\\Entities\\Cancion.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Entities\\Cancion.cs",
+              "RelativeToolTip": "Submance.Domain\\Entities\\Cancion.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAADwvxsAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T18:42:30.95Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 43,
+              "Title": "Genero.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Entities\\Genero.cs",
+              "RelativeDocumentMoniker": "Submance.Domain\\Entities\\Genero.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Entities\\Genero.cs",
+              "RelativeToolTip": "Submance.Domain\\Entities\\Genero.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T18:42:17.046Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 44,
+              "Title": "Rol.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Entities\\Rol.cs",
+              "RelativeDocumentMoniker": "Submance.Domain\\Entities\\Rol.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Entities\\Rol.cs",
+              "RelativeToolTip": "Submance.Domain\\Entities\\Rol.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-30T18:41:49.581Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 46,
               "Title": "PasswordHasher.cs",
               "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Security\\PasswordHasher.cs",
               "RelativeDocumentMoniker": "Submance.Infrastructure\\Security\\PasswordHasher.cs",
@@ -54,51 +931,47 @@
               "RelativeToolTip": "Submance.Infrastructure\\Security\\PasswordHasher.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-26T08:57:46.956Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-26T08:57:46.956Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 45,
               "Title": "JwtTokenService.cs",
               "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Security\\JwtTokenService.cs",
               "RelativeDocumentMoniker": "Submance.Infrastructure\\Security\\JwtTokenService.cs",
               "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Security\\JwtTokenService.cs",
               "RelativeToolTip": "Submance.Infrastructure\\Security\\JwtTokenService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAA0AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-26T08:57:38.254Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-26T08:57:38.254Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 47,
               "Title": "ITokenService.cs",
-              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Auth\\ITokenService.cs",
-              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Auth\\ITokenService.cs",
-              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Auth\\ITokenService.cs",
-              "RelativeToolTip": "Submance.Application\\Interfaces\\Auth\\ITokenService.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Services\\Auth\\ITokenService.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Services\\Auth\\ITokenService.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Services\\Auth\\ITokenService.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Services\\Auth\\ITokenService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-26T08:53:44.714Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-26T08:53:44.714Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 48,
               "Title": "IAuthService.cs",
-              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Auth\\IAuthService.cs",
-              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Auth\\IAuthService.cs",
-              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Auth\\IAuthService.cs",
-              "RelativeToolTip": "Submance.Application\\Interfaces\\Auth\\IAuthService.cs",
+              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Services\\Auth\\IAuthService.cs",
+              "RelativeDocumentMoniker": "Submance.Application\\Interfaces\\Services\\Auth\\IAuthService.cs",
+              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Interfaces\\Services\\Auth\\IAuthService.cs",
+              "RelativeToolTip": "Submance.Application\\Interfaces\\Services\\Auth\\IAuthService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-26T08:53:35.229Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-26T08:53:35.229Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 49,
               "Title": "JwtSettings.cs",
               "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Common\\JwtSettings.cs",
               "RelativeDocumentMoniker": "Submance.Application\\Common\\JwtSettings.cs",
@@ -106,47 +979,19 @@
               "RelativeToolTip": "Submance.Application\\Common\\JwtSettings.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-26T08:52:53.897Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-26T08:52:53.897Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Submance.Application",
-              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Submance.Application.csproj",
-              "RelativeDocumentMoniker": "Submance.Application\\Submance.Application.csproj",
-              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Submance.Application.csproj",
-              "RelativeToolTip": "Submance.Application\\Submance.Application.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-01-26T08:52:39.367Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Submance.Infrastructure",
-              "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Submance.Infrastructure.csproj",
-              "RelativeDocumentMoniker": "Submance.Infrastructure\\Submance.Infrastructure.csproj",
-              "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Submance.Infrastructure.csproj",
-              "RelativeToolTip": "Submance.Infrastructure\\Submance.Infrastructure.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-01-26T08:49:32.276Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Submance.Domain",
+              "DocumentIndex": 50,
+              "Title": "Submance.Domain.csproj",
               "DocumentMoniker": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Submance.Domain.csproj",
               "RelativeDocumentMoniker": "Submance.Domain\\Submance.Domain.csproj",
               "ToolTip": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Submance.Domain.csproj",
               "RelativeToolTip": "Submance.Domain\\Submance.Domain.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2026-01-26T08:51:03.658Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-26T08:51:03.658Z"
             },
             {
               "$type": "Bookmark",
