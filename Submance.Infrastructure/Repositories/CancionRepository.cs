@@ -1,7 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Submance.Application.Interfaces.Repositories;
 using Submance.Domain.Entities;
-using Submance.Domain.Enums;
+// using Submance.Domain.Enums; // YA NO LO NECESITAMOS AQUÍ
 using Submance.Infrastructure.Data;
 using System.Data;
 
@@ -109,11 +109,15 @@ namespace Submance.Infrastructure.Repositories
             command.CommandType = CommandType.StoredProcedure;
 
             command.Parameters.AddWithValue("@titulo", cancion.Titulo);
-            command.Parameters.AddWithValue("@duracion", cancion.Duracion);
-            command.Parameters.AddWithValue("@archivo", cancion.Archivo);
-            command.Parameters.AddWithValue("@idAlbum", cancion.IdAlbum);
+            // Manejo de nulos seguro para TimeSpam
+            command.Parameters.AddWithValue("@duracion", cancion.Duracion ?? (object)DBNull.Value);
+            command.Parameters.AddWithValue("@archivo", cancion.Archivo ?? (object)DBNull.Value);
+            command.Parameters.AddWithValue("@idAlbum", cancion.IdAlbum ?? (object)DBNull.Value);
             command.Parameters.AddWithValue("@idGenero", cancion.IdGenero);
             command.Parameters.AddWithValue("@idArtista", cancion.IdArtista);
+
+            // Si tu SP espera estado, descomenta esto:
+            // command.Parameters.AddWithValue("@estado", cancion.Estado ?? "Pendiente");
 
             await connection.OpenAsync();
             await command.ExecuteNonQueryAsync();
@@ -129,11 +133,13 @@ namespace Submance.Infrastructure.Repositories
 
             command.Parameters.AddWithValue("@idCancion", cancion.IdCancion);
             command.Parameters.AddWithValue("@titulo", cancion.Titulo);
-            command.Parameters.AddWithValue("@duracion", cancion.Duracion);
-            command.Parameters.AddWithValue("@archivo", cancion.Archivo);
-            command.Parameters.AddWithValue("@idAlbum", cancion.IdAlbum);
+            command.Parameters.AddWithValue("@duracion", cancion.Duracion ?? (object)DBNull.Value);
+            command.Parameters.AddWithValue("@archivo", cancion.Archivo ?? (object)DBNull.Value);
+            command.Parameters.AddWithValue("@idAlbum", cancion.IdAlbum ?? (object)DBNull.Value);
             command.Parameters.AddWithValue("@idGenero", cancion.IdGenero);
             command.Parameters.AddWithValue("@idArtista", cancion.IdArtista);
+
+            // AQUÍ PASAMOS EL STRING DIRECTAMENTE
             command.Parameters.AddWithValue("@estado", cancion.Estado);
 
             await connection.OpenAsync();
@@ -154,7 +160,9 @@ namespace Submance.Infrastructure.Repositories
             await command.ExecuteNonQueryAsync();
         }
 
-        // Mapper privado para no repetir código
+        // ==========================================
+        // CORRECCIÓN DEL MAPPER (Adiós Enum)
+        // ==========================================
         private Cancion Map(SqlDataReader reader)
         {
             return new Cancion
@@ -171,14 +179,10 @@ namespace Submance.Infrastructure.Repositories
                 IdGenero = (int)reader["idGenero"],
                 IdArtista = (int)reader["idArtista"],
 
-                Estado = Enum.TryParse<EstadoCancion>(
-                            reader["estado"]?.ToString(),
-                            true,
-                            out var estado)
-                        ? estado
-                        : EstadoCancion.Pendiente
+                // CORREGIDO: Asignación directa de String
+                // Si viene nulo, ponemos "Pendiente" por defecto
+                Estado = reader["estado"]?.ToString() ?? "Pendiente"
             };
         }
-
     }
 }

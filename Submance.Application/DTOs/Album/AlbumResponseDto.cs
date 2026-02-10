@@ -9,9 +9,13 @@ namespace Submance.Application.DTOs.Album
     public class AlbumResponseDto
     {
         public int IdAlbum { get; set; }
-        public string Titulo { get; set; }
-        public DateTime? FechaLanzamiento { get; set; }
-        public string Artista { get; set; }
-    }
 
+        // 👇 AGREGAMOS EL '= string.Empty;' AQUÍ
+        public string Titulo { get; set; } = string.Empty;
+
+        public DateTime? FechaLanzamiento { get; set; } // Este está bien porque tiene el '?' (es opcional)
+
+        // 👇 Y AQUÍ TAMBIÉN
+        public string Artista { get; set; } = string.Empty;
+    }
 }

@@ -1,24 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Submance.Domain.Entities
 {
+    // C# busca la tabla "Genero", pero en tu SQL se llama "Generos". Esto lo arregla:
+    [Table("Generos")]
     public class Genero
     {
         [Key]
         public int IdGenero { get; set; }
 
-        [Required]
-        [MaxLength(50)]
+     
+        [Column("Nombre")]
         public string NombreGenero { get; set; }
 
-        [MaxLength(150)]
         public string Descripcion { get; set; }
-
-        public ICollection<Cancion> Canciones { get; set; }
+        public bool Estado { get; set; }
     }
 }

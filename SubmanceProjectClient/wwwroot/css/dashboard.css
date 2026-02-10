@@ -1,0 +1,221 @@
+﻿/* ================== VARIABLES & RESET ================== */
+:root {
+    --primary: #764ba2;
+    --dark-bg: #121212;
+    --dark-card: #1e1e1e;
+    --light-bg: #f4f6f9;
+    --light-card: #ffffff;
+    --text-dark: #212529;
+    --text-light: #f8f9fa;
+}
+
+body {
+    background-color: var(--light-bg);
+    font-family: 'Montserrat', sans-serif;
+    overflow-x: hidden;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+    /* ================== MODO OSCURO ================== */
+    body.dark-mode {
+        background-color: var(--dark-bg);
+        color: var(--text-light);
+    }
+
+        body.dark-mode .sidebar {
+            background-color: var(--dark-card);
+            border-right: 1px solid #333;
+        }
+
+        body.dark-mode .card,
+        body.dark-mode .stat-card,
+        body.dark-mode .stat-compact,
+        body.dark-mode .form-control {
+            background-color: var(--dark-card);
+            color: var(--text-light);
+            border-color: #333;
+        }
+
+        body.dark-mode .table {
+            color: var(--text-light);
+            border-color: #333;
+        }
+
+        body.dark-mode .table-light {
+            background-color: #2c2c2c;
+            color: white;
+        }
+
+/* ================== SIDEBAR ================== */
+.sidebar {
+    height: 100vh;
+    width: 260px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+    z-index: 1000;
+    transition: 0.3s;
+}
+
+.sidebar-brand {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #000;
+    text-decoration: none;
+    margin-bottom: 40px;
+    display: block;
+    cursor: default; /* Para indicar que no es link navegable */
+}
+
+body.dark-mode .sidebar-brand {
+    color: white;
+}
+
+.nav-item {
+    display: block;
+    padding: 12px 15px;
+    color: #6c757d;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+    .nav-item:hover, .nav-item.active {
+        background-color: var(--primary);
+        color: white !important;
+    }
+
+/* ================== CONTENIDO PRINCIPAL ================== */
+.main-content {
+    margin-left: 260px;
+    padding: 30px;
+}
+
+.page-title {
+    font-weight: 800;
+    margin-bottom: 25px;
+}
+
+/* ================== TARJETAS Y ESTADÍSTICAS ================== */
+.stat-card, .stat-compact {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    height: 100%;
+    transition: 0.3s;
+}
+
+.border-left-purple {
+    border-left: 5px solid #d600ff;
+}
+
+.border-left-cyan {
+    border-left: 5px solid #00f2ff;
+}
+
+.border-left-pink {
+    border-left: 5px solid #ff0055;
+}
+
+.stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    opacity: 0.7;
+    margin-bottom: 10px;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+/* ================== BADGES Y BOTONES ================== */
+.badge-pendiente {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.badge-aprobada {
+    background-color: #0dcaf0;
+    color: #000;
+}
+
+.badge-rechazada {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-black {
+    background: #121212;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: bold;
+    border: none;
+}
+
+body.dark-mode .btn-black {
+    background: #764ba2;
+}
+/* Cambio de color en modo oscuro */
+
+/* ================== UTILIDADES ================== */
+.hidden {
+    display: none !important;
+}
+
+/* Barra de Reportes Guía */
+.report-bar-guide {
+    background: linear-gradient(90deg, #8E2DE2, #4A00E0);
+    padding: 20px;
+    border-radius: 12px;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* ================= ESTILOS CARDS PRO ================= */
+.card-demo {
+    border: 1px solid rgba(0,0,0,0.05); /* Borde sutil */
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    background: #fff;
+}
+
+    .card-demo:hover {
+        transform: translateY(-5px); /* Efecto de elevación */
+        box-shadow: 0 10px 20px rgba(0,0,0,0.08) !important;
+        border-color: rgba(111, 66, 193, 0.3); /* Un toque morado al borde */
+    }
+
+/* Icono circular del track */
+.track-icon {
+    width: 48px;
+    height: 48px;
+    background-color: #f3e5f5; /* Morado muy suave */
+    color: #6f42c1; /* Morado Submance */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    font-size: 1.5rem;
+}
+
+/* Badges (Etiquetas) más elegantes */
+.badge-status {
+    padding: 0.5em 1em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 30px;
+    letter-spacing: 0.5px;
+}

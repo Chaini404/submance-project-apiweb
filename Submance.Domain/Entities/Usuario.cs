@@ -15,20 +15,19 @@ namespace Submance.Domain.Entities
 
         [Required]
         [MaxLength(100)]
-        public string Nombre { get; set; }
+        public string Nombre { get; set; } = string.Empty; // 👈 Agrega esto
 
         [Required]
         [EmailAddress]
         [MaxLength(100)]
-        public string Correo { get; set; }
+        public string Correo { get; set; } = string.Empty; // 👈 Agrega esto
 
         [Required]
         [MaxLength(100)]
-        public string Password { get; set; }
+        public string Password { get; set; } = string.Empty; // 👈 Agrega esto
 
         public bool Activo { get; set; } = true;
 
-        // FK
         public int IdRol { get; set; }
 
         [ForeignKey(nameof(IdRol))]

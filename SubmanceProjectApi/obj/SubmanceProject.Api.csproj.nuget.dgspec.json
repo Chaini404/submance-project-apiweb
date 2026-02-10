@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\SubmanceProjectApi\\SubmanceProject.Api.csproj": {}
+    "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\SubmanceProjectApi\\SubmanceProject.Api.csproj": {}
   },
   "projects": {
-    "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Submance.Application.csproj": {
+    "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Application\\Submance.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Submance.Application.csproj",
+        "projectUniqueName": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Application\\Submance.Application.csproj",
         "projectName": "Submance.Application",
-        "projectPath": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Submance.Application.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\obj\\",
+        "projectPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Application\\Submance.Application.csproj",
+        "packagesPath": "C:\\Users\\Jordi\\.nuget\\packages\\",
+        "outputPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Application\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jordi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,29 +26,25 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Submance.Domain.csproj": {
-                "projectPath": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Submance.Domain.csproj"
+              "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Domain\\Submance.Domain.csproj": {
+                "projectPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Domain\\Submance.Domain.csproj"
               }
             }
           }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
         },
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -69,24 +65,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Submance.Domain.csproj": {
+    "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Domain\\Submance.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Submance.Domain.csproj",
+        "projectUniqueName": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Domain\\Submance.Domain.csproj",
         "projectName": "Submance.Domain",
-        "projectPath": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\Submance.Domain.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Domain\\obj\\",
+        "projectPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Domain\\Submance.Domain.csproj",
+        "packagesPath": "C:\\Users\\Jordi\\.nuget\\packages\\",
+        "outputPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jordi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -95,6 +91,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -103,21 +100,22 @@
             "projectReferences": {}
           }
         },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
-        },
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -134,24 +132,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Submance.Infrastructure.csproj": {
+    "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Infrastructure\\Submance.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Submance.Infrastructure.csproj",
+        "projectUniqueName": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Infrastructure\\Submance.Infrastructure.csproj",
         "projectName": "Submance.Infrastructure",
-        "projectPath": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Submance.Infrastructure.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\obj\\",
+        "projectPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Infrastructure\\Submance.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Jordi\\.nuget\\packages\\",
+        "outputPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jordi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -160,29 +158,25 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Submance.Application.csproj": {
-                "projectPath": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Application\\Submance.Application.csproj"
+              "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Application\\Submance.Application.csproj": {
+                "projectPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Application\\Submance.Application.csproj"
               }
             }
           }
-        },
-        "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
         },
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
@@ -213,24 +207,24 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\SubmanceProjectApi\\SubmanceProject.Api.csproj": {
+    "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\SubmanceProjectApi\\SubmanceProject.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\SubmanceProjectApi\\SubmanceProject.Api.csproj",
+        "projectUniqueName": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\SubmanceProjectApi\\SubmanceProject.Api.csproj",
         "projectName": "SubmanceProject.Api",
-        "projectPath": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\SubmanceProjectApi\\SubmanceProject.Api.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\SubmanceProjectApi\\obj\\",
+        "projectPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\SubmanceProjectApi\\SubmanceProject.Api.csproj",
+        "packagesPath": "C:\\Users\\Jordi\\.nuget\\packages\\",
+        "outputPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\SubmanceProjectApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Jordi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -239,14 +233,21 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Submance.Infrastructure.csproj": {
-                "projectPath": "D:\\PROYECTOS - CIBERTEC\\PROYECTO - EXF4\\SubmanceProject\\Submance.Infrastructure\\Submance.Infrastructure.csproj"
+              "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Application\\Submance.Application.csproj": {
+                "projectPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Application\\Submance.Application.csproj"
+              },
+              "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Domain\\Submance.Domain.csproj": {
+                "projectPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Domain\\Submance.Domain.csproj"
+              },
+              "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Infrastructure\\Submance.Infrastructure.csproj": {
+                "projectPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Infrastructure\\Submance.Infrastructure.csproj"
               }
             }
           }
@@ -261,12 +262,26 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.2, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.6.2, )"
@@ -291,7 +306,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.306/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

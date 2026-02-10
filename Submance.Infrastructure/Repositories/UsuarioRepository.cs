@@ -186,5 +186,34 @@ namespace Submance.Infrastructure.Repositories
                 Activo = reader.GetBoolean(reader.GetOrdinal("activo"))
             };
         }
+        // =========================
+        // GET BY USERNAME (Agregado para el Login)
+        // =========================
+        public async Task<Usuario?> GetByUsernameAsync(string nombre)
+        {
+            Usuario? usuario = null;
+
+            using SqlConnection con = _dbConnectionFactory.CreateConnection() as SqlConnection
+                ?? throw new InvalidOperationException("No se pudo crear la conexion SQL");
+
+            await con.OpenAsync();
+
+            // Usamos SQL directo para buscar por Nombre
+            // Asegúrate de que tu tabla se llame 'Usuario' y la columna 'Nombre'
+            string sql = "SELECT * FROM Usuario WHERE Nombre = @nombre";
+
+            using SqlCommand cmd = new SqlCommand(sql, con);
+            cmd.Parameters.Add("@nombre", SqlDbType.VarChar, 100).Value = nombre;
+
+            using SqlDataReader reader = await cmd.ExecuteReaderAsync();
+
+            if (await reader.ReadAsync())
+            {
+                // Reutilizamos tu método MapUsuario que ya tienes al final de la clase
+                usuario = MapUsuario(reader);
+            }
+
+            return usuario;
+        }
     }
 }

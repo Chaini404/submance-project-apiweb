@@ -8,9 +8,9 @@ namespace Submance.Application.DTOs.Artista
 {
     public class ArtistaRequestDto
     {
-        public string NombreArtistico { get; set; }
-        public string NombreReal { get; set; }
-        public string Correo { get; set; }
+        public string NombreArtistico { get; set; } = string.Empty; // 👈 ¡Agrega esto!
+        public string NombreReal { get; set; } = string.Empty;      // 👈 ¡Agrega esto!
+        public string Correo { get; set; } = string.Empty;          // 👈 ¡Agrega esto!
     }
 
 }

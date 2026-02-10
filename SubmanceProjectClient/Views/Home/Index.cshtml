@@ -1,8 +1,218 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Home";
+    Layout = null;
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submance Records</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/css/submance-vibe.css" asp-append-version="true" />
+</head>
+<body>
+
+    <header class="fixed-header">
+        <a href="#home" class="brand-logo">SUBMANCE</a>
+        <nav class="top-nav">
+            <a href="#home">HOME</a>
+            <a href="#releases">RELEASES</a>
+            <a href="#contact">CONTACT</a>
+            <a href="/Admin/Login" style="border:1px solid #fff; padding:5px 15px;">LOGIN</a>
+        </nav>
+    </header>
+
+    <section id="home" class="full-section">
+        <h1 style="font-size: 5rem; font-weight: 800; letter-spacing: -2px;">SUBMANCE</h1>
+        <p style="letter-spacing: 5px; color: #888;">UPLIFTING TRANCE LABEL</p>
+        <i class="bi bi-arrow-down-circle" style="font-size: 2rem; margin-top: 30px; cursor:pointer;" onclick="scrollPage('releases')"></i>
+    </section>
+
+    <section id="releases" class="full-section" style="background: #f9f9f9;">
+        <h2 style="font-weight: 800; letter-spacing: 2px;">LATEST RELEASES</h2>
+        <div class="text-muted mt-4">(Cover Arts Here)</div>
+        <i class="bi bi-arrow-down-circle" style="font-size: 2rem; margin-top: 30px; cursor:pointer;" onclick="scrollPage('contact')"></i>
+    </section>
+
+    <section id="contact" class="full-section">
+        <div class="contact-monster-container">
+            <div class="monster-col">
+                <div class="monster-title">LIAISE</div>
+                <div class="monster-text">General Info:<br><span>info@submance.com</span></div>
+                <div class="monster-text mt-4">Demos:<br><span>demos@submance.com</span></div>
+                <div class="monster-text mt-4">Location:<br><span>Lima, Peru</span></div>
+            </div>
+
+            <div class="monster-col">
+                <div class="monster-title">DEMOS</div>
+                <p class="small text-muted mb-4">
+                    We are looking for Uplifting & Progressive Trance. <br>
+                    Please allow up to 14 days for us to contact you.
+                </p>
+                <button class="btn-monster-demo" data-bs-toggle="modal" data-bs-target="#demoModal">
+                    SUBMIT DEMO
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="fixed-footer">
+        <div>&copy; @DateTime.Now.Year SUBMANCE RECORDS</div>
+        <div>
+            <i class="bi bi-instagram me-3"></i>
+            <i class="bi bi-facebook me-3"></i>
+            <button class="btn btn-light btn-sm fw-bold" data-bs-toggle="modal" data-bs-target="#demoModal">SUBMIT DEMO</button>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="demoModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header border-0 pb-0 bg-secondary text-white">
+                    <h5 class="modal-title fw-bold ps-4 pt-2">SUBMIT TRACK</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body p-0">
+                    <div class="one-forty-container">
+                        <form id="demoFormTag">
+
+                            <input type="text" id="inputArtistName" class="input-one-forty" placeholder="Artist Name (e.g. John Doe)" required>
+
+                            <input type="text" id="inputTrackTitle" class="input-one-forty" placeholder="Track Title (e.g. Summer Sky)" required>
+
+                            <input type="text" id="inputRealName" class="input-one-forty" placeholder="Your Real Name" required>
+
+                            <input type="email" id="inputEmail" class="input-one-forty" placeholder="Email Address" required>
+
+                            <textarea class="input-one-forty" rows="3" placeholder="Added Information..."></textarea>
+
+                            <select class="input-one-forty">
+                                <option>Is Your Track Exclusive?</option>
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+
+                            <select class="input-one-forty">
+                                <option>Target Label</option>
+                                <option>Submance Main</option>
+                            </select>
+
+                            <input type="url" id="inputLink" class="input-one-forty" placeholder="Soundcloud / Dropbox Link" required>
+
+                            <div class="input-one-forty d-flex align-items-center bg-white">
+                                <i class="bi bi-cloud-upload me-2"></i> Select Track MP3
+                            </div>
+
+                            <div class="form-check mt-3 mb-4">
+                                <input class="form-check-input" type="checkbox" required>
+                                <label class="form-check-label small">I confirm I have permissions...</label>
+                            </div>
+
+                            <button type="submit" id="btnSubmitDemo" class="btn-submit-track">
+                                <i class="bi bi-send-fill"></i> SUBMIT TRACK
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("demoFormTag");
+
+            if (form) {
+                form.addEventListener("submit", function(event) {
+                    event.preventDefault(); // Evita recarga
+
+                    // 1. Capturar Datos
+                    const datos = {
+                        ArtistName: document.getElementById('inputArtistName').value,
+                        TrackTitle: document.getElementById('inputTrackTitle').value,
+                        RealName: document.getElementById('inputRealName').value,
+                        Email: document.getElementById('inputEmail').value,
+                        Link: document.getElementById('inputLink').value
+                    };
+
+                    // 2. Preparar Botón
+                    const btn = document.getElementById("btnSubmitDemo");
+                    const textoOriginal = btn.innerHTML;
+                    btn.innerHTML = "Enviando...";
+                    btn.disabled = true;
+
+                    // 3. Enviar al API
+                    fetch('https://localhost:7064/api/Dashboard/RecibirDemoPublico', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(datos)
+                    })
+                    .then(async response => {
+                        let resultado;
+                        try {
+                            resultado = await response.json();
+                        } catch (e) {
+                            resultado = { message: "Error desconocido" };
+                        }
+
+                        if (response.ok) {
+                            // A) CERRAR EL MODAL
+                            const modalElement = document.getElementById('demoModal');
+                            const modalInstance = bootstrap.Modal.getInstance(modalElement);
+                            if (modalInstance) {
+                                modalInstance.hide();
+                            }
+
+                            // B) MOSTRAR ALERTA BONITA (ÉXITO)
+                            Swal.fire({
+                                title: '¡Demo Enviado!',
+                                text: 'Gracias. Nuestro equipo escuchará tu track pronto.',
+                                icon: 'success',
+                                confirmButtonColor: '#000',
+                                confirmButtonText: 'Genial'
+                            });
+
+                            // C) LIMPIAR
+                            form.reset();
+
+                        } else {
+                            // MOSTRAR ALERTA BONITA (ERROR)
+                            Swal.fire({
+                                title: 'Error',
+                                text: resultado.message,
+                                icon: 'error',
+                                confirmButtonColor: '#d33'
+                            });
+                            console.error("Error detalle:", resultado);
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error conexión:", error);
+                        Swal.fire({
+                            title: 'Error de Conexión',
+                            text: 'No se pudo contactar al servidor.',
+                            icon: 'error',
+                            confirmButtonColor: '#d33'
+                        });
+                    })
+                    .finally(() => {
+                        // Restaurar botón
+                        btn.innerHTML = textoOriginal;
+                        btn.disabled = false;
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>

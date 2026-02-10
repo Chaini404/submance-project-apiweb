@@ -1,0 +1,208 @@
+﻿/* ================= ESTILOS FINALES ================= */
+:root {
+    --bg-body: #ffffff;
+    --monster-gold: #bfa465; /* El color dorado de Monster Tunes */
+    --monster-black: #0a0a0a;
+    --one-forty-grey: #cccccc; /* Gris del fondo del formulario */
+    --font-main: 'Montserrat', sans-serif;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: #fff;
+    color: #000;
+    margin: 0;
+    padding-top: 70px;
+    padding-bottom: 60px; /* Espacio para el footer fijo */
+}
+
+/* --- HEADER FIJO --- */
+.fixed-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 1000;
+}
+
+.brand-logo {
+    color: #fff;
+    font-weight: 800;
+    font-size: 1.2rem;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.top-nav a {
+    color: #aaa;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-left: 25px;
+}
+
+    .top-nav a:hover {
+        color: #fff;
+    }
+
+/* --- SECCIONES --- */
+.full-section {
+    padding: 80px 20px;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+/* --- CONTACTO ESTILO MONSTER TUNES --- */
+.contact-monster-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 1000px;
+    text-align: left;
+    flex-wrap: wrap;
+}
+
+.monster-col {
+    flex: 1;
+    padding: 20px;
+    min-width: 300px;
+}
+
+.monster-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--monster-gold); /* Título Dorado */
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.monster-text {
+    font-size: 0.9rem;
+    color: #000;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+    .monster-text span {
+        font-weight: 400;
+        color: #555;
+    }
+
+.btn-monster-demo {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 15px 30px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+    .btn-monster-demo:hover {
+        background: #333;
+    }
+
+/* --- MODAL FORMULARIO ESTILO ONE FORTY --- */
+.modal-content {
+    border-radius: 0;
+    border: none;
+}
+
+.one-forty-container {
+    background-color: var(--one-forty-grey); /* Fondo Gris */
+    padding: 40px;
+}
+
+.input-one-forty {
+    background: #fff;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+    .input-one-forty::placeholder {
+        color: #888;
+    }
+
+    .input-one-forty:focus {
+        outline: 1px solid #000;
+    }
+
+.btn-submit-track {
+    background: #000;
+    color: #fff;
+    width: 100%;
+    padding: 15px;
+    font-weight: 800;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+    .btn-submit-track.success {
+        background: #28a745;
+    }
+/* Verde para éxito */
+
+/* --- LOGIN --- */
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background: #fff;
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    background: #fff;
+    margin-bottom: 20px;
+    border-radius: 30px; /* Redondeado como imagen */
+}
+
+/* --- FOOTER FIJO --- */
+.fixed-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: #000;
+    color: #888;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    z-index: 2000;
+    font-size: 0.8rem;
+}

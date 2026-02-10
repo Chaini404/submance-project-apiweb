@@ -1,32 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Submance.Domain.Entities
 {
+    [Table("Artistas")]
     public class Artista
     {
         [Key]
         public int IdArtista { get; set; }
-
-        [Required]
-        [MaxLength(100)]
         public string NombreArtistico { get; set; }
-
-        [MaxLength(100)]
         public string NombreReal { get; set; }
-
-        [Required]
-        [EmailAddress]
-        [MaxLength(100)]
+        public string Pais { get; set; }
         public string Correo { get; set; }
 
-        public bool Activo { get; set; } = true;
+        public DateTime FechaRegistro { get; set; }
 
-        public ICollection<Album> Albums { get; set; }
-        public ICollection<Cancion> Canciones { get; set; }
+        // Esta es la columna REAL de la base de datos (bit/bool)
+        public bool Estado { get; set; }
+
+      
+        [NotMapped]
+        public bool Activo
+        {
+            get { return Estado; }
+            set { Estado = value; }
+        }
     }
 }
