@@ -455,6 +455,112 @@ function generarReporteFirma(track, artista) {
     Swal.fire({ title: 'Generando Contrato...', timer: 1500, didOpen: () => { Swal.showLoading() } })
         .then(() => Swal.fire('Listo', `Contrato para ${track} enviado a cola.`, 'success'));
 }
+// ================= GENERADOR DE REPORTES (PDF REAL) =================
+
+function generarReportePDF(tipo) {
+    // Verificar si las librerías cargaron
+    if (!window.jspdf) {
+        Swal.fire('Error', 'Librería PDF no cargada. Revisa tu conexión.', 'error');
+        return;
+    }
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Configuración inicial
+    const fechaHoy = new Date().toLocaleDateString();
+    let titulo = "Reporte General - Submance Records";
+    let datos = [];
+    let columnas = ["Track", "Artista", "Estado", "Email", "Fecha Envio"];
+
+    // 1. FILTRADO DE DATOS SEGÚN EL BOTÓN
+    if (tipo === 'pendientes') {
+        titulo = "Reporte de Demos Pendientes";
+        datos = globalDemos.filter(d => (d.Estado || "").toLowerCase() === 'pendiente');
+    }
+    else if (tipo === 'lanzamientos') {
+        titulo = "Calendario de Lanzamientos";
+        columnas = ["Track", "Artista", "Lanzamiento", "Email", "Link"]; // Columnas diferentes
+        datos = globalDemos.filter(d => (d.Estado || "").toLowerCase() === 'aprobada');
+    }
+    else if (tipo === 'artistas') {
+        titulo = "Directorio de Artistas";
+        columnas = ["Artista", "Tracks", "Email de Contacto"];
+
+        // Lógica especial para agrupar artistas únicos
+        const mapa = new Map();
+        globalDemos.forEach(d => {
+            const nombre = d.NombreArtistico || "Desconocido";
+            if (!mapa.has(nombre)) mapa.set(nombre, { nombre: nombre, email: d.Email, tracks: 0 });
+            mapa.get(nombre).tracks++;
+        });
+        datos = Array.from(mapa.values());
+    }
+    else {
+        datos = globalDemos; // Todos
+    }
+
+    if (datos.length === 0) {
+        Swal.fire('Atención', 'No hay datos para generar este reporte.', 'info');
+        return;
+    }
+
+    // 2. DISEÑO DEL HEADER DEL PDF
+    doc.setFillColor(111, 66, 193); // Morado Submance
+    doc.rect(0, 0, 210, 20, 'F'); // Barra superior
+
+    doc.setTextColor(255, 255, 255);
+    doc.setFontSize(16);
+    doc.setFont("helvetica", "bold");
+    doc.text("SUBMANCE RECORDS", 14, 13);
+
+    doc.setTextColor(0, 0, 0);
+    doc.setFontSize(14);
+    doc.text(titulo, 14, 30);
+    doc.setFontSize(10);
+    doc.setTextColor(100);
+    doc.text(`Generado el: ${fechaHoy}`, 14, 36);
+
+    // 3. GENERACIÓN DE LA TABLA (Mapeo de datos)
+    let bodyData = [];
+
+    if (tipo === 'artistas') {
+        bodyData = datos.map(a => [a.nombre, a.tracks, a.email]);
+    } else if (tipo === 'lanzamientos') {
+        bodyData = datos.map(d => [
+            d.TituloDemo,
+            d.NombreArtistico,
+            d.FechaLanzamiento ? new Date(d.FechaLanzamiento).toLocaleDateString() : 'Por definir',
+            d.Email,
+            d.LinkDemo
+        ]);
+    } else {
+        bodyData = datos.map(d => [
+            d.TituloDemo,
+            d.NombreArtistico,
+            d.Estado,
+            d.Email,
+            new Date(d.FechaEnvio).toLocaleDateString()
+        ]);
+    }
+
+    doc.autoTable({
+        startY: 45,
+        head: [columnas],
+        body: bodyData,
+        theme: 'grid',
+        headStyles: { fillColor: [111, 66, 193], textColor: 255, fontStyle: 'bold' },
+        styles: { fontSize: 9, cellPadding: 3 },
+        alternateRowStyles: { fillColor: [248, 249, 250] }
+    });
+
+    // 4. GUARDAR ARCHIVO
+    doc.save(`Submance_${titulo.replace(/\s+/g, '_')}.pdf`);
+
+    // Notificación
+    const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
+    Toast.fire({ icon: 'success', title: 'PDF descargado' });
+}
 
 function logoutConfirm() { Swal.fire({ title: '¿Cerrar sesión?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#121212' }).then(r => { if (r.isConfirmed) location.href = '/Auth/Login'; }); }
 function openAddDemoModal() { Swal.fire({ title: 'Nuevo Demo', html: `<input id="sw-t" class="swal2-input" placeholder="Título"><input id="sw-a" class="swal2-input" placeholder="Artista"><input id="sw-l" class="swal2-input" placeholder="Link">`, preConfirm: () => { return { TrackTitle: document.getElementById('sw-t').value, ArtistName: document.getElementById('sw-a').value, Link: document.getElementById('sw-l').value } } }).then(r => { if (r.isConfirmed) fetch(`${API_URL}/RecibirDemoPublico`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(r.value) }).then(() => { refreshAllData(); Swal.fire('Guardado', '', 'success') }); }); }

@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
 </head>
 <body>
 
@@ -50,104 +53,65 @@
                 <div class="col-md-3"><div class="stat-card border-left-cyan"><div class="stat-label">Aprobados</div><div class="stat-value" id="st-aprob">0</div></div></div>
                 <div class="col-md-3"><div class="stat-card"><div class="stat-label">Artistas</div><div class="stat-value" id="st-arts">0</div></div></div>
             </div>
-
-            <div class="stat-card p-4" style="height: 450px; display: flex; flex-direction: column;">
-                <h5 class="fw-bold mb-3">Distribución por Estado</h5>
-                <div style="position: relative; flex-grow: 1; min-height: 0; width: 100%;">
-                    <canvas id="chartOverview"></canvas>
-                </div>
-            </div>
+            <div class="stat-card p-4" style="height: 450px;"><h5 class="fw-bold mb-3">Distribución</h5><div style="position: relative; height: 100%;"><canvas id="chartOverview"></canvas></div></div>
         </section>
 
         <section id="view-inbox" class="view-section hidden animate__animated animate__fadeIn">
             <h2 class="page-title">Buzón de Entrada</h2>
-            <div class="card border-0 shadow-sm">
-                <div class="table-responsive">
-                    <table class="table table-hover mb-0">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Track / Info</th>
-                                <th>Artista</th>
-                                <th>Escuchar</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody id="inboxTableBody"></tbody>
-                    </table>
-                </div>
-            </div>
+            <div class="card border-0 shadow-sm"><div class="table-responsive"><table class="table table-hover mb-0"><thead class="table-light"><tr><th>Track / Info</th><th>Artista</th><th>Escuchar</th><th>Acciones</th></tr></thead><tbody id="inboxTableBody"></tbody></table></div></div>
         </section>
-
         <section id="view-demos" class="view-section hidden animate__animated animate__fadeIn">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-end align-items-md-center mb-4 gap-3">
-                <div>
-                    <h2 class="page-title mb-1">Catálogo</h2>
-                    <p class="text-muted small mb-0">Gestión de demos.</p>
-                </div>
-                <div class="d-flex align-items-center gap-2 bg-white p-1 rounded-pill shadow-sm border">
-                    <select class="form-select form-select-sm border-0 bg-transparent fw-bold text-muted ps-3" style="width: auto; cursor: pointer;" onchange="setFilterStatus(this.value)">
-                        <option value="Todos">Todos</option>
-                        <option value="Pendiente">Pendientes</option>
-                        <option value="Aprobada">Aprobados</option>
-                        <option value="Rechazada">Rechazados</option>
-                    </select>
-                    <div class="vr text-muted opacity-25"></div>
-                    <div class="input-group input-group-sm border-0" style="width: 150px;">
-                        <span class="input-group-text bg-transparent border-0 pe-1"><i class="bi bi-search text-muted"></i></span>
-                        <input type="text" class="form-control bg-transparent border-0 ps-1" placeholder="Buscar..." onkeyup="setFilterText(this.value)">
-                    </div>
-                    <button class="btn btn-dark btn-sm rounded-circle d-flex align-items-center justify-content-center me-1" style="width: 32px; height: 32px;" onclick="openAddDemoModal()" title="Nuevo Demo">
-                        <i class="bi bi-plus-lg"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="row g-4" id="demosGrid"></div>
+            <div class="d-flex justify-content-between mb-4"><div><h2 class="page-title mb-1">Catálogo</h2></div><div class="d-flex gap-2"><select class="form-select form-select-sm" onchange="setFilterStatus(this.value)"><option value="Todos">Todos</option><option value="Pendiente">Pendientes</option><option value="Aprobada">Aprobados</option></select><input class="form-control form-control-sm" placeholder="Buscar..." onkeyup="setFilterText(this.value)"><button class="btn btn-dark btn-sm rounded-circle" onclick="openAddDemoModal()"><i class="bi bi-plus-lg"></i></button></div></div><div class="row g-4" id="demosGrid"></div>
         </section>
-
         <section id="view-artists" class="view-section hidden animate__animated animate__fadeIn">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-end align-items-md-center mb-4 gap-3">
-                <div>
-                    <h2 class="page-title mb-1">Roster de Artistas</h2>
-                    <p class="text-muted small mb-0">Directorio y gestión de talentos.</p>
-                </div>
-                <div class="d-flex align-items-center gap-2 bg-white p-1 rounded-pill shadow-sm border">
-                    <select class="form-select form-select-sm border-0 bg-transparent fw-bold text-muted ps-3" style="width: auto; cursor: pointer;" onchange="setArtistSort(this.value)">
-                        <option value="az">A - Z</option>
-                        <option value="za">Z - A</option>
-                        <option value="tracks">Más Tracks</option>
-                    </select>
-                    <div class="vr text-muted opacity-25"></div>
-                    <div class="input-group input-group-sm border-0" style="width: 180px;">
-                        <span class="input-group-text bg-transparent border-0 pe-1"><i class="bi bi-search text-muted"></i></span>
-                        <input type="text" class="form-control bg-transparent border-0 ps-1" placeholder="Buscar artista..." onkeyup="setArtistFilterText(this.value)">
-                    </div>
-                    <button class="btn btn-dark btn-sm rounded-circle d-flex align-items-center justify-content-center me-1" style="width: 32px; height: 32px;" onclick="openAddArtistModal()" title="Añadir Artista">
-                        <i class="bi bi-plus-lg"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="row g-4" id="artistsGrid"></div>
+            <div class="d-flex justify-content-between mb-4"><div><h2 class="page-title mb-1">Roster</h2></div><div class="d-flex gap-2"><input class="form-control form-control-sm" placeholder="Buscar..." onkeyup="setArtistFilterText(this.value)"><button class="btn btn-dark btn-sm rounded-circle" onclick="openAddArtistModal()"><i class="bi bi-plus-lg"></i></button></div></div><div class="row g-4" id="artistsGrid"></div>
         </section>
-
         <section id="view-releases" class="view-section hidden animate__animated animate__fadeIn">
-            <div class="d-flex justify-content-between align-items-center mb-4">
-                <div>
-                    <h2 class="page-title mb-1">Calendario de Lanzamientos</h2>
-                    <p class="text-muted small mb-0">Tracks aprobados y planificación.</p>
-                </div>
-                <button class="btn btn-sm btn-outline-dark fw-bold shadow-sm" onclick="window.print()">
-                    <i class="bi bi-printer-fill me-2"></i>Imprimir Plan
-                </button>
-            </div>
-            <div class="row g-4" id="releasesGrid">
-            </div>
+            <div class="d-flex justify-content-between mb-4"><h2 class="page-title">Calendario</h2></div><div class="row g-4" id="releasesGrid"></div>
         </section>
 
         <section id="view-reports" class="view-section hidden animate__animated animate__fadeIn">
-            <h2 class="page-title">Reportes Guía</h2>
-            <div class="p-4 bg-dark text-white rounded shadow-sm d-flex justify-content-between align-items-center">
-                <div><h4>Generador PDF</h4><small>Descarga listados oficiales</small></div>
-                <button class="btn btn-light fw-bold" onclick="Swal.fire('PDF','Función lista para conectar','info')">Descargar</button>
+            <h2 class="page-title mb-4">Centro de Reportes</h2>
+
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-purple-soft">
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+                    <div>
+                        <h4 class="fw-bold text-dark mb-1"><i class="bi bi-file-earmark-pdf-fill me-2 text-purple"></i>Generador Maestro</h4>
+                        <p class="text-muted small mb-0">Descarga un reporte completo de toda la base de datos.</p>
+                    </div>
+                    <button class="btn btn-purple px-4 py-2 fw-bold shadow-sm" onclick="generarReportePDF('todos')">
+                        <i class="bi bi-download me-2"></i>Descargar Todo
+                    </button>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-card">
+                        <div class="mb-3 text-warning"><i class="bi bi-hourglass-split fs-2"></i></div>
+                        <h5 class="fw-bold">Pendientes de Revisión</h5>
+                        <p class="text-muted small">Lista de demos que aún requieren feedback del equipo A&R.</p>
+                        <button class="btn btn-outline-warning w-100 mt-auto" onclick="generarReportePDF('pendientes')">Generar PDF</button>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-card">
+                        <div class="mb-3 text-success"><i class="bi bi-rocket-takeoff-fill fs-2"></i></div>
+                        <h5 class="fw-bold">Plan de Lanzamientos</h5>
+                        <p class="text-muted small">Cronograma de tracks aprobados y sus fechas de salida.</p>
+                        <button class="btn btn-outline-success w-100 mt-auto" onclick="generarReportePDF('lanzamientos')">Generar PDF</button>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-card">
+                        <div class="mb-3 text-primary"><i class="bi bi-people-fill fs-2"></i></div>
+                        <h5 class="fw-bold">Directorio de Artistas</h5>
+                        <p class="text-muted small">Base de datos de contactos y correos de todo el roster.</p>
+                        <button class="btn btn-outline-primary w-100 mt-auto" onclick="generarReportePDF('artistas')">Generar PDF</button>
+                    </div>
+                </div>
             </div>
         </section>
 

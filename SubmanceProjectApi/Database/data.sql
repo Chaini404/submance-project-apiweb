@@ -1,45 +1,297 @@
-﻿-- 1. Crear Base de Datos (Si no existe)
-IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'SubmanceProjectDb')
-BEGIN
-    CREATE DATABASE SubmanceProjectDb;
-END
+﻿USE [master]
 GO
-
-USE SubmanceProjectDb;
+/****** Object:  Database [SubmanceProjectDb]    Script Date: 09/02/2026 09:39:08 p. m. ******/
+CREATE DATABASE [SubmanceProjectDb]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'SubmanceProjectDb', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\SubmanceProjectDb.mdf' , SIZE = 8192KB , MAXSIZE = UNLIMITED, FILEGROWTH = 65536KB )
+ LOG ON 
+( NAME = N'SubmanceProjectDb_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL16.SQLEXPRESS\MSSQL\DATA\SubmanceProjectDb_log.ldf' , SIZE = 8192KB , MAXSIZE = 2048GB , FILEGROWTH = 65536KB )
+ WITH CATALOG_COLLATION = DATABASE_DEFAULT, LEDGER = OFF
 GO
-
--- 2. Crear Tabla Demos
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Demos]') AND type in (N'U'))
-BEGIN
-    CREATE TABLE Demos (
-        IdDemo INT IDENTITY(1,1) PRIMARY KEY,
-        TituloDemo NVARCHAR(100) NULL,
-        NombreArtistico NVARCHAR(100) NULL,
-        Estilo NVARCHAR(50) NULL,
-        LinkDemo NVARCHAR(MAX) NULL,
-        Email NVARCHAR(100) NULL,
-        Estado NVARCHAR(50) DEFAULT 'Pendiente',
-        FechaEnvio DATETIME DEFAULT GETDATE()
-    );
-END
+ALTER DATABASE [SubmanceProjectDb] SET COMPATIBILITY_LEVEL = 160
 GO
-
--- 3. Limpiar tabla (Opcional, para empezar limpio)
-TRUNCATE TABLE Demos;
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [SubmanceProjectDb].[dbo].[sp_fulltext_database] @action = 'enable'
+end
 GO
-
--- 4. Insertar Datos de Prueba (Sin Nulos)
-INSERT INTO Demos (TituloDemo, NombreArtistico, Estilo, LinkDemo, Email, Estado, FechaEnvio)
-VALUES 
-('Test Track', 'Jef Karlen', 'Uplifting', 'https://soundcloud.com/jefkarlen', 'jef@submance.com', 'Pendiente', GETDATE()),
-('Love', 'Sounemot', 'Uplifting Trance', 'https://soundcloud.com/sounemot', 'demo@sounemot.com', 'Pendiente', GETDATE()),
-('Sky Is Falling', 'Arrgic', 'Vocal Trance', 'https://soundcloud.com/arrgic', 'contact@arrgic.com', 'Pendiente', GETDATE()),
-('Galaxy', 'Nova', 'Progressive', 'https://soundcloud.com/nova', 'nova@music.com', 'Aprobada', GETDATE()),
-('Ocean Drive', 'RetroVision', 'House', 'https://soundcloud.com/retro', 'retro@house.com', 'Pendiente', GETDATE()),
-('Silence', 'Delerium', 'Classic Trance', 'https://soundcloud.com/delerium', 'info@delerium.com', 'Rechazada', GETDATE()),
-('Children', 'Robert Miles', 'Dream Trance', 'https://soundcloud.com/robertmiles', 'robert@miles.com', 'Pendiente', GETDATE()),
-('Sandstorm', 'Darude', 'Trance', 'https://soundcloud.com/darude', 'darude@sandstorm.com', 'Pendiente', GETDATE());
+ALTER DATABASE [SubmanceProjectDb] SET ANSI_NULL_DEFAULT OFF 
 GO
-
--- Ver el resultado
-SELECT * FROM Demos;
+ALTER DATABASE [SubmanceProjectDb] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET AUTO_CLOSE ON 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET  ENABLE_BROKER 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET  MULTI_USER 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [SubmanceProjectDb] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET TARGET_RECOVERY_TIME = 60 SECONDS 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [SubmanceProjectDb] SET ACCELERATED_DATABASE_RECOVERY = OFF  
+GO
+ALTER DATABASE [SubmanceProjectDb] SET QUERY_STORE = ON
+GO
+ALTER DATABASE [SubmanceProjectDb] SET QUERY_STORE (OPERATION_MODE = READ_WRITE, CLEANUP_POLICY = (STALE_QUERY_THRESHOLD_DAYS = 30), DATA_FLUSH_INTERVAL_SECONDS = 900, INTERVAL_LENGTH_MINUTES = 60, MAX_STORAGE_SIZE_MB = 1000, QUERY_CAPTURE_MODE = AUTO, SIZE_BASED_CLEANUP_MODE = AUTO, MAX_PLANS_PER_QUERY = 200, WAIT_STATS_CAPTURE_MODE = ON)
+GO
+USE [SubmanceProjectDb]
+GO
+/****** Object:  Table [dbo].[Album]    Script Date: 09/02/2026 09:39:08 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Album](
+	[IdAlbum] [int] IDENTITY(1,1) NOT NULL,
+	[Titulo] [nvarchar](100) NOT NULL,
+	[FechaLanzamiento] [date] NULL,
+	[IdArtista] [int] NOT NULL,
+	[Activo] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdAlbum] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Artista]    Script Date: 09/02/2026 09:39:08 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Artista](
+	[IdArtista] [int] IDENTITY(1,1) NOT NULL,
+	[NombreArtistico] [nvarchar](100) NOT NULL,
+	[NombreReal] [nvarchar](100) NULL,
+	[Correo] [nvarchar](100) NOT NULL,
+	[Pais] [nvarchar](100) NULL,
+	[FechaRegistro] [datetime] NULL,
+	[Estado] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdArtista] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[Correo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Cancion]    Script Date: 09/02/2026 09:39:08 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Cancion](
+	[IdCancion] [int] IDENTITY(1,1) NOT NULL,
+	[Titulo] [nvarchar](100) NOT NULL,
+	[Archivo] [nvarchar](500) NULL,
+	[Duracion] [time](7) NULL,
+	[IdAlbum] [int] NULL,
+	[IdGenero] [int] NOT NULL,
+	[IdArtista] [int] NOT NULL,
+	[Estado] [nvarchar](30) NULL,
+	[Activo] [bit] NULL,
+	[FechaEnvio] [datetime] NULL,
+	[Version] [nvarchar](100) NULL,
+	[Tempo] [int] NULL,
+	[ClaveMusical] [int] NULL,
+	[DuracionSegundos] [int] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdCancion] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Demos]    Script Date: 09/02/2026 09:39:08 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Demos](
+	[IdDemo] [int] IDENTITY(1,1) NOT NULL,
+	[TituloDemo] [nvarchar](150) NULL,
+	[NombreArtistico] [nvarchar](100) NULL,
+	[Estilo] [nvarchar](100) NULL,
+	[LinkDemo] [nvarchar](500) NULL,
+	[Email] [nvarchar](150) NULL,
+	[Estado] [nvarchar](50) NULL,
+	[FechaEnvio] [datetime] NULL,
+	[FechaLanzamiento] [datetime] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdDemo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Genero]    Script Date: 09/02/2026 09:39:08 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Genero](
+	[IdGenero] [int] IDENTITY(1,1) NOT NULL,
+	[NombreGenero] [nvarchar](50) NOT NULL,
+	[Descripcion] [nvarchar](150) NULL,
+	[Estado] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdGenero] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Revision]    Script Date: 09/02/2026 09:39:08 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Revision](
+	[IdRevision] [int] IDENTITY(1,1) NOT NULL,
+	[IdCancion] [int] NOT NULL,
+	[IdRevisor] [int] NOT NULL,
+	[FechaRevision] [datetime] NULL,
+	[Observacion] [nvarchar](300) NULL,
+	[Resultado] [nvarchar](30) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdRevision] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Rol]    Script Date: 09/02/2026 09:39:08 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Rol](
+	[IdRol] [int] IDENTITY(1,1) NOT NULL,
+	[NombreRol] [nvarchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdRol] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Usuario]    Script Date: 09/02/2026 09:39:08 p. m. ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Usuario](
+	[IdUsuario] [int] IDENTITY(1,1) NOT NULL,
+	[Nombre] [nvarchar](100) NOT NULL,
+	[Correo] [nvarchar](100) NOT NULL,
+	[Password] [nvarchar](100) NOT NULL,
+	[IdRol] [int] NOT NULL,
+	[Activo] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[IdUsuario] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[Correo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Album] ADD  DEFAULT ((1)) FOR [Activo]
+GO
+ALTER TABLE [dbo].[Artista] ADD  DEFAULT (getdate()) FOR [FechaRegistro]
+GO
+ALTER TABLE [dbo].[Artista] ADD  DEFAULT ((1)) FOR [Estado]
+GO
+ALTER TABLE [dbo].[Cancion] ADD  DEFAULT ('Pendiente') FOR [Estado]
+GO
+ALTER TABLE [dbo].[Cancion] ADD  DEFAULT ((1)) FOR [Activo]
+GO
+ALTER TABLE [dbo].[Cancion] ADD  DEFAULT (getdate()) FOR [FechaEnvio]
+GO
+ALTER TABLE [dbo].[Cancion] ADD  DEFAULT ('Original Mix') FOR [Version]
+GO
+ALTER TABLE [dbo].[Cancion] ADD  DEFAULT ((138)) FOR [Tempo]
+GO
+ALTER TABLE [dbo].[Cancion] ADD  DEFAULT ((1)) FOR [ClaveMusical]
+GO
+ALTER TABLE [dbo].[Cancion] ADD  DEFAULT ((0)) FOR [DuracionSegundos]
+GO
+ALTER TABLE [dbo].[Demos] ADD  DEFAULT ('Pendiente') FOR [Estado]
+GO
+ALTER TABLE [dbo].[Demos] ADD  DEFAULT (getdate()) FOR [FechaEnvio]
+GO
+ALTER TABLE [dbo].[Genero] ADD  DEFAULT ((1)) FOR [Estado]
+GO
+ALTER TABLE [dbo].[Revision] ADD  DEFAULT (getdate()) FOR [FechaRevision]
+GO
+ALTER TABLE [dbo].[Usuario] ADD  DEFAULT ((1)) FOR [Activo]
+GO
+ALTER TABLE [dbo].[Album]  WITH CHECK ADD FOREIGN KEY([IdArtista])
+REFERENCES [dbo].[Artista] ([IdArtista])
+GO
+ALTER TABLE [dbo].[Cancion]  WITH CHECK ADD FOREIGN KEY([IdAlbum])
+REFERENCES [dbo].[Album] ([IdAlbum])
+GO
+ALTER TABLE [dbo].[Cancion]  WITH CHECK ADD FOREIGN KEY([IdArtista])
+REFERENCES [dbo].[Artista] ([IdArtista])
+GO
+ALTER TABLE [dbo].[Cancion]  WITH CHECK ADD FOREIGN KEY([IdGenero])
+REFERENCES [dbo].[Genero] ([IdGenero])
+GO
+ALTER TABLE [dbo].[Revision]  WITH CHECK ADD FOREIGN KEY([IdCancion])
+REFERENCES [dbo].[Cancion] ([IdCancion])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Revision]  WITH CHECK ADD FOREIGN KEY([IdRevisor])
+REFERENCES [dbo].[Usuario] ([IdUsuario])
+GO
+ALTER TABLE [dbo].[Usuario]  WITH CHECK ADD FOREIGN KEY([IdRol])
+REFERENCES [dbo].[Rol] ([IdRol])
+GO
+USE [master]
+GO
+ALTER DATABASE [SubmanceProjectDb] SET  READ_WRITE 
+GO
