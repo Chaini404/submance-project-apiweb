@@ -1,26 +1,20 @@
-﻿using System;
+﻿#nullable enable // 👈 ESTO ELIMINA LAS ADVERTENCIAS AMARILLAS
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Submance.Application.DTOs.Artista; // ✅ Agregamos el using
+using Submance.Application.DTOs.Artista;
 
 namespace Submance.Application.Interfaces.Services
 {
     public interface IArtistaService
     {
-        // CAMBIO: ArtistaDto -> ArtistaResponseDto (Tu archivo real)
-        IEnumerable<ArtistaResponseDto> GetAll();
+        Task<IEnumerable<ArtistaResponseDto>> GetAllAsync();
+        Task<ArtistaResponseDto?> GetByIdAsync(int id);
 
-        // CAMBIO: ArtistaDto -> ArtistaResponseDto
-        ArtistaResponseDto GetById(int id);
+        // 👇 ESTO SOLUCIONA EL ERROR "'IArtistaService' no contiene..."
+        // Renombramos a CreateAsync para seguir el estándar
+        Task CreateAsync(ArtistaRequestDto request);
 
-        // CAMBIO: CreateArtistaRequest -> ArtistaRequestDto
-        void Create(ArtistaRequestDto request);
-
-        // CAMBIO: UpdateArtistaRequest -> ArtistaRequestDto
-        void Update(int id, ArtistaRequestDto request);
-
-        void Delete(int id);
+        Task UpdateAsync(int id, ArtistaRequestDto request);
+        Task DeleteAsync(int id);
     }
 }

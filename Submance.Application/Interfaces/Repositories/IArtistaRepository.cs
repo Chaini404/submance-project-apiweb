@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Submance.Domain.Entities;
-using System.Threading.Tasks;
+﻿using Submance.Domain.Entities;
 
 namespace Submance.Application.Interfaces.Repository
 {
@@ -11,6 +6,9 @@ namespace Submance.Application.Interfaces.Repository
     {
         Task<IEnumerable<Artista>> GetAllAsync();
         Task<Artista?> GetByIdAsync(int id);
+
+        // 👇 ESTE ES EL NUEVO MÉTODO QUE NECESITAMOS
+        Task<Artista?> GetByEmailAsync(string email);
 
         Task AddAsync(Artista artista);
         Task UpdateAsync(Artista artista);

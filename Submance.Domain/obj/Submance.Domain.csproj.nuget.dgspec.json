@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Domain\\Submance.Domain.csproj": {}
+    "C:\\Users\\Edson\\source\\repos\\submance-project-apiweb\\Submance.Domain\\Submance.Domain.csproj": {}
   },
   "projects": {
-    "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Domain\\Submance.Domain.csproj": {
+    "C:\\Users\\Edson\\source\\repos\\submance-project-apiweb\\Submance.Domain\\Submance.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Domain\\Submance.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Edson\\source\\repos\\submance-project-apiweb\\Submance.Domain\\Submance.Domain.csproj",
         "projectName": "Submance.Domain",
-        "projectPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Domain\\Submance.Domain.csproj",
-        "packagesPath": "C:\\Users\\Jordi\\.nuget\\packages\\",
-        "outputPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Domain\\obj\\",
+        "projectPath": "C:\\Users\\Edson\\source\\repos\\submance-project-apiweb\\Submance.Domain\\Submance.Domain.csproj",
+        "packagesPath": "C:\\Users\\Edson\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Edson\\source\\repos\\submance-project-apiweb\\Submance.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Jordi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Edson\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {

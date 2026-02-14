@@ -1,0 +1,108 @@
+﻿@model IEnumerable<Submance.Domain.Entities.Cancion>
+
+@{
+    ViewData["Title"] = "Mis Demos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; // Usamos el diseño del panel
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="text-uppercase fw-bold ls-2">Artist Portal</h2>
+            <p class="text-muted small">Bienvenido. Aquí puedes ver el estado de tus envíos.</p>
+        </div>
+        <a asp-controller="Demo" asp-action="Create" class="btn btn-dark">
+            <i class="bi bi-cloud-upload me-2"></i> Subir Nuevo Demo
+        </a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-light text-center border shadow-sm p-5" role="alert">
+            <h4 class="alert-heading text-muted mb-3">Aún no has enviado música</h4>
+            <p>Tus demos aparecerán aquí una vez que los envíes.</p>
+            <hr>
+            <a asp-controller="Demo" asp-action="Create" class="btn btn-outline-dark">Enviar mi primer track</a>
+        </div>
+    }
+    else
+    {
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-0">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="bg-light text-uppercase small fw-bold">
+                        <tr>
+                            <th class="ps-4">Track / Título</th>
+                            <th>Género</th>
+                            <th>Audio</th>
+                            <th>Estado A&R</th>
+                            <th>Fecha Envío</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="ps-4">
+                                    <div class="fw-bold text-dark">@item.Titulo</div>
+                                    <small class="text-muted">Original Mix</small>
+                                </td>
+                                <td>
+                                    <span class="badge bg-light text-dark border">
+                                        @if (item.IdGenero == 1)
+                                        {
+                                            <text>Trance</text>
+                                        }
+                                        else if (item.IdGenero == 2)
+                                        {
+
+                                            <text>House</text>
+                                        }
+                                        else
+                                        {
+
+                                            <text>General</text>
+                                        }
+                                    </span>
+                                </td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(item.Archivo))
+                                    {
+                                        <a href="@item.Archivo" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill">
+                                            ▶ Escuchar
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted small">--</span>
+                                    }
+                                </td>
+                                <td>
+                                    @if (item.Estado == "Pendiente")
+                                    {
+                                        <span class="badge bg-warning text-dark">⏳ Pendiente</span>
+                                    }
+                                    else if (item.Estado == "Aprobado")
+                                    {
+                                        <span class="badge bg-success">✅ Aprobado</span>
+                                    }
+                                    else if (item.Estado == "Rechazado")
+                                    {
+                                        <span class="badge bg-danger">✕ Rechazado</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">@item.Estado</span>
+                                    }
+                                </td>
+                                <td class="text-muted small">
+                                    @DateTime.Now.ToString("dd/MM/yyyy")
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>

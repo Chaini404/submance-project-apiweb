@@ -1,98 +1,38 @@
-﻿using Microsoft.Data.SqlClient;
-using Submance.Application.Interfaces.Repositories;
-using Submance.Domain.Entities;
+﻿#nullable enable
+using Npgsql;
 using Submance.Infrastructure.Data;
-using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Submance.Infrastructure.Repositories
 {
-    public class RolRepository : IRolRepository
+    public class RolRepository
     {
         private readonly DbConnectionFactory _dbConnectionFactory;
+        public RolRepository(DbConnectionFactory dbFactory) => _dbConnectionFactory = dbFactory;
 
-        public RolRepository(DbConnectionFactory dbConnectionFactory)
+        public async Task<IEnumerable<string>> GetRolesAsync()
         {
-            _dbConnectionFactory = dbConnectionFactory;
-        }
-
-        public async Task<IEnumerable<Rol>> GetAllAsync()
-        {
-            List<Rol> rols = new List<Rol>();
-
-            using (SqlConnection con = _dbConnectionFactory.CreateConnection() as SqlConnection
-                   ?? throw new InvalidOperationException("No se pudo crear la conexión SQL"))
+            var roles = new List<string>();
+            // Usar NpgsqlConnection para la conexión física
+            using (var con = _dbConnectionFactory.CreateConnection() as NpgsqlConnection)
             {
+                if (con == null) return roles;
                 await con.OpenAsync();
 
-                using (SqlCommand cmd = new SqlCommand("sp_Rol_GetAll", con))
+                string sql = @"SELECT ""Nombre"" FROM ""Roles""";
+
+                // AQUÍ ESTABA EL ERROR: Debe ser NpgsqlCommand, no NpgsqlParameter
+                using (var cmd = new NpgsqlCommand(sql, con))
+                using (var reader = await cmd.ExecuteReaderAsync())
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandTimeout = 30; // buena práctica
-
-                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    while (await reader.ReadAsync())
                     {
-                        int ordIdRol = reader.GetOrdinal("idRol");
-                        int ordNombreRol = reader.GetOrdinal("nombreRol");
-
-                        while (await reader.ReadAsync())
-                        {
-                            Rol rol = new Rol
-                            {
-                                IdRol = !reader.IsDBNull(ordIdRol) ? reader.GetInt32(ordIdRol) : 0,
-                                NombreRol = !reader.IsDBNull(ordNombreRol) ? reader.GetString(ordNombreRol) : string.Empty
-                            };
-
-                            rols.Add(rol);
-                        }
+                        roles.Add(reader["Nombre"].ToString() ?? "");
                     }
                 }
             }
-
-            return rols;
+            return roles;
         }
-
-
-        public async Task<Rol?> GetById(int id)
-        {
-            Rol? rol = null;
-
-            using (SqlConnection con = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear la conexion Sql"))
-            {
-                await con.OpenAsync();
-
-                using (SqlCommand cmd = new SqlCommand("sp_Rol_GetById", con))
-                {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandTimeout = 30;
-
-                    // Mejor que AddWithValue (evita problemas de tipo)
-                    cmd.Parameters.Add("@idRol", SqlDbType.Int).Value = id;
-
-                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
-                    {
-                        int ordIdRol = reader.GetOrdinal("idRol");
-                        int ordNombreRol = reader.GetOrdinal("nombreRol");
-
-                        if (await reader.ReadAsync())   // ← solo 1 registro
-                        {
-                            rol = new Rol
-                            {
-                                IdRol = !reader.IsDBNull(ordIdRol) ? reader.GetInt32(ordIdRol) : 0,
-                                NombreRol = !reader.IsDBNull(ordNombreRol) ? reader.GetString(ordNombreRol) : string.Empty
-                            };
-                        }
-                    }
-                }
-            }
-
-            return rol;
-        }
-
     }
 }

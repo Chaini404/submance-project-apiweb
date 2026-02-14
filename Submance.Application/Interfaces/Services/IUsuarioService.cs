@@ -1,26 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Submance.Application.DTOs.Usuario; // ✅ Agregamos el using
+﻿using Submance.Application.DTOs.Usuario;
+using Submance.Domain.Entities; // Para devolver Usuario en Login (o usa un DTO si prefieres)
 
 namespace Submance.Application.Interfaces.Services
 {
     public interface IUsuarioService
     {
-        // CAMBIO: UsuarioDto -> UsuarioResponseDto
-        IEnumerable<UsuarioResponseDto> GetAll();
-
-        // CAMBIO: UsuarioDto -> UsuarioResponseDto
-        UsuarioResponseDto GetById(int id);
-
-        // CAMBIO: CreateUsuarioRequest -> UsuarioRequestDto
-        void Create(UsuarioRequestDto request);
-
-        // CAMBIO: UpdateUsuarioRequest -> UsuarioRequestDto
-        void Update(int id, UsuarioRequestDto request);
-
-        void ChangeStatus(int id, bool enabled);
+        Task<UsuarioResponseDto> LoginAsync(string correo, string password);
+        Task RegisterAsync(UsuarioRequestDto request);
+        Task<IEnumerable<UsuarioResponseDto>> GetAllAsync();
+        Task<UsuarioResponseDto?> GetByIdAsync(int id);
     }
 }

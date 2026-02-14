@@ -1,10 +1,10 @@
-﻿using Microsoft.Data.SqlClient;
-using Submance.Application.Interfaces.Repositories;
+﻿#nullable enable
+using Npgsql;
+using NpgsqlTypes;
 using Submance.Application.Interfaces.Repository;
 using Submance.Domain.Entities;
 using Submance.Infrastructure.Data;
 using System.Collections.Generic;
-using System.Data;
 using System.Threading.Tasks;
 
 namespace Submance.Infrastructure.Repositories
@@ -12,134 +12,101 @@ namespace Submance.Infrastructure.Repositories
     public class ArtistaRepository : IArtistaRepository
     {
         private readonly DbConnectionFactory _dbConnectionFactory;
+        public ArtistaRepository(DbConnectionFactory dbFactory) => _dbConnectionFactory = dbFactory;
 
-        public ArtistaRepository(DbConnectionFactory dbConnectionFactory)
-        {
-            _dbConnectionFactory = dbConnectionFactory;
-        }
-
-        // =========================
-        // GET ALL
-        // =========================
         public async Task<IEnumerable<Artista>> GetAllAsync()
         {
-            List<Artista> artistas = new();
-
-            using SqlConnection con = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear la conexion SQL");
-
-            await con.OpenAsync();
-
-            using SqlCommand cmd = new SqlCommand("sp_Artista_GetAll", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandTimeout = 30;
-
-            using SqlDataReader reader = await cmd.ExecuteReaderAsync();
-
-            while (await reader.ReadAsync())
+            var artistas = new List<Artista>();
+            using (var con = _dbConnectionFactory.CreateConnection() as NpgsqlConnection)
             {
-                artistas.Add(MapArtista(reader));
-            }
+                if (con == null) return artistas;
+                await con.OpenAsync();
 
+                string sql = @"SELECT * FROM ""Artistas""";
+                using (var cmd = new NpgsqlCommand(sql, con))
+                using (var reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync()) artistas.Add(Map(reader));
+                }
+            }
             return artistas;
         }
 
-        // =========================
-        // GET BY ID
-        // =========================
-        public async Task<Artista?> GetByIdAsync(int id)
+        public async Task<Artista?> GetByEmailAsync(string email)
         {
             Artista? artista = null;
-
-            using SqlConnection con = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear la conexion SQL");
-
-            await con.OpenAsync();
-
-            using SqlCommand cmd = new SqlCommand("sp_Artista_GetById", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@idArtista", SqlDbType.Int).Value = id;
-
-            using SqlDataReader reader = await cmd.ExecuteReaderAsync();
-
-            if (await reader.ReadAsync())
+            using (var con = _dbConnectionFactory.CreateConnection() as NpgsqlConnection)
             {
-                artista = MapArtista(reader);
-            }
+                if (con == null) return null;
+                await con.OpenAsync();
 
+                string sql = @"SELECT * FROM ""Artistas"" WHERE ""Correo"" = @correo";
+                using (var cmd = new NpgsqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@correo", email);
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync()) artista = Map(reader);
+                    }
+                }
+            }
             return artista;
         }
 
-        // =========================
-        // ADD
-        // =========================
         public async Task AddAsync(Artista artista)
         {
-            using SqlConnection con = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear la conexion SQL");
+            using (var con = _dbConnectionFactory.CreateConnection() as NpgsqlConnection)
+            {
+                if (con == null) return;
+                await con.OpenAsync();
 
-            await con.OpenAsync();
+                string sql = @"INSERT INTO ""Artistas"" (""NombreArtistico"", ""NombreReal"", ""Correo"", ""Pais"", ""Estado"", ""FechaRegistro"")
+                               VALUES (@nombre, @real, @correo, @pais, TRUE, NOW())";
 
-            using SqlCommand cmd = new SqlCommand("sp_Artista_Add", con);
-            cmd.CommandType = CommandType.StoredProcedure;
+                using (var cmd = new NpgsqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@nombre", artista.NombreArtistico);
+                    cmd.Parameters.AddWithValue("@real", artista.NombreReal ?? (object)System.DBNull.Value);
+                    cmd.Parameters.AddWithValue("@correo", artista.Correo);
+                    cmd.Parameters.AddWithValue("@pais", artista.Pais ?? (object)System.DBNull.Value);
 
-            cmd.Parameters.Add("@nombreArtistico", SqlDbType.VarChar, 100).Value = artista.NombreArtistico;
-            cmd.Parameters.Add("@nombreReal", SqlDbType.VarChar, 100).Value = artista.NombreReal;
-            cmd.Parameters.Add("@correo", SqlDbType.VarChar, 100).Value = artista.Correo;
-
-            await cmd.ExecuteNonQueryAsync();
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
         }
 
-        // =========================
-        // UPDATE
-        // =========================
-        public async Task UpdateAsync(Artista artista)
+        public async Task<Artista?> GetByIdAsync(int id)
         {
-            using SqlConnection con = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear la conexion SQL");
-
-            await con.OpenAsync();
-
-            using SqlCommand cmd = new SqlCommand("sp_Artista_Update", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-
-            cmd.Parameters.Add("@idArtista", SqlDbType.Int).Value = artista.IdArtista;
-            cmd.Parameters.Add("@nombreArtistico", SqlDbType.VarChar, 100).Value = artista.NombreArtistico;
-            cmd.Parameters.Add("@nombreReal", SqlDbType.VarChar, 100).Value = artista.NombreReal;
-            cmd.Parameters.Add("@correo", SqlDbType.VarChar, 100).Value = artista.Correo;
-
-            await cmd.ExecuteNonQueryAsync();
+            Artista? artista = null;
+            using (var con = _dbConnectionFactory.CreateConnection() as NpgsqlConnection)
+            {
+                if (con == null) return null;
+                await con.OpenAsync();
+                string sql = @"SELECT * FROM ""Artistas"" WHERE ""IdArtista"" = @id";
+                using (var cmd = new NpgsqlCommand(sql, con))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    using (var reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync()) artista = Map(reader);
+                    }
+                }
+            }
+            return artista;
         }
 
-        // =========================
-        // DELETE (SOFT DELETE)
-        // =========================
-        public async Task DeleteAsync(int id)
-        {
-            using SqlConnection con = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear la conexion SQL");
+        public async Task UpdateAsync(Artista artista) => await Task.CompletedTask;
+        public async Task DeleteAsync(int id) => await Task.CompletedTask;
 
-            await con.OpenAsync();
-
-            using SqlCommand cmd = new SqlCommand("sp_Artista_Delete", con);
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add("@idArtista", SqlDbType.Int).Value = id;
-
-            await cmd.ExecuteNonQueryAsync();
-        }
-
-        // =========================
-        // MAPPER
-        // =========================
-        private static Artista MapArtista(SqlDataReader reader)
+        private Artista Map(NpgsqlDataReader reader)
         {
             return new Artista
             {
-                IdArtista = reader.GetInt32(reader.GetOrdinal("idArtista")),
-                NombreArtistico = reader.GetString(reader.GetOrdinal("nombreArtistico")),
-                NombreReal = reader.GetString(reader.GetOrdinal("nombreReal")),
-                Correo = reader.GetString(reader.GetOrdinal("correo")),
-                Activo = reader.GetBoolean(reader.GetOrdinal("activo"))
+                IdArtista = reader.GetInt32(reader.GetOrdinal("IdArtista")),
+                NombreArtistico = reader["NombreArtistico"].ToString() ?? "",
+                Correo = reader["Correo"].ToString() ?? "",
+                NombreReal = reader["NombreReal"]?.ToString(),
+                Pais = reader["Pais"]?.ToString()
             };
         }
     }

@@ -1,22 +1,197 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+/* =========================================
+   THEME: SUBMANCE DARK (Professional Audio)
+   ========================================= */
+:root {
+    --bg-dark: #121212; /* Fondo Principal */
+    --bg-panel: #1e1e1e; /* Fondo Tarjetas/Sidebar */
+    --text-main: #e0e0e0; /* Texto Principal */
+    --text-muted: #a0a0a0; /* Texto Secundario */
+    --accent: #3b82f6; /* Azul Eléctrico (Botones/Links) */
+    --accent-hover: #2563eb;
+    --success: #10b981; /* Verde Spotify */
+    --danger: #ef4444; /* Rojo Alerta */
+    --border: #333333; /* Bordes sutiles */
+    --sidebar-width: 260px;
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif; /* Fuente moderna */
+    overflow-x: hidden;
+}
+
+/* --- TIPOGRAFÍA --- */
+h1, h2, h3, h4, h5, h6 {
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.2s;
+}
+
+    a:hover {
+        color: var(--accent);
+    }
+
+/* --- SIDEBAR (Barra Lateral) --- */
+.sidebar {
+    width: var(--sidebar-width);
+    height: 100vh;
+    background-color: #000; /* Negro puro */
+    position: fixed;
+    top: 0;
+    left: 0;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.brand-logo {
+    padding: 2rem 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: #fff;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-links {
+    list-style: none;
+    padding: 1rem 0;
+    margin: 0;
+    flex-grow: 1;
+}
+
+.nav-item a {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+}
+
+    .nav-item a:hover, .nav-item a.active {
+        background-color: rgba(255,255,255, 0.05);
+        color: #fff;
+        border-left-color: var(--accent);
+    }
+
+.nav-item i {
+    margin-right: 12px;
+    font-size: 1.1rem;
+}
+
+.user-profile {
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+    background-color: #0a0a0a;
+}
+
+/* --- MAIN CONTENT --- */
+.main-content {
+    margin-left: var(--sidebar-width);
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+/* --- CARDS (Tarjetas) --- */
+.card {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.card-header {
+    background-color: transparent;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+}
+
+/* --- TABLAS --- */
+.table {
+    color: var(--text-main);
+}
+
+    .table thead th {
+        background-color: #1a1a1a;
+        color: var(--text-muted);
+        border-bottom: 1px solid var(--border);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .table td {
+        border-bottom: 1px solid var(--border);
+        vertical-align: middle;
+    }
+
+.table-hover tbody tr:hover {
+    background-color: rgba(255,255,255,0.02);
+}
+
+/* --- BOTONES --- */
+.btn-primary {
+    background-color: var(--accent);
+    border: none;
+}
+
+    .btn-primary:hover {
+        background-color: var(--accent-hover);
+    }
+
+.btn-dark {
+    background-color: #fff;
+    color: #000;
+    border: none;
+}
+
+    .btn-dark:hover {
+        background-color: #e0e0e0;
+        color: #000;
+    }
+
+.btn-outline-light {
+    border-color: var(--border);
+    color: var(--text-muted);
+}
+
+    .btn-outline-light:hover {
+        background-color: var(--border);
+        color: #fff;
+    }
+
+/* --- BADGES (Etiquetas) --- */
+.badge {
+    font-weight: 500;
+    padding: 0.5em 0.8em;
+    border-radius: 4px;
+}
+
+.bg-warning {
+    background-color: rgba(245, 158, 11, 0.15) !important;
+    color: #fbbf24 !important;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.bg-success {
+    background-color: rgba(16, 185, 129, 0.15) !important;
+    color: #34d399 !important;
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.bg-danger {
+    background-color: rgba(239, 68, 68, 0.15) !important;
+    color: #f87171 !important;
+    border: 1px solid rgba(239, 68, 68, 0.3);
 }

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Submance.Application.DTOs.Artista.ArtistaResponseDto>
+
+@{
+    ViewData["Title"] = "Gestión de Artistas";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="text-uppercase ls-2">Directorio de Artistas</h3>
+        <a asp-action="Create" class="btn btn-dark">Nuevo Artista</a>
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-body p-0">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="bg-light text-uppercase small fw-bold">
+                    <tr>
+                        <th class="ps-4">Artista</th>
+                        <th>Correo</th>
+                        <th>Estado</th>
+                        <th class="text-end pe-4">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="ps-4 fw-bold text-dark">@item.NombreArtistico</td>
+                            <td class="text-muted small">@item.Correo</td>
+                            <td>
+                                @if (item.Estado)
+                                {
+                                    <span class="badge bg-success">Activo</span>
+                                }
+                                else
+                                {
+
+                                    <span class="badge bg-secondary">Inactivo</span>
+                                }
+                            </td>
+                            <td class="text-end pe-4">
+                                <button class="btn btn-sm btn-outline-primary rounded-circle" title="Editar">✎</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

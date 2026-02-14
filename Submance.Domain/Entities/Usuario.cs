@@ -1,38 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Submance.Domain.Entities
+﻿namespace Submance.Domain.Entities
 {
     public class Usuario
     {
-        [Key]
         public int IdUsuario { get; set; }
+        public string Nombre { get; set; } = string.Empty;
+        public string Correo { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
 
-        [Required]
-        [MaxLength(100)]
-        public string Nombre { get; set; } = string.Empty; // 👈 Agrega esto
+        // ⚠️ CAMBIO: En tu BD es un texto ("Admin", "Staff"), no un número.
+        public string Rol { get; set; } = "Usuario";
 
-        [Required]
-        [EmailAddress]
-        [MaxLength(100)]
-        public string Correo { get; set; } = string.Empty; // 👈 Agrega esto
-
-        [Required]
-        [MaxLength(100)]
-        public string Password { get; set; } = string.Empty; // 👈 Agrega esto
-
+        // Mantenemos bool aquí, pero en el Repo lo convertimos desde "Activo/Inactivo"
         public bool Activo { get; set; } = true;
 
-        public int IdRol { get; set; }
-
-        [ForeignKey(nameof(IdRol))]
-        public Rol Rol { get; set; }
-
-        public ICollection<Revision> Revisiones { get; set; }
+        public DateTime FechaRegistro { get; set; } = DateTime.Now;
     }
 }

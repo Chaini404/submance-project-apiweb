@@ -576,23 +576,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Jordi\\.nuget\\packages\\": {},
+    "C:\\Users\\Edson\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Application\\Submance.Application.csproj",
+      "projectUniqueName": "C:\\Users\\Edson\\source\\repos\\submance-project-apiweb\\Submance.Application\\Submance.Application.csproj",
       "projectName": "Submance.Application",
-      "projectPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Application\\Submance.Application.csproj",
-      "packagesPath": "C:\\Users\\Jordi\\.nuget\\packages\\",
-      "outputPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Application\\obj\\",
+      "projectPath": "C:\\Users\\Edson\\source\\repos\\submance-project-apiweb\\Submance.Application\\Submance.Application.csproj",
+      "packagesPath": "C:\\Users\\Edson\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Edson\\source\\repos\\submance-project-apiweb\\Submance.Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Jordi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Edson\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -601,15 +601,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Domain\\Submance.Domain.csproj": {
-              "projectPath": "D:\\Jordi - Cibertec\\Ciclo 4\\EFSRT III\\Proyecto\\Submance.Domain\\Submance.Domain.csproj"
+            "C:\\Users\\Edson\\source\\repos\\submance-project-apiweb\\Submance.Domain\\Submance.Domain.csproj": {
+              "projectPath": "C:\\Users\\Edson\\source\\repos\\submance-project-apiweb\\Submance.Domain\\Submance.Domain.csproj"
             }
           }
         }

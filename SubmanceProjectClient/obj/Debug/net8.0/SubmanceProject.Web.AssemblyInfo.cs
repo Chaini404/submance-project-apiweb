@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SubmanceProject.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd85354d2749041606ef8aa86158555ba83a834b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4fc89ad384e0a4b3ba88c78679cbe13f6a9f748e")]
 [assembly: System.Reflection.AssemblyProductAttribute("SubmanceProject.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SubmanceProject.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

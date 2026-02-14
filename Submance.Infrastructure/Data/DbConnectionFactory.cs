@@ -1,27 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
-using Microsoft.Data.SqlClient;
+﻿using Npgsql; // Driver de PostgreSQL para Supabase
 using Microsoft.Extensions.Configuration;
-
+using System.Data;
 
 namespace Submance.Infrastructure.Data
 {
     public class DbConnectionFactory
     {
-        private readonly IConfiguration _config;
-        private readonly string _connectionString;
+        private readonly IConfiguration _configuration;
 
-        public DbConnectionFactory(IConfiguration config)
+        public DbConnectionFactory(IConfiguration configuration)
         {
-            _config = config;
-            _connectionString = _config.GetConnectionString("DefaultConnection");
+            _configuration = configuration;
         }
 
         public IDbConnection CreateConnection()
-            => new SqlConnection(_connectionString);
+        {
+            var connectionString = _configuration.GetConnectionString("DefaultConnection");
+
+            // CORRECTO: NpgsqlConnection es el que gestiona la conexión física a Supabase
+            return new NpgsqlConnection(connectionString);
+        }
     }
 }

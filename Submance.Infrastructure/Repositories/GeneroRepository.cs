@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Npgsql;
 using Submance.Application.Interfaces.Repositories;
 using Submance.Domain.Entities;
 using Submance.Infrastructure.Data;
@@ -19,10 +19,10 @@ namespace Submance.Infrastructure.Repositories
         {
             var lista = new List<Genero>();
 
-            using var connection = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear SqlConnection");
+            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
+                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
 
-            using var command = new SqlCommand("sp_Genero_GetAll", connection);
+            using var command = new NpgsqlCommand("sp_Genero_GetAll", connection);
             command.CommandType = CommandType.StoredProcedure;
 
             await connection.OpenAsync();
@@ -40,10 +40,10 @@ namespace Submance.Infrastructure.Repositories
         {
             Genero genero = null;
 
-            using var connection = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear SqlConnection");
+            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
+                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
 
-            using var command = new SqlCommand("sp_Genero_GetById", connection);
+            using var command = new NpgsqlCommand("sp_Genero_GetById", connection);
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@idGenero", id);
 
@@ -58,10 +58,10 @@ namespace Submance.Infrastructure.Repositories
 
         public async Task AddAsync(Genero genero)
         {
-            using var connection = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear SqlConnection");
+            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
+                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
 
-            using var command = new SqlCommand("sp_Genero_Add", connection);
+            using var command = new NpgsqlCommand("sp_Genero_Add", connection);
             command.CommandType = CommandType.StoredProcedure;
 
             command.Parameters.AddWithValue("@nombreGenero", genero.NombreGenero);
@@ -73,10 +73,10 @@ namespace Submance.Infrastructure.Repositories
 
         public async Task UpdateAsync(Genero genero)
         {
-            using var connection = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear SqlConnection");
+            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
+                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
 
-            using var command = new SqlCommand("sp_Genero_Update", connection);
+            using var command = new NpgsqlCommand("sp_Genero_Update", connection);
             command.CommandType = CommandType.StoredProcedure;
 
             command.Parameters.AddWithValue("@idGenero", genero.IdGenero);
@@ -89,10 +89,10 @@ namespace Submance.Infrastructure.Repositories
 
         public async Task DeleteAsync(int id)
         {
-            using var connection = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear SqlConnection");
+            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
+                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
 
-            using var command = new SqlCommand("sp_Genero_Delete", connection);
+            using var command = new NpgsqlCommand("sp_Genero_Delete", connection);
             command.CommandType = CommandType.StoredProcedure;
 
             command.Parameters.AddWithValue("@idGenero", id);
@@ -102,7 +102,7 @@ namespace Submance.Infrastructure.Repositories
         }
 
         // Mapper privado para evitar repetir código
-        private Genero Map(SqlDataReader reader)
+        private Genero Map(NpgsqlDataReader reader)
         {
             return new Genero
             {

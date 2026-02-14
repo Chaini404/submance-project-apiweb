@@ -2,7 +2,7 @@
 using Submance.Domain.Entities;
 using Submance.Infrastructure.Data;
 using System.Data;
-using Microsoft.Data.SqlClient;
+using Npgsql;
 
 namespace Submance.Infrastructure.Repositories
 {
@@ -19,10 +19,10 @@ namespace Submance.Infrastructure.Repositories
         {
             var albums = new List<Album>();
 
-            using var connection = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear SqlConnection");
+            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
+                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
 
-            using var command = new SqlCommand("sp_Album_GetAll", connection);
+            using var command = new NpgsqlCommand("sp_Album_GetAll", connection);
             command.CommandType = CommandType.StoredProcedure;
 
             await connection.OpenAsync();
@@ -46,10 +46,10 @@ namespace Submance.Infrastructure.Repositories
         {
             Album album = null;
 
-            using var connection = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear SqlConnection");
+            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
+                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
 
-            using var command = new SqlCommand("sp_Album_GetById", connection);
+            using var command = new NpgsqlCommand("sp_Album_GetById", connection);
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@idAlbum", id);
 
@@ -74,10 +74,10 @@ namespace Submance.Infrastructure.Repositories
         {
             var albums = new List<Album>();
 
-            using var connection = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear SqlConnection");
+            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
+                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
 
-            using var command = new SqlCommand("sp_Album_GetByArtista", connection);
+            using var command = new NpgsqlCommand("sp_Album_GetByArtista", connection);
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@idArtista", idArtista);
 
@@ -100,11 +100,11 @@ namespace Submance.Infrastructure.Repositories
 
         public async Task AddAsync(Album album)
         {
-            using var connection = _dbConnectionFactory.CreateConnection() as SqlConnection
-    ?? throw new InvalidOperationException("No se pudo crear SqlConnection");
+            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
+    ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
 
 
-            using var command = new SqlCommand("sp_Album_Add", connection);
+            using var command = new NpgsqlCommand("sp_Album_Add", connection);
             command.CommandType = CommandType.StoredProcedure;
 
             command.Parameters.AddWithValue("@titulo", album.Titulo);
@@ -117,10 +117,10 @@ namespace Submance.Infrastructure.Repositories
 
         public async Task UpdateAsync(Album album)
         {
-            using var connection = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear SqlConnection");
+            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
+                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
 
-            using var command = new SqlCommand("sp_Album_Update", connection);
+            using var command = new NpgsqlCommand("sp_Album_Update", connection);
             command.CommandType = CommandType.StoredProcedure;
 
             command.Parameters.AddWithValue("@idAlbum", album.IdAlbum);
@@ -134,10 +134,10 @@ namespace Submance.Infrastructure.Repositories
 
         public async Task DeleteAsync(int id)
         {
-            using var connection = _dbConnectionFactory.CreateConnection() as SqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear SqlConnection");
+            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
+                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
 
-            using var command = new SqlCommand("sp_Album_Delete", connection);
+            using var command = new NpgsqlCommand("sp_Album_Delete", connection);
             command.CommandType = CommandType.StoredProcedure;
 
             command.Parameters.AddWithValue("@idAlbum", id);

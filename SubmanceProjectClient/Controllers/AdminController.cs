@@ -1,74 +1,109 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Submance.Application.DTOs.Usuario; // 👈 Importante para reconocer el DTO
-using System.Text.Json;
-using System.Text;
+using Submance.Application.DTOs.Usuario;
+using Submance.Application.DTOs.Artista;
+using Submance.Application.Interfaces.Services;
 
 namespace SubmanceProject.Web.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly string _apiBaseUrl = "https://localhost:7064/api";
-        private readonly HttpClient _httpClient;
+        private readonly IUsuarioService _usuarioService;
+        private readonly IArtistaService _artistaService;
 
-        public AdminController()
+        public AdminController(IUsuarioService usuarioService, IArtistaService artistaService)
         {
-            _httpClient = new HttpClient();
+            _usuarioService = usuarioService;
+            _artistaService = artistaService;
         }
 
-        // 1. GET: Muestra el formulario
         [HttpGet]
         public IActionResult Login()
         {
+            // Si ya tiene sesión, lo mandamos a su casa
+            if (HttpContext.Session.GetString("UserRole") != null)
+                return RedirigirPorRol(HttpContext.Session.GetString("UserRole")!);
+
             return View();
         }
 
-        // 2. POST: Recibe los datos del formulario
         [HttpPost]
         public async Task<IActionResult> Login(LoginRequestDto model)
         {
-            // --- PASO 1: PUERTA TRASERA (Para que entres YA al Dashboard) ---
-            // Si usas estos datos, entra directo sin preguntar a la API.
-            if (model.Correo == "admin@submance.com" && model.Password == "admin123")
-            {
-                return RedirectToAction("Dashboard");
-            }
-            // ---------------------------------------------------------------
-
-            // --- PASO 2: INTENTO DE CONEXIÓN A TU API ---
             try
             {
-                // Preparamos los datos para la API
-                // Nota: Asegúrate que tu API espere "NombreUsuario" o "Correo"
-                var loginData = new { NombreUsuario = model.Correo, Password = model.Password };
+                // Usamos el Servicio corregido
+                var usuario = await _usuarioService.LoginAsync(model.Correo, model.Password);
 
-                var content = new StringContent(JsonSerializer.Serialize(loginData), Encoding.UTF8, "application/json");
-
-                // Llamada a la API
-                var response = await _httpClient.PostAsync($"{_apiBaseUrl}/Auth/Login", content);
-
-                if (response.IsSuccessStatusCode)
+                if (usuario != null)
                 {
-                    return RedirectToAction("Dashboard");
+                    // Guardar Sesión
+                    HttpContext.Session.SetString("UserRole", usuario.Rol);
+                    HttpContext.Session.SetString("UserEmail", usuario.Correo);
+                    HttpContext.Session.SetInt32("UserId", usuario.IdUsuario);
+
+                    return RedirigirPorRol(usuario.Rol);
                 }
-                else
-                {
-                    // Si la API dice que no (401/400)
-                    ViewBag.Error = "⛔ Usuario o contraseña incorrectos (API).";
-                    return View(model);
-                }
+
+                ViewBag.Error = "Credenciales incorrectas.";
+                return View(model);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // Si la API está apagada o falla la conexión
-                ViewBag.Error = "⚠️ La API no responde. Usa el usuario: admin@submance.com / admin123";
+                ViewBag.Error = "Error: " + ex.Message;
                 return View(model);
             }
         }
 
-        // 3. LA VISTA DASHBOARD (A donde llegas al entrar)
-        public IActionResult Dashboard()
+        // REGISTRO UNIFICADO (Usuario + Artista)
+        [HttpPost]
+        public async Task<IActionResult> Registro(RegistroArtistaDto model)
         {
-            return View();
+            if (!ModelState.IsValid) return View("Login", model); // O vista de registro
+
+            try
+            {
+                // 1. Crear Usuario (Rol 3 = Artista)
+                await _usuarioService.RegisterAsync(new UsuarioRequestDto
+                {
+                    Nombre = model.NombreReal,
+                    Correo = model.Correo,
+                    Password = model.Password,
+                    IdRol = 3 // ID fijo para Artistas
+                });
+
+                // 2. Crear Perfil Artista
+                await _artistaService.CreateAsync(new ArtistaRequestDto
+                {
+                    NombreArtistico = model.NombreArtistico,
+                    NombreReal = model.NombreReal,
+                    Correo = model.Correo
+                });
+
+                ViewBag.Success = "Cuenta creada. Inicia sesión.";
+                return View("Login");
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Error al registrar: " + ex.Message;
+                return View("Login");
+            }
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
+        }
+
+        private IActionResult RedirigirPorRol(string rol)
+        {
+            return rol switch
+            {
+                "Admin" => RedirectToAction("Index", "Artista"),
+                "Staff" => RedirectToAction("Index", "Staff"),
+                "Artista" => RedirectToAction("Index", "ArtistPortal"),
+                _ => RedirectToAction("Index", "Home")
+            };
         }
     }
 }

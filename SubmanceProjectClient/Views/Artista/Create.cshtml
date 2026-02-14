@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; // 👈 Forzamos el diseño de administración
+    ViewData["Title"] = "Gestión de Artistas";
+}
+@model Submance.Application.DTOs.Artista.ArtistaRequestDto
+@{
+    ViewData["Title"] = "Nuevo Artista";
+}
+
+<div class="container mt-5" style="max-width: 600px;">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h4 class="card-title mb-4">Registrar Nuevo Artista</h4>
+
+            <form asp-action="Create">
+                <div class="mb-3">
+                    <label class="form-label">Nombre Artístico</label>
+                    <input asp-for="NombreArtistico" class="form-control" placeholder="Ej. Dua Lipa" />
+                    <span asp-validation-for="NombreArtistico" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Nombre Real</label>
+                    <input asp-for="NombreReal" class="form-control" />
+                    <span asp-validation-for="NombreReal" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Correo Electrónico</label>
+                    <input asp-for="Correo" type="email" class="form-control" />
+                    <span asp-validation-for="Correo" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex gap-2 justify-content-end">
+                    <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
