@@ -1,6 +1,6 @@
-﻿using Npgsql; // Driver de PostgreSQL para Supabase
+﻿using Npgsql;
 using Microsoft.Extensions.Configuration;
-using System.Data;
+using System.Data.Common; // <--- CAMBIO: Usar System.Data.Common
 
 namespace Submance.Infrastructure.Data
 {
@@ -13,12 +13,11 @@ namespace Submance.Infrastructure.Data
             _configuration = configuration;
         }
 
-        public IDbConnection CreateConnection()
+        // CAMBIO: Retornar DbConnection para habilitar OpenAsync y BeginTransactionAsync
+        public DbConnection CreateConnection()
         {
             var connectionString = _configuration.GetConnectionString("DefaultConnection");
-
-            // CORRECTO: NpgsqlConnection es el que gestiona la conexión física a Supabase
-            return new NpgsqlConnection(connectionString);
+            return new NpgsqlConnection(connectionString); // Solo crear, NO abrir aquí
         }
     }
 }

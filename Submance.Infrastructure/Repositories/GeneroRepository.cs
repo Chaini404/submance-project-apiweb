@@ -1,115 +1,53 @@
-﻿using Npgsql;
+﻿using Dapper;
 using Submance.Application.Interfaces.Repositories;
 using Submance.Domain.Entities;
 using Submance.Infrastructure.Data;
-using System.Data;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Submance.Infrastructure.Repositories
 {
     public class GeneroRepository : IGeneroRepository
     {
-        private readonly DbConnectionFactory _dbConnectionFactory;
-
-        public GeneroRepository(DbConnectionFactory dbConnectionFactory)
-        {
-            _dbConnectionFactory = dbConnectionFactory;
-        }
+        private readonly DbConnectionFactory _db;
+        public GeneroRepository(DbConnectionFactory db) => _db = db;
 
         public async Task<IEnumerable<Genero>> GetAllAsync()
         {
-            var lista = new List<Genero>();
-
-            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
-
-            using var command = new NpgsqlCommand("sp_Genero_GetAll", connection);
-            command.CommandType = CommandType.StoredProcedure;
-
-            await connection.OpenAsync();
-            using var reader = await command.ExecuteReaderAsync();
-
-            while (await reader.ReadAsync())
-            {
-                lista.Add(Map(reader));
-            }
-
-            return lista;
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            return await conn.QueryAsync<Genero>(@"SELECT ""IdGenero"", ""NombreGenero"", ""Descripcion"" FROM ""Generos""");
         }
 
-        public async Task<Genero> GetByIdAsync(int id)
+        public async Task<Genero?> GetByIdAsync(int id)
         {
-            Genero genero = null;
-
-            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
-
-            using var command = new NpgsqlCommand("sp_Genero_GetById", connection);
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@idGenero", id);
-
-            await connection.OpenAsync();
-            using var reader = await command.ExecuteReaderAsync();
-
-            if (await reader.ReadAsync())
-                genero = Map(reader);
-
-            return genero;
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            var sql = @"SELECT ""IdGenero"", ""NombreGenero"", ""Descripcion"" FROM ""Generos"" WHERE ""IdGenero"" = @Id";
+            return await conn.QueryFirstOrDefaultAsync<Genero>(sql, new { Id = id });
         }
 
         public async Task AddAsync(Genero genero)
         {
-            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
-
-            using var command = new NpgsqlCommand("sp_Genero_Add", connection);
-            command.CommandType = CommandType.StoredProcedure;
-
-            command.Parameters.AddWithValue("@nombreGenero", genero.NombreGenero);
-            command.Parameters.AddWithValue("@descripcion", genero.Descripcion);
-
-            await connection.OpenAsync();
-            await command.ExecuteNonQueryAsync();
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            var sql = @"INSERT INTO ""Generos"" (""NombreGenero"", ""Descripcion"") VALUES (@NombreGenero, @Descripcion)";
+            await conn.ExecuteAsync(sql, genero);
         }
 
         public async Task UpdateAsync(Genero genero)
         {
-            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
-
-            using var command = new NpgsqlCommand("sp_Genero_Update", connection);
-            command.CommandType = CommandType.StoredProcedure;
-
-            command.Parameters.AddWithValue("@idGenero", genero.IdGenero);
-            command.Parameters.AddWithValue("@nombreGenero", genero.NombreGenero);
-            command.Parameters.AddWithValue("@descripcion", genero.Descripcion);
-
-            await connection.OpenAsync();
-            await command.ExecuteNonQueryAsync();
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            var sql = @"UPDATE ""Generos"" SET ""NombreGenero"" = @NombreGenero, ""Descripcion"" = @Descripcion WHERE ""IdGenero"" = @IdGenero";
+            await conn.ExecuteAsync(sql, genero);
         }
 
         public async Task DeleteAsync(int id)
         {
-            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
-
-            using var command = new NpgsqlCommand("sp_Genero_Delete", connection);
-            command.CommandType = CommandType.StoredProcedure;
-
-            command.Parameters.AddWithValue("@idGenero", id);
-
-            await connection.OpenAsync();
-            await command.ExecuteNonQueryAsync();
-        }
-
-        // Mapper privado para evitar repetir código
-        private Genero Map(NpgsqlDataReader reader)
-        {
-            return new Genero
-            {
-                IdGenero = (int)reader["idGenero"],
-                NombreGenero = reader["nombreGenero"].ToString(),
-                Descripcion = reader["descripcion"].ToString()
-            };
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            await conn.ExecuteAsync(@"DELETE FROM ""Generos"" WHERE ""IdGenero"" = @Id", new { Id = id });
         }
     }
 }

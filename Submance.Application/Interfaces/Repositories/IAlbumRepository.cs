@@ -1,8 +1,6 @@
-﻿using Submance.Domain.Entities;
-using System;
+﻿#nullable enable
+using Submance.Domain.Entities;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Submance.Application.Interfaces.Repositories
@@ -10,7 +8,7 @@ namespace Submance.Application.Interfaces.Repositories
     public interface IAlbumRepository
     {
         Task<IEnumerable<Album>> GetAllAsync();
-        Task<Album> GetByIdAsync(int id);
+        Task<Album?> GetByIdAsync(int id);
         Task<IEnumerable<Album>> GetByArtistaAsync(int idArtista);
 
         Task AddAsync(Album album);

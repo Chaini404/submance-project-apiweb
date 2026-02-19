@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿#nullable enable
 using Submance.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Submance.Application.Interfaces.Repositories
 {
     public interface IRolRepository
     {
         Task<IEnumerable<Rol>> GetAllAsync();
-        Task<Rol?> GetById(int id);
+        Task<Rol?> GetByIdAsync(int id);
     }
 }

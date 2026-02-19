@@ -1,149 +1,60 @@
-﻿using Submance.Application.Interfaces.Repositories;
+﻿using Dapper;
+using Submance.Application.Interfaces.Repositories;
 using Submance.Domain.Entities;
 using Submance.Infrastructure.Data;
-using System.Data;
-using Npgsql;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Submance.Infrastructure.Repositories
 {
     public class AlbumRepository : IAlbumRepository
     {
-        private readonly DbConnectionFactory _dbConnectionFactory;
+        private readonly DbConnectionFactory _db;
 
-        public AlbumRepository(DbConnectionFactory dbConnectionFactory)
-        {
-            _dbConnectionFactory = dbConnectionFactory;
-        }
+        public AlbumRepository(DbConnectionFactory db) => _db = db;
 
         public async Task<IEnumerable<Album>> GetAllAsync()
         {
-            var albums = new List<Album>();
-
-            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
-
-            using var command = new NpgsqlCommand("sp_Album_GetAll", connection);
-            command.CommandType = CommandType.StoredProcedure;
-
-            await connection.OpenAsync();
-            using var reader = await command.ExecuteReaderAsync();
-
-            while (await reader.ReadAsync())
-            {
-                albums.Add(new Album
-                {
-                    IdAlbum = (int)reader["idAlbum"],
-                    Titulo = reader["titulo"].ToString(),
-                    FechaLanzamiento = (DateTime)reader["fechaLanzamiento"],
-                    IdArtista = (int)reader["idArtista"]
-                });
-            }
-
-            return albums;
+            using var conn = _db.CreateConnection();
+            var sql = @"SELECT ""IdAlbum"", ""Titulo"", ""FechaLanzamiento"", ""IdArtista"" FROM ""Albumes""";
+            return await conn.QueryAsync<Album>(sql);
         }
 
-        public async Task<Album> GetByIdAsync(int id)
+        public async Task<Album?> GetByIdAsync(int id)
         {
-            Album album = null;
-
-            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
-
-            using var command = new NpgsqlCommand("sp_Album_GetById", connection);
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@idAlbum", id);
-
-            await connection.OpenAsync();
-            using var reader = await command.ExecuteReaderAsync();
-
-            if (await reader.ReadAsync())
-            {
-                album = new Album
-                {
-                    IdAlbum = (int)reader["idAlbum"],
-                    Titulo = reader["titulo"].ToString(),
-                    FechaLanzamiento = (DateTime)reader["fechaLanzamiento"],
-                    IdArtista = (int)reader["idArtista"]
-                };
-            }
-
-            return album;
+            using var conn = _db.CreateConnection();
+            var sql = @"SELECT ""IdAlbum"", ""Titulo"", ""FechaLanzamiento"", ""IdArtista"" FROM ""Albumes"" WHERE ""IdAlbum"" = @Id";
+            return await conn.QueryFirstOrDefaultAsync<Album>(sql, new { Id = id });
         }
 
         public async Task<IEnumerable<Album>> GetByArtistaAsync(int idArtista)
         {
-            var albums = new List<Album>();
-
-            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
-
-            using var command = new NpgsqlCommand("sp_Album_GetByArtista", connection);
-            command.CommandType = CommandType.StoredProcedure;
-            command.Parameters.AddWithValue("@idArtista", idArtista);
-
-            await connection.OpenAsync();
-            using var reader = await command.ExecuteReaderAsync();
-
-            while (await reader.ReadAsync())
-            {
-                albums.Add(new Album
-                {
-                    IdAlbum = (int)reader["idAlbum"],
-                    Titulo = reader["titulo"].ToString(),
-                    FechaLanzamiento = (DateTime)reader["fechaLanzamiento"],
-                    IdArtista = (int)reader["idArtista"]
-                });
-            }
-
-            return albums;
+            using var conn = _db.CreateConnection();
+            var sql = @"SELECT ""IdAlbum"", ""Titulo"", ""FechaLanzamiento"", ""IdArtista"" FROM ""Albumes"" WHERE ""IdArtista"" = @IdArtista";
+            return await conn.QueryAsync<Album>(sql, new { IdArtista = idArtista });
         }
 
         public async Task AddAsync(Album album)
         {
-            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
-    ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
-
-
-            using var command = new NpgsqlCommand("sp_Album_Add", connection);
-            command.CommandType = CommandType.StoredProcedure;
-
-            command.Parameters.AddWithValue("@titulo", album.Titulo);
-            command.Parameters.AddWithValue("@fechaLanzamiento", album.FechaLanzamiento);
-            command.Parameters.AddWithValue("@idArtista", album.IdArtista);
-
-            await connection.OpenAsync();
-            await command.ExecuteNonQueryAsync();
+            using var conn = _db.CreateConnection();
+            var sql = @"INSERT INTO ""Albumes"" (""Titulo"", ""FechaLanzamiento"", ""IdArtista"") 
+                        VALUES (@Titulo, @FechaLanzamiento, @IdArtista)";
+            await conn.ExecuteAsync(sql, album);
         }
 
         public async Task UpdateAsync(Album album)
         {
-            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
-
-            using var command = new NpgsqlCommand("sp_Album_Update", connection);
-            command.CommandType = CommandType.StoredProcedure;
-
-            command.Parameters.AddWithValue("@idAlbum", album.IdAlbum);
-            command.Parameters.AddWithValue("@titulo", album.Titulo);
-            command.Parameters.AddWithValue("@fechaLanzamiento", album.FechaLanzamiento);
-            command.Parameters.AddWithValue("@idArtista", album.IdArtista);
-
-            await connection.OpenAsync();
-            await command.ExecuteNonQueryAsync();
+            using var conn = _db.CreateConnection();
+            var sql = @"UPDATE ""Albumes"" SET ""Titulo"" = @Titulo, ""FechaLanzamiento"" = @FechaLanzamiento, ""IdArtista"" = @IdArtista 
+                        WHERE ""IdAlbum"" = @IdAlbum";
+            await conn.ExecuteAsync(sql, album);
         }
 
         public async Task DeleteAsync(int id)
         {
-            using var connection = _dbConnectionFactory.CreateConnection() as NpgsqlConnection
-                ?? throw new InvalidOperationException("No se pudo crear NpgsqlConnection");
-
-            using var command = new NpgsqlCommand("sp_Album_Delete", connection);
-            command.CommandType = CommandType.StoredProcedure;
-
-            command.Parameters.AddWithValue("@idAlbum", id);
-
-            await connection.OpenAsync();
-            await command.ExecuteNonQueryAsync();
+            using var conn = _db.CreateConnection();
+            var sql = @"DELETE FROM ""Albumes"" WHERE ""IdAlbum"" = @Id";
+            await conn.ExecuteAsync(sql, new { Id = id });
         }
     }
 }

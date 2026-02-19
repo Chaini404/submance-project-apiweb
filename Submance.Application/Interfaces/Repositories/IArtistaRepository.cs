@@ -1,13 +1,14 @@
-﻿using Submance.Domain.Entities;
+﻿#nullable enable
+using Submance.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
-namespace Submance.Application.Interfaces.Repository
+namespace Submance.Application.Interfaces.Repositories
 {
     public interface IArtistaRepository
     {
         Task<IEnumerable<Artista>> GetAllAsync();
         Task<Artista?> GetByIdAsync(int id);
-
-        // 👇 ESTE ES EL NUEVO MÉTODO QUE NECESITAMOS
         Task<Artista?> GetByEmailAsync(string email);
 
         Task AddAsync(Artista artista);

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Submance.Domain.Entities;
 
 namespace SubmanceProject.Web.Data
 {
@@ -6,10 +7,26 @@ namespace SubmanceProject.Web.Data
     {
         public SubmanceContext(DbContextOptions<SubmanceContext> options) : base(options) { }
 
-        // Usamos la ruta completa para evitar la ambigüedad con los Models de la Web
-        public DbSet<Submance.Domain.Entities.Artista> Artistas { get; set; } = default!;
-        public DbSet<Submance.Domain.Entities.Demo> Demos { get; set; } = default!;
-        public DbSet<Submance.Domain.Entities.Usuario> Usuarios { get; set; } = default!;
-        public DbSet<Submance.Domain.Entities.Genero> Generos { get; set; } = default!;
+        public DbSet<Artista> Artistas { get; set; } = default!;
+        public DbSet<Usuario> Usuarios { get; set; } = default!;
+        public DbSet<Genero> Generos { get; set; } = default!;
+        public DbSet<Cancion> Demos { get; set; } = default!;
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            // Forzar relación 1:1 entre Usuario y Artista
+            modelBuilder.Entity<Artista>()
+                .HasOne(a => a.Usuario)
+                .WithOne(u => u.Artista)
+                .HasForeignKey<Artista>(a => a.IdUsuario)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Asegurar que el correo sea único en base de datos
+            modelBuilder.Entity<Usuario>()
+                .HasIndex(u => u.Correo)
+                .IsUnique();
+        }
     }
 }

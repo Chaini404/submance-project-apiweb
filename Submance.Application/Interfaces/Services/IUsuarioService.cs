@@ -1,5 +1,7 @@
 ﻿using Submance.Application.DTOs.Usuario;
-using Submance.Domain.Entities; // Para devolver Usuario en Login (o usa un DTO si prefieres)
+using Submance.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Submance.Application.Interfaces.Services
 {

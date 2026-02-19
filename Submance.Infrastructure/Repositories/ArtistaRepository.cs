@@ -1,7 +1,6 @@
 ﻿#nullable enable
-using Npgsql;
-using NpgsqlTypes;
-using Submance.Application.Interfaces.Repository;
+using Dapper;
+using Submance.Application.Interfaces.Repositories;
 using Submance.Domain.Entities;
 using Submance.Infrastructure.Data;
 using System.Collections.Generic;
@@ -11,103 +10,62 @@ namespace Submance.Infrastructure.Repositories
 {
     public class ArtistaRepository : IArtistaRepository
     {
-        private readonly DbConnectionFactory _dbConnectionFactory;
-        public ArtistaRepository(DbConnectionFactory dbFactory) => _dbConnectionFactory = dbFactory;
+        private readonly DbConnectionFactory _db;
+        public ArtistaRepository(DbConnectionFactory db) => _db = db;
 
         public async Task<IEnumerable<Artista>> GetAllAsync()
         {
-            var artistas = new List<Artista>();
-            using (var con = _dbConnectionFactory.CreateConnection() as NpgsqlConnection)
-            {
-                if (con == null) return artistas;
-                await con.OpenAsync();
-
-                string sql = @"SELECT * FROM ""Artistas""";
-                using (var cmd = new NpgsqlCommand(sql, con))
-                using (var reader = await cmd.ExecuteReaderAsync())
-                {
-                    while (await reader.ReadAsync()) artistas.Add(Map(reader));
-                }
-            }
-            return artistas;
-        }
-
-        public async Task<Artista?> GetByEmailAsync(string email)
-        {
-            Artista? artista = null;
-            using (var con = _dbConnectionFactory.CreateConnection() as NpgsqlConnection)
-            {
-                if (con == null) return null;
-                await con.OpenAsync();
-
-                string sql = @"SELECT * FROM ""Artistas"" WHERE ""Correo"" = @correo";
-                using (var cmd = new NpgsqlCommand(sql, con))
-                {
-                    cmd.Parameters.AddWithValue("@correo", email);
-                    using (var reader = await cmd.ExecuteReaderAsync())
-                    {
-                        if (await reader.ReadAsync()) artista = Map(reader);
-                    }
-                }
-            }
-            return artista;
-        }
-
-        public async Task AddAsync(Artista artista)
-        {
-            using (var con = _dbConnectionFactory.CreateConnection() as NpgsqlConnection)
-            {
-                if (con == null) return;
-                await con.OpenAsync();
-
-                string sql = @"INSERT INTO ""Artistas"" (""NombreArtistico"", ""NombreReal"", ""Correo"", ""Pais"", ""Estado"", ""FechaRegistro"")
-                               VALUES (@nombre, @real, @correo, @pais, TRUE, NOW())";
-
-                using (var cmd = new NpgsqlCommand(sql, con))
-                {
-                    cmd.Parameters.AddWithValue("@nombre", artista.NombreArtistico);
-                    cmd.Parameters.AddWithValue("@real", artista.NombreReal ?? (object)System.DBNull.Value);
-                    cmd.Parameters.AddWithValue("@correo", artista.Correo);
-                    cmd.Parameters.AddWithValue("@pais", artista.Pais ?? (object)System.DBNull.Value);
-
-                    await cmd.ExecuteNonQueryAsync();
-                }
-            }
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            return await conn.QueryAsync<Artista>(@"SELECT * FROM ""Artistas"" ORDER BY ""FechaRegistro"" DESC");
         }
 
         public async Task<Artista?> GetByIdAsync(int id)
         {
-            Artista? artista = null;
-            using (var con = _dbConnectionFactory.CreateConnection() as NpgsqlConnection)
-            {
-                if (con == null) return null;
-                await con.OpenAsync();
-                string sql = @"SELECT * FROM ""Artistas"" WHERE ""IdArtista"" = @id";
-                using (var cmd = new NpgsqlCommand(sql, con))
-                {
-                    cmd.Parameters.AddWithValue("@id", id);
-                    using (var reader = await cmd.ExecuteReaderAsync())
-                    {
-                        if (await reader.ReadAsync()) artista = Map(reader);
-                    }
-                }
-            }
-            return artista;
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            return await conn.QueryFirstOrDefaultAsync<Artista>(
+                @"SELECT * FROM ""Artistas"" WHERE ""IdArtista"" = @Id", new { Id = id });
         }
 
-        public async Task UpdateAsync(Artista artista) => await Task.CompletedTask;
-        public async Task DeleteAsync(int id) => await Task.CompletedTask;
-
-        private Artista Map(NpgsqlDataReader reader)
+        public async Task<Artista?> GetByEmailAsync(string email)
         {
-            return new Artista
-            {
-                IdArtista = reader.GetInt32(reader.GetOrdinal("IdArtista")),
-                NombreArtistico = reader["NombreArtistico"].ToString() ?? "",
-                Correo = reader["Correo"].ToString() ?? "",
-                NombreReal = reader["NombreReal"]?.ToString(),
-                Pais = reader["Pais"]?.ToString()
-            };
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            var sql = @"
+                SELECT a.* FROM ""Artistas"" a
+                INNER JOIN ""Usuarios"" u ON a.""IdUsuario"" = u.""IdUsuario""
+                WHERE u.""Correo"" = @Email";
+            return await conn.QueryFirstOrDefaultAsync<Artista>(sql, new { Email = email });
+        }
+
+        public async Task AddAsync(Artista artista)
+        {
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            var sql = @"INSERT INTO ""Artistas"" (""IdUsuario"", ""NombreArtistico"", ""NombreReal"", ""Pais"", ""Estado"", ""FechaRegistro"") 
+                        VALUES (@IdUsuario, @NombreArtistico, @NombreReal, @Pais, @Estado, NOW())";
+            await conn.ExecuteAsync(sql, artista);
+        }
+
+        public async Task UpdateAsync(Artista artista)
+        {
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            var sql = @"UPDATE ""Artistas"" 
+                        SET ""NombreArtistico"" = @NombreArtistico, 
+                            ""NombreReal"" = @NombreReal, 
+                            ""Pais"" = @Pais, 
+                            ""Estado"" = @Estado 
+                        WHERE ""IdArtista"" = @IdArtista";
+            await conn.ExecuteAsync(sql, artista);
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            await conn.ExecuteAsync(@"DELETE FROM ""Artistas"" WHERE ""IdArtista"" = @Id", new { Id = id });
         }
     }
 }

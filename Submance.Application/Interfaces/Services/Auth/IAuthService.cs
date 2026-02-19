@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Submance.Application.ViewModels;
 using System.Threading.Tasks;
 
-namespace Submance.Application.Interfaces.Service.Auth
+namespace Submance.Application.Interfaces.Services
 {
-    internal class IAuthService
+    public interface IAuthService
     {
+        Task<bool> RegistrarArtistaAsync(RegistroViewModel model);
     }
 }

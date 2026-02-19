@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Submance.Infrastructure.Repositories;
+using Submance.Application.Interfaces.Repositories;
+using Submance.Application.Interfaces.Services;
+using Submance.Application.ViewModels;
 using Submance.Infrastructure.Security;
-// NOTA: Borré la línea de Microsoft.AspNetCore.Identity para evitar conflictos
+using System.Threading.Tasks;
+using System;
 
 namespace SubmanceProject.Api.Controllers
 {
@@ -9,41 +12,59 @@ namespace SubmanceProject.Api.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly UsuarioRepository _usuarioRepository;
+        private readonly IUsuarioRepository _usuarioRepository;
         private readonly PasswordHasher _passwordHasher;
+        private readonly IAuthService _authService; // Ahora inyectamos el servicio limpio
 
-        public AuthController(UsuarioRepository usuarioRepository, PasswordHasher passwordHasher)
+        public AuthController(
+            IUsuarioRepository usuarioRepository,
+            PasswordHasher passwordHasher,
+            IAuthService authService)
         {
             _usuarioRepository = usuarioRepository;
             _passwordHasher = passwordHasher;
+            _authService = authService;
         }
 
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            // 1. Validar datos
             if (request == null || string.IsNullOrEmpty(request.NombreUsuario))
-                return BadRequest("Faltan datos.");
+                return BadRequest(new { message = "Faltan datos." });
 
-            // 2. Buscar usuario (ajusta GetByUsernameAsync según como se llame en tu repo real)
-            // Si te da error aquí, verifica si tu método en UsuarioRepository es asíncrono (Task)
-            // Si no es asíncrono, quita el 'await' y el 'Async' del nombre.
             var usuario = await _usuarioRepository.GetByUsernameAsync(request.NombreUsuario);
 
             if (usuario == null)
-            {
                 return Unauthorized(new { message = "El usuario no existe." });
-            }
 
-            // 3. Verificar contraseña
-            bool esValido = _passwordHasher.Verify(request.Password, usuario.Password); // Asegúrate que tu entidad Usuario tenga 'PasswordHash'
+            bool esValido = _passwordHasher.Verify(request.Password, usuario.Password);
 
             if (!esValido)
-            {
                 return Unauthorized(new { message = "Contraseña incorrecta." });
-            }
 
             return Ok(new { Message = "Login Exitoso", Usuario = request.NombreUsuario });
+        }
+
+        [HttpPost("register-dj")]
+        public async Task<IActionResult> RegisterDJ([FromBody] RegistroViewModel dto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(new { success = false, message = "Datos de entrada inválidos.", errors = ModelState });
+
+            try
+            {
+                // Toda la lógica Dapper ahora vive en AuthService
+                bool result = await _authService.RegistrarArtistaAsync(dto);
+
+                if (!result)
+                    return Conflict(new { success = false, message = "El correo ya está registrado en el sistema." });
+
+                return Ok(new { success = true, message = "Cuenta de DJ y Perfil creados exitosamente." });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, new { success = false, message = "Fallo de integridad transaccional." });
+            }
         }
     }
 

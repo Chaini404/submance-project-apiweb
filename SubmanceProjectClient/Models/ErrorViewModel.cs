@@ -1,3 +1,4 @@
+#nullable enable
 namespace SubmanceProjectClient.Models
 {
     public class ErrorViewModel

@@ -1,18 +1,31 @@
-﻿namespace Submance.Domain.Entities
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Submance.Domain.Entities
 {
+    [Table("Usuarios")]
     public class Usuario
     {
+        [Key]
         public int IdUsuario { get; set; }
-        public string Nombre { get; set; } = string.Empty;
-        public string Correo { get; set; } = string.Empty;
-        public string Password { get; set; } = string.Empty;
 
-        // ⚠️ CAMBIO: En tu BD es un texto ("Admin", "Staff"), no un número.
-        public string Rol { get; set; } = "Usuario";
+        [Required]
+        public string Nombre { get; set; }
 
-        // Mantenemos bool aquí, pero en el Repo lo convertimos desde "Activo/Inactivo"
-        public bool Activo { get; set; } = true;
+        [Required]
+        public string Correo { get; set; }
 
-        public DateTime FechaRegistro { get; set; } = DateTime.Now;
+        [Required]
+        public string Password { get; set; }
+
+        [Required]
+        public string Rol { get; set; }
+
+        public string Estado { get; set; } = "Activo";
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
+
+        // Navegación 1:1
+        public virtual Artista Artista { get; set; }
     }
 }

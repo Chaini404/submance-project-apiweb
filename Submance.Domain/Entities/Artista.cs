@@ -9,22 +9,20 @@ namespace Submance.Domain.Entities
     {
         [Key]
         public int IdArtista { get; set; }
+
+        [Required]
+        [ForeignKey("Usuario")]
+        public int IdUsuario { get; set; }
+
+        [Required]
         public string NombreArtistico { get; set; }
+
         public string NombreReal { get; set; }
         public string Pais { get; set; }
-        public string Correo { get; set; }
+        public bool Estado { get; set; } = true;
+        public DateTime FechaRegistro { get; set; } = DateTime.UtcNow;
 
-        public DateTime FechaRegistro { get; set; }
-
-        // Esta es la columna REAL de la base de datos (bit/bool)
-        public bool Estado { get; set; }
-
-      
-        [NotMapped]
-        public bool Activo
-        {
-            get { return Estado; }
-            set { Estado = value; }
-        }
+        // Navegación 1:1
+        public virtual Usuario Usuario { get; set; }
     }
 }

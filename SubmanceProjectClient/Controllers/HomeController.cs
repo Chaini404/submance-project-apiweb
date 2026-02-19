@@ -1,4 +1,4 @@
-using System.Diagnostics;
+ï»¿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using SubmanceProjectClient.Models;
 
@@ -13,17 +13,17 @@ namespace SubmanceProjectClient.Controllers
             _logger = logger;
         }
 
-        // ESTE ES TU INDEX PRINCIPAL (La página pública de envío de demos)
+        // ESTE ES TU INDEX PRINCIPAL (La pï¿½gina pï¿½blica de envï¿½o de demos)
         public IActionResult Index()
         {
             return View();
         }
 
-        // AGREGAMOS ESTO: Es la acción que recibirá el formulario cuando el artista le de a "SEND"
+        // AGREGAMOS ESTO: Es la acciï¿½n que recibirï¿½ el formulario cuando el artista le de a "SEND"
         [HttpPost]
         public IActionResult SubmitDemo(string ArtistName, string TrackTitle, string DemoLink, string Email)
         {
-            // Aquí más adelante pondremos la lógica para guardar en la Base de Datos.
+            // Aquï¿½ mï¿½s adelante pondremos la lï¿½gica para guardar en la Base de Datos.
             // Por ahora, simplemente nos devuelve al inicio.
             return RedirectToAction("Index");
         }

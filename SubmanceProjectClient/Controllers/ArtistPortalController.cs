@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Submance.Application.Interfaces.Repository;
+using Microsoft.AspNetCore.Http;
+using Submance.Application.Interfaces.Repositories;
 using Submance.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System;
 
 namespace SubmanceProject.Web.Controllers
 {
@@ -17,28 +21,38 @@ namespace SubmanceProject.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            // 1. Verificar Sesión
             if (HttpContext.Session.GetString("UserRole") != "Artista")
                 return RedirectToAction("Login", "Admin");
 
             string email = HttpContext.Session.GetString("UserEmail");
-            if (string.IsNullOrEmpty(email)) return RedirectToAction("Login", "Admin");
-
-            // 2. Obtener el Perfil del Artista
             var artista = await _artistaRepo.GetByEmailAsync(email);
 
             if (artista == null)
             {
-                // Caso raro: Usuario existe pero no tiene perfil de Artista creado
-                ViewBag.Error = "Perfil de artista no encontrado.";
+                ViewBag.Error = "Error: No se encontró un perfil de Artista vinculado a este correo.";
                 return View(new List<Cancion>());
             }
 
-            // 3. Obtener sus Tracks (Demos)
-            var misTracks = await _cancionRepo.GetByArtistaAsync(artista.IdArtista);
+            var tracks = await _cancionRepo.GetByArtistaAsync(artista.IdArtista);
+            ViewBag.ArtistId = artista.IdArtista;
+            ViewBag.ArtistName = artista.NombreArtistico;
 
-            // 4. Retornar a la Vista
-            return View(misTracks);
+            return View(tracks);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Upload([FromBody] Cancion model)
+        {
+            try
+            {
+                await _cancionRepo.AddAsync(model);
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
         }
     }
 }

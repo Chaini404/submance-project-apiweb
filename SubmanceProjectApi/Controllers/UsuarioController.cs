@@ -1,39 +1,25 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Submance.Application.Interfaces.Services;
-using Submance.Application.DTOs.Usuario;
+using Submance.Application.Interfaces.Repositories;
+using System.Threading.Tasks;
 
-namespace SubmanceProject.Api.Controllers
+namespace SubmanceProjectApi.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
     {
-        private readonly IUsuarioService _usuarioService;
+        private readonly IUsuarioRepository _usuarioRepo;
 
-        public UsuarioController(IUsuarioService usuarioService)
+        public UsuarioController(IUsuarioRepository usuarioRepo)
         {
-            _usuarioService = usuarioService;
-        }
-
-        // ESTE ES EL BOTÓN QUE TE FALTA EN SWAGGER 👇
-        [HttpPost]
-        public IActionResult Create([FromBody] UsuarioRequestDto request)
-        {
-            try
-            {
-                _usuarioService.Create(request);
-                return Ok(new { message = "Usuario creado exitosamente" });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
+            _usuarioRepo = usuarioRepo;
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            return Ok(_usuarioService.GetAll());
+            var usuarios = await _usuarioRepo.GetAllAsync();
+            return Ok(usuarios);
         }
     }
 }

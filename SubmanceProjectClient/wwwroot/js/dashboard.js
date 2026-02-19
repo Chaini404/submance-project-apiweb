@@ -1,569 +1,447 @@
-﻿// ================= CONFIGURACIÓN =================
-const API_URL = "https://localhost:7064/api/Dashboard";
-let globalDemos = [];
-let myChart = null;
-
-// ESTADO DE LOS FILTROS DEMOS
-let currentFilter = {
-    status: 'Todos',
-    text: ''
-};
-
-// ESTADO DE LOS FILTROS ARTISTAS
-let artistFilter = {
-    sort: 'az',
-    text: ''
-};
-
-// ================= INICIO =================
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("🚀 Dashboard Submance iniciado...");
-    checkDarkMode();
-    renderChart({ totalDemos: 0, aprobados: 0, pendientes: 0 });
-    refreshAllData();
+﻿// wwwroot/js/dashboard.js
+document.addEventListener('DOMContentLoaded', function () {
+    console.log("Sistema Submance Conectado a Supabase.");
+    loadDashboardData();
+    initChart();
 });
 
-function refreshAllData() {
-    loadStats();
-    loadDemos();
+function escapeHTML(str) {
+    if (typeof str !== 'string') return str;
+    return str.replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;'
+    }[tag] || tag));
 }
 
-// ================= LÓGICA DE FILTRADO DEMOS =================
+function nav(viewId) {
+    document.querySelectorAll('.view-section').forEach(el => el.classList.add('hidden'));
+    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+    const target = document.getElementById(`view-${viewId}`);
+    if (target) {
+        target.classList.remove('hidden');
+        target.classList.add('animate__fadeIn');
+    }
+    const link = document.getElementById(`link-${viewId}`);
+    if (link) link.classList.add('active');
+}
+
+function loadDashboardData() {
+    fetch('/Admin/GetDashboardData')
+        .then(response => {
+            if (!response.ok) throw new Error('Error en red');
+            return response.json();
+        })
+        .then(data => {
+            updateStat("st-total", data.stats.totalDemos);
+            updateStat("st-pend", data.stats.pendientes);
+            updateStat("st-aprob", data.stats.aprobados);
+            updateStat("st-arts", data.stats.artistas);
+            document.getElementById('badge-inbox').innerText = data.stats.pendientes;
+
+            renderInbox(data.demos || []);
+            renderDemosGrid(data.demos || []);
+            renderArtists(data.artistas || []);
+            renderReleases(data.demos || []);
+            updateChart(data.stats);
+        })
+        .catch(error => console.error('Error cargando datos:', error));
+}
+
+function updateStat(id, value) {
+    const el = document.getElementById(id);
+    if (el) el.innerText = value;
+}
+
+function accionDemo(id, nuevoEstado) {
+    const texto = nuevoEstado === 'Aprobado' ? 'Aprobar' : 'Rechazar';
+    const color = nuevoEstado === 'Aprobado' ? '#00f2ff' : '#dc3545';
+
+    Swal.fire({
+        title: `¿${texto} demo?`,
+        text: "Se actualizará el estado en la base de datos.",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: color,
+        confirmButtonText: `Sí, ${texto}`,
+        cancelButtonText: 'Cancelar',
+        background: '#121212',
+        color: '#ffffff'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(`/Admin/UpdateDemoStatus?id=${id}&status=${nuevoEstado}`, { method: 'POST' })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.success) {
+                        Swal.fire({ title: 'Actualizado', text: 'Estado cambiado.', icon: 'success', background: '#121212', color: '#fff' });
+                        loadDashboardData();
+                    } else {
+                        Swal.fire({ title: 'Error', text: 'No se pudo conectar con la BD', icon: 'error', background: '#121212', color: '#fff' });
+                    }
+                });
+        }
+    });
+}
+
+function openAddArtistModal() {
+    new bootstrap.Modal(document.getElementById('modalAddArtist')).show();
+}
+
+function saveArtist() {
+    const data = {
+        nombreArtistico: document.getElementById('newArtName').value,
+        nombreReal: document.getElementById('newArtReal').value,
+        pais: document.getElementById('newArtCountry').value,
+        correo: document.getElementById('newArtEmail').value
+    };
+
+    fetch('/Admin/CreateArtist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    })
+        .then(res => res.json())
+        .then(result => {
+            if (result.success) {
+                bootstrap.Modal.getInstance(document.getElementById('modalAddArtist')).hide();
+                Swal.fire({ title: '¡Creado!', text: 'Artista añadido.', icon: 'success', background: '#121212', color: '#fff' });
+                document.getElementById('formAddArtist').reset();
+                loadDashboardData();
+            } else {
+                Swal.fire({ title: 'Error', text: result.message, icon: 'error', background: '#121212', color: '#fff' });
+            }
+        });
+}
+
+function renderInbox(demos) {
+    const tbody = document.getElementById('inboxTableBody');
+    if (!tbody) return;
+    let htmlContent = '';
+
+    demos.forEach(demo => {
+        if (demo.estado === 'Pendiente') {
+            const tituloSafe = escapeHTML(demo.titulo);
+            const artistaSafe = escapeHTML(demo.artistaNombre);
+            const tituloEscapedJs = demo.titulo.replace(/'/g, "\\'");
+            const artistaEscapedJs = demo.artistaNombre.replace(/'/g, "\\'");
+
+            // CORRECCIÓN: demo.id -> demo.idDemo | demo.urlAudio
+            htmlContent += `
+                <tr>
+                    <td class="ps-4">
+                        <div class="d-flex align-items-center">
+                            <div class="text-cyan fs-4 me-3"><i class="bi bi-music-note-beamed"></i></div>
+                            <div>
+                                <div class="fw-bold">${tituloSafe}</div>
+                                <div class="text-secondary small">UID: ${demo.idDemo}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>${artistaSafe}</td>
+                    <td class="text-center">
+                        <button class="btn btn-sm btn-link text-cyan rounded-circle fs-4" 
+                                id="btn-play-${demo.idDemo}"
+                                onclick="playTrack('${escapeHTML(demo.urlAudio)}', ${demo.idDemo}, '${tituloEscapedJs}', '${artistaEscapedJs}')">
+                            <i class="bi bi-play-circle"></i>
+                        </button>
+                    </td>
+                    <td class="text-end pe-4">
+                        <button class="btn btn-sm btn-outline-info me-1" onclick="accionDemo(${demo.idDemo}, 'Aprobado')">APROBAR</button>
+                        <button class="btn btn-sm btn-outline-danger" onclick="accionDemo(${demo.idDemo}, 'Rechazado')">RECHAZAR</button>
+                    </td>
+                </tr>`;
+        }
+    });
+    tbody.innerHTML = htmlContent;
+}
+
+function renderDemosGrid(demos) {
+    const grid = document.getElementById('demosGrid');
+    if (!grid) return;
+    let htmlContent = '';
+
+    demos.forEach(demo => {
+        let badgeClass = demo.estado === 'Aprobado' ? 'text-bg-info' : (demo.estado === 'Rechazado' ? 'text-bg-danger' : 'text-bg-warning');
+        htmlContent += `
+            <div class="col-md-4 col-lg-3 grid-item">
+                <div class="stat-card p-3 h-100">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span class="badge ${badgeClass} status-badge">${escapeHTML(demo.estado)}</span>
+                    </div>
+                    <h6 class="fw-bold mb-0 text-truncate title-val">${escapeHTML(demo.titulo)}</h6>
+                    <p class="text-secondary small mb-3 artist-val">${escapeHTML(demo.artistaNombre)}</p>
+                </div>
+            </div>`;
+    });
+    grid.innerHTML = htmlContent;
+}
+
+function renderArtists(artists) {
+    const grid = document.getElementById('artistsGrid');
+    if (!grid) return;
+    let htmlContent = '';
+
+    artists.forEach(art => {
+        htmlContent += `
+            <div class="col-md-4 grid-item">
+                <div class="d-flex align-items-center p-3 stat-card">
+                    <div class="rounded-circle bg-black text-cyan d-flex align-items-center justify-content-center me-3 border border-secondary" style="width:40px; height:40px;">
+                        ${escapeHTML(art.nombreArtistico.charAt(0))}
+                    </div>
+                    <div>
+                        <h6 class="mb-0 fw-bold name-val">${escapeHTML(art.nombreArtistico)}</h6>
+                        <small class="text-secondary">${escapeHTML(art.pais || 'N/A')}</small>
+                    </div>
+                </div>
+            </div>`;
+    });
+    grid.innerHTML = htmlContent;
+}
+
 function setFilterStatus(status) {
-    currentFilter.status = status;
-    aplicarFiltros();
+    const cards = document.querySelectorAll('#demosGrid .grid-item');
+    cards.forEach(card => {
+        const badge = card.querySelector('.status-badge').innerText;
+        const mostrar = (status === 'Todos') || (status === badge);
+        card.style.display = mostrar ? 'block' : 'none';
+    });
 }
 
 function setFilterText(text) {
-    currentFilter.text = text.trim().toLowerCase();
-    aplicarFiltros();
-}
-
-function aplicarFiltros() {
-    if (!globalDemos) return;
-    let resultados = globalDemos;
-
-    // Filtro Estado
-    if (currentFilter.status !== 'Todos') {
-        resultados = resultados.filter(d => {
-            const estado = (d.Estado || d.estado || "Pendiente");
-            return estado.toLowerCase() === currentFilter.status.toLowerCase();
-        });
-    }
-
-    // Filtro Texto
-    if (currentFilter.text !== '') {
-        resultados = resultados.filter(d => {
-            const titulo = (d.TituloDemo || d.tituloDemo || "").toLowerCase();
-            const artista = (d.NombreArtistico || d.nombreArtistico || "").toLowerCase();
-            return titulo.includes(currentFilter.text) || artista.includes(currentFilter.text);
-        });
-    }
-
-    renderDemosGrid(resultados);
-}
-
-// ================= LÓGICA DE FILTRADO ARTISTAS =================
-function setArtistSort(sortType) {
-    artistFilter.sort = sortType;
-    aplicarFiltrosArtistas();
+    const val = text.toLowerCase();
+    const cards = document.querySelectorAll('#demosGrid .grid-item');
+    cards.forEach(card => {
+        const title = card.querySelector('.title-val').innerText.toLowerCase();
+        const artist = card.querySelector('.artist-val').innerText.toLowerCase();
+        card.style.display = (title.includes(val) || artist.includes(val)) ? 'block' : 'none';
+    });
 }
 
 function setArtistFilterText(text) {
-    artistFilter.text = text.trim().toLowerCase();
-    aplicarFiltrosArtistas();
-}
-
-function aplicarFiltrosArtistas() {
-    if (!globalDemos) return;
-
-    const artistasMap = new Map();
-    globalDemos.forEach(d => {
-        const nombre = d.NombreArtistico || "Desconocido";
-        if (!artistasMap.has(nombre)) {
-            artistasMap.set(nombre, {
-                nombre: nombre,
-                email: d.Email || "N/A",
-                tracks: 0
-            });
-        }
-        artistasMap.get(nombre).tracks++;
+    const val = text.toLowerCase();
+    const cards = document.querySelectorAll('#artistsGrid .grid-item');
+    cards.forEach(card => {
+        const name = card.querySelector('.name-val').innerText.toLowerCase();
+        card.style.display = name.includes(val) ? 'block' : 'none';
     });
-
-    let listaArtistas = Array.from(artistasMap.values());
-
-    if (artistFilter.text !== '') {
-        listaArtistas = listaArtistas.filter(a => a.nombre.toLowerCase().includes(artistFilter.text));
-    }
-
-    if (artistFilter.sort === 'az') listaArtistas.sort((a, b) => a.nombre.localeCompare(b.nombre));
-    if (artistFilter.sort === 'za') listaArtistas.sort((a, b) => b.nombre.localeCompare(a.nombre));
-    if (artistFilter.sort === 'tracks') listaArtistas.sort((a, b) => b.tracks - a.tracks);
-
-    renderArtistsGrid(listaArtistas);
 }
 
-// ================= NAVEGACIÓN Y UX =================
-function nav(view) {
-    document.querySelectorAll('.view-section').forEach(el => {
-        el.classList.add('hidden');
-        el.classList.remove('animate__fadeIn');
-    });
-    document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
-
-    const target = document.getElementById('view-' + view);
-    if (target) {
-        target.classList.remove('hidden');
-        void target.offsetWidth;
-        target.classList.add('animate__fadeIn');
-    }
-    const link = document.getElementById('link-' + view);
-    if (link) link.classList.add('active');
-
-    if (view === 'home' && myChart) myChart.resize();
-}
-
-function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-    const isDark = document.body.classList.contains('dark-mode');
-    localStorage.setItem('darkMode', isDark);
-    checkDarkMode();
-    if (myChart) {
-        myChart.options.plugins.legend.labels.color = isDark ? '#fff' : '#333';
-        myChart.update();
-    }
-}
-
-function checkDarkMode() {
-    const isDark = localStorage.getItem('darkMode') === 'true';
-    if (isDark) document.body.classList.add('dark-mode');
-    const icon = document.getElementById('theme-icon');
-    if (icon) icon.className = isDark ? 'bi bi-sun-fill me-2 ms-2' : 'bi bi-moon-fill me-2 ms-2';
-}
-
-// ================= CONEXIÓN API =================
-function loadStats() {
-    fetch(`${API_URL}/GetStats`)
-        .then(r => r.json())
-        .then(data => {
-            const total = data.totalDemos ?? 0;
-            const pend = data.pendientes ?? 0;
-            const aprob = data.aprobados ?? 0;
-            const arts = data.artistas ?? 0;
-
-            if (document.getElementById('st-total')) document.getElementById('st-total').innerText = total;
-            if (document.getElementById('st-pend')) document.getElementById('st-pend').innerText = pend;
-            if (document.getElementById('st-aprob')) document.getElementById('st-aprob').innerText = aprob;
-            if (document.getElementById('st-arts')) document.getElementById('st-arts').innerText = arts;
-
-            const badge = document.getElementById('badge-inbox');
-            if (badge) {
-                badge.innerText = pend;
-                badge.style.display = pend > 0 ? 'inline-block' : 'none';
-            }
-            renderChart({ totalDemos: total, aprobados: aprob, pendientes: pend });
-        })
-        .catch(err => console.error("❌ Error en Stats:", err));
-}
-
-function loadDemos() {
-    fetch(`${API_URL}/GetDemos`)
-        .then(r => r.json())
-        .then(data => {
-            console.log("📥 Datos recibidos:", data);
-            globalDemos = data;
-
-            aplicarFiltros();
-
-            const pendientes = data.filter(d => (d.Estado || "Pendiente").toLowerCase() === 'pendiente');
-            renderInbox(pendientes);
-
-            aplicarFiltrosArtistas();
-
-            // Renderizamos lanzamientos
-            renderReleasesGrid(data);
-        })
-        .catch(err => console.error("❌ Error al cargar demos:", err));
-}
-
-// ================= RENDERIZADO VISUAL =================
-
-function renderChart(data) {
+let myChart;
+function initChart() {
     const ctx = document.getElementById('chartOverview');
-    if (!ctx || typeof Chart === 'undefined') return;
-    if (myChart) myChart.destroy();
-
-    const pend = data.pendientes ?? 0;
-    const aprob = data.aprobados ?? 0;
-    const total = data.totalDemos ?? 0;
-    const rech = Math.max(0, total - pend - aprob);
-
+    if (!ctx) return;
     myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Pendientes', 'Aprobados', 'Rechazados'],
+            labels: ['Pendientes', 'Aprobados', 'Otros'],
             datasets: [{
-                data: total === 0 ? [1, 1, 1] : [pend, aprob, rech],
-                backgroundColor: ['#ffc107', '#0d6efd', '#dc3545'],
+                data: [0, 0, 0],
+                backgroundColor: ['#ffc107', '#00f2ff', '#dc3545'],
                 borderWidth: 0,
-                hoverOffset: 15
+                hoverOffset: 4
             }]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
-            cutout: '75%',
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: { padding: 20, usePointStyle: true, color: document.body.classList.contains('dark-mode') ? '#fff' : '#333' }
-                }
-            }
+            plugins: { legend: { labels: { color: '#ffffff' } } }
         }
     });
 }
 
-function renderInbox(data) {
-    const tbody = document.getElementById('inboxTableBody');
-    if (!tbody) return;
-    tbody.innerHTML = '';
+function updateChart(stats) {
+    if (myChart) {
+        let otros = stats.totalDemos - (stats.pendientes + stats.aprobados);
+        myChart.data.datasets[0].data = [stats.pendientes, stats.aprobados, Math.max(0, otros)];
+        myChart.update();
+    }
+}
 
-    if (!data || data.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="4" class="text-center text-muted py-4">🎉 Buzón al día.</td></tr>';
+function toggleDarkMode() { console.log("Dark mode on."); }
+
+let currentAudio = document.getElementById('audio-source');
+let currentBtnId = null;
+let isPlaying = false;
+
+function playTrack(url, id, title, artist) {
+    const playerBar = document.getElementById('global-player');
+    const btnId = `btn-play-${id}`;
+
+    if (currentBtnId === btnId) {
+        togglePlay();
         return;
     }
 
-    data.forEach(d => {
-        const id = d.IdDemo ?? d.idDemo;
-        tbody.innerHTML += `
-        <tr class="align-middle animate__animated animate__fadeIn">
-            <td>
-                <div class="fw-bold text-dark">${d.TituloDemo ?? d.tituloDemo ?? 'Sin Título'}</div>
-                <div class="small text-muted">${d.Email ?? d.email ?? 'N/A'}</div>
-            </td>
-            <td>${d.NombreArtistico ?? d.nombreArtistico ?? 'Desconocido'}</td>
-            <td><a href="${d.LinkDemo ?? d.linkDemo ?? '#'}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="bi bi-play-fill"></i> Oír</a></td>
-            <td>
-                <div class="btn-group">
-                    <button class="btn btn-sm btn-success" onclick="procesarDemo(${id}, 'Aprobada')"><i class="bi bi-check-lg"></i></button>
-                    <button class="btn btn-sm btn-danger" onclick="procesarDemo(${id}, 'Rechazada')"><i class="bi bi-x-lg"></i></button>
-                </div>
-            </td>
-        </tr>`;
-    });
-}
-
-// --- GRID DEMOS (ACTUALIZADO CON BOTÓN PUBLICAR) ---
-function renderDemosGrid(data) {
-    const grid = document.getElementById('demosGrid');
-    if (!grid) return;
-    grid.innerHTML = '';
-
-    if (!data || data.length === 0) {
-        grid.innerHTML = `<div class="col-12 text-center py-5"><h5 class="text-muted">No hay demos.</h5></div>`;
-        return;
+    if (currentBtnId) {
+        const prevIcon = document.querySelector(`#${currentBtnId} i`);
+        if (prevIcon) prevIcon.className = 'bi bi-play-circle';
     }
 
-    data.forEach(d => {
-        const titulo = d.TituloDemo ?? "Sin Título";
-        const artista = d.NombreArtistico ?? "Anónimo";
-        const email = d.Email ?? "Sin contacto";
-        const link = d.LinkDemo ?? "#";
-        const estado = (d.Estado ?? "Pendiente");
+    currentAudio.src = url;
+    currentBtnId = btnId;
+    document.getElementById('player-title').innerText = title;
+    document.getElementById('player-artist').innerText = artist;
+    playerBar.classList.remove('d-none');
 
-        let badgeClass = 'bg-warning text-dark bg-opacity-25';
-        let bordeColor = '#ffc107';
-        let iconStatus = 'bi-hourglass-split';
-
-        // Lógica del botón de Acción
-        let actionBtn = '';
-
-        if (estado.toLowerCase() === 'aprobada') {
-            badgeClass = 'bg-success text-success bg-opacity-25';
-            bordeColor = '#198754';
-            iconStatus = 'bi-check-circle-fill';
-            // Si ya está aprobada, mostramos indicador visual
-            actionBtn = `<small class="text-success fw-bold"><i class="bi bi-check-all me-1"></i> En Lanzamientos</small>`;
-        } else if (estado.toLowerCase() === 'rechazada') {
-            badgeClass = 'bg-danger text-danger bg-opacity-25';
-            bordeColor = '#dc3545';
-            iconStatus = 'bi-x-circle-fill';
-            // Opción de reconsiderar (volver a publicar)
-            actionBtn = `<button class="btn btn-sm btn-outline-success rounded-pill px-3" onclick="publicarDemo(${d.IdDemo})">Reconsiderar</button>`;
-        } else {
-            // Si está pendiente, botón PUBLICAR
-            actionBtn = `<button class="btn btn-sm btn-dark rounded-pill px-3 shadow-sm" onclick="publicarDemo(${d.IdDemo})"><i class="bi bi-rocket-takeoff-fill me-1"></i> Publicar</button>`;
-        }
-
-        grid.innerHTML += `
-        <div class="col-md-6 col-xl-4 animate__animated animate__fadeInUp">
-            <div class="card card-demo h-100 shadow-sm rounded-4 position-relative overflow-hidden">
-                <div class="card-body p-4 d-flex flex-column">
-                    <div class="d-flex justify-content-between align-items-start mb-3">
-                        <div class="track-icon shadow-sm"><i class="bi bi-music-note-beamed"></i></div>
-                        <span class="badge ${badgeClass} badge-status"><i class="bi ${iconStatus} me-1"></i> ${estado}</span>
-                    </div>
-                    <h5 class="fw-bold text-dark mb-1 text-truncate" title="${titulo}">${titulo}</h5>
-                    <p class="text-muted mb-3 small"><i class="bi bi-person-fill me-1"></i> ${artista}</p>
-                    
-                    <div class="mt-auto">
-                        <hr class="opacity-25 my-3">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <a href="${link}" target="_blank" class="text-decoration-none fw-bold text-purple small">
-                                Escuchar <i class="bi bi-box-arrow-up-right"></i>
-                            </a>
-                            ${actionBtn}
-                        </div>
-                    </div>
-                </div>
-                <div class="position-absolute bottom-0 start-0 w-100" style="height: 4px; background-color: ${bordeColor}"></div>
-            </div>
-        </div>`;
-    });
+    currentAudio.play().then(() => {
+        isPlaying = true;
+        updateIcons('pause');
+    }).catch(e => console.error(e));
 }
 
-// --- GRID LANZAMIENTOS ---
-function renderReleasesGrid(data) {
-    const grid = document.getElementById('releasesGrid');
-    if (!grid) return;
-    grid.innerHTML = '';
-
-    const aprobados = data.filter(d => (d.Estado || "").toLowerCase() === 'aprobada');
-
-    if (aprobados.length === 0) {
-        grid.innerHTML = `<div class="col-12 text-center py-5 text-muted">No hay tracks aprobados. Ve a Demos y dales "Publicar".</div>`;
-        return;
+function togglePlay() {
+    if (currentAudio.paused) {
+        currentAudio.play();
+        isPlaying = true;
+        updateIcons('pause');
+    } else {
+        currentAudio.pause();
+        isPlaying = false;
+        updateIcons('play');
     }
-
-    aprobados.forEach(d => {
-        let fechaValue = d.FechaLanzamiento ? new Date(d.FechaLanzamiento).toISOString().split('T')[0] : "";
-        grid.innerHTML += `
-        <div class="col-xl-6 animate__animated animate__fadeInUp">
-            <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100">
-                <div class="card-body p-0 d-flex flex-column flex-md-row">
-                    <div class="bg-dark text-white d-flex align-items-center justify-content-center p-4" style="min-width: 150px; background: linear-gradient(45deg, #2c3e50, #000);">
-                        <i class="bi bi-disc-fill fs-1"></i>
-                    </div>
-                    <div class="p-4 flex-grow-1">
-                        <div class="d-flex justify-content-between mb-2">
-                            <div><h5 class="fw-bold mb-0">${d.TituloDemo}</h5><small>${d.NombreArtistico}</small></div>
-                            <span class="badge bg-success bg-opacity-10 text-success rounded-pill px-2">Signed</span>
-                        </div>
-                        <div class="row align-items-end g-2 mt-3">
-                            <div class="col-8">
-                                <label class="small fw-bold text-muted">Lanzamiento</label>
-                                <input type="date" class="form-control form-control-sm" value="${fechaValue}" onchange="guardarFechaLanzamiento(${d.IdDemo}, this.value)">
-                            </div>
-                            <div class="col-4"><button class="btn btn-sm btn-outline-dark w-100" onclick="generarReporteFirma('${d.TituloDemo}','${d.NombreArtistico}')"><i class="bi bi-pen"></i></button></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>`;
-    });
 }
 
-function renderArtistsGrid(listaArtistas) {
-    const grid = document.getElementById('artistsGrid');
-    if (!grid) return;
-    grid.innerHTML = '';
-    if (listaArtistas.length === 0) { grid.innerHTML = `<div class="col-12 text-center text-muted py-5">Sin resultados.</div>`; return; }
+function updateIcons(state) {
+    const rowIcon = document.querySelector(`#${currentBtnId} i`);
+    const mainIcon = document.getElementById('player-main-btn');
+    const iconClass = state === 'pause' ? 'bi bi-pause-circle-fill' : 'bi bi-play-circle';
+    const mainClass = state === 'pause' ? 'bi bi-pause-circle-fill' : 'bi bi-play-circle-fill';
 
-    listaArtistas.forEach(a => {
-        const inicial = a.nombre.charAt(0).toUpperCase();
-        const nombreSafe = a.nombre.replace(/'/g, "\\'");
-        const emailSafe = a.email.replace(/'/g, "\\'");
-
-        grid.innerHTML += `
-        <div class="col-md-6 col-lg-4 col-xl-3 animate__animated animate__fadeInUp">
-            <div class="card card-demo h-100 shadow-sm rounded-4 border-0 text-center position-relative overflow-hidden">
-                <div class="position-absolute top-0 end-0 p-2 opacity-75 hover-opacity-100">
-                    <button class="btn btn-sm btn-light rounded-circle shadow-sm text-primary border" onclick="editarArtista('${nombreSafe}', '${emailSafe}')"><i class="bi bi-pencil-fill small"></i></button>
-                     <button class="btn btn-sm btn-light rounded-circle shadow-sm text-danger ms-1 border" onclick="eliminarArtista('${nombreSafe}')"><i class="bi bi-trash-fill small"></i></button>
-                </div>
-                <div class="card-body p-4 d-flex flex-column align-items-center">
-                    <div class="rounded-circle bg-dark text-white d-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 70px; height: 70px; font-size: 1.5rem; font-weight: 800;">${inicial}</div>
-                    <h5 class="fw-bold text-dark mb-1 text-truncate w-100" title="${a.nombre}">${a.nombre}</h5>
-                    <div class="badge bg-light text-muted border mb-3 rounded-pill px-3 mt-1">${a.tracks} Tracks</div>
-                    <div class="mt-auto w-100"><div class="p-2 bg-light rounded small text-muted text-truncate border">${a.email}</div></div>
-                </div>
-                <div class="position-absolute bottom-0 start-0 w-100" style="height: 4px; background-color: #6f42c1;"></div>
-            </div>
-        </div>`;
-    });
+    if (rowIcon) rowIcon.className = iconClass;
+    if (mainIcon) mainIcon.className = mainClass;
 }
 
-// ================= ACCIONES =================
-
-// NUEVA FUNCIÓN: Publicar Demo (Aprobar directamente)
-function publicarDemo(id) {
-    Swal.fire({
-        title: '¿Publicar Demo?',
-        text: "Pasará a estado 'Aprobada' y se enviará a Lanzamientos.",
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#198754',
-        confirmButtonText: 'Sí, Publicar',
-        cancelButtonText: 'Cancelar'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            fetch(`${API_URL}/CambiarEstado`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ IdDemo: id, NuevoEstado: 'Aprobada' })
-            }).then(() => {
-                refreshAllData();
-                const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000, timerProgressBar: true });
-                Toast.fire({ icon: 'success', title: '¡Demo publicado! Revisa Lanzamientos.' });
-            });
-        }
-    });
+function closePlayer() {
+    currentAudio.pause();
+    currentAudio.currentTime = 0;
+    document.getElementById('global-player').classList.add('d-none');
+    if (currentBtnId) {
+        const prevIcon = document.querySelector(`#${currentBtnId} i`);
+        if (prevIcon) prevIcon.className = 'bi bi-play-circle';
+    }
+    currentBtnId = null;
+    isPlaying = false;
 }
 
-function procesarDemo(id, nuevoEstado) {
-    Swal.fire({
-        title: `¿${nuevoEstado} Demo?`,
-        input: 'textarea',
-        inputPlaceholder: 'Feedback (opcional)...',
-        showCancelButton: true,
-        confirmButtonColor: nuevoEstado === 'Aprobada' ? '#198754' : '#dc3545'
-    }).then((result) => {
-        if (result.isConfirmed) {
-            fetch(`${API_URL}/CambiarEstado`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ IdDemo: id, NuevoEstado: nuevoEstado, Comentario: result.value || "" })
-            }).then(() => { refreshAllData(); Swal.fire('Éxito', 'Estado actualizado', 'success'); });
-        }
-    });
-}
+currentAudio.ontimeupdate = function () {
+    if (!isNaN(currentAudio.duration)) {
+        const percentage = (currentAudio.currentTime / currentAudio.duration) * 100;
+        document.getElementById('player-seek').value = percentage || 0;
+    }
+};
 
-function guardarFechaLanzamiento(id, fecha) {
-    fetch(`${API_URL}/AgendarLanzamiento`, {
+currentAudio.onended = function () {
+    isPlaying = false;
+    updateIcons('play');
+};
+
+window.seekAudio = function () {
+    const slider = document.getElementById('player-seek');
+    if (!isNaN(currentAudio.duration)) {
+        currentAudio.currentTime = (slider.value / 100) * currentAudio.duration;
+    }
+};
+
+window.setVolume = function (val) {
+    currentAudio.volume = val / 100;
+};
+
+window.openAddDemoModal = function () {
+    new bootstrap.Modal(document.getElementById('modalAddDemo')).show();
+};
+
+window.saveDemo = function () {
+    const data = {
+        Titulo: document.getElementById('newDemoTitle').value,
+        UrlAudio: document.getElementById('newDemoUrl').value,
+        IdArtista: parseInt(document.getElementById('newDemoArtistId').value),
+        IdGenero: parseInt(document.getElementById('newDemoGenreId').value)
+    };
+
+    fetch('/Admin/CreateDemo', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ IdDemo: id, Fecha: fecha })
+        body: JSON.stringify(data)
     })
-        .then(r => r.json())
-        .then(() => {
-            const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
-            Toast.fire({ icon: 'success', title: 'Fecha agendada' });
+        .then(res => res.json())
+        .then(result => {
+            if (result.success) {
+                bootstrap.Modal.getInstance(document.getElementById('modalAddDemo')).hide();
+                Swal.fire({ title: '¡Subido!', text: 'El demo ha sido registrado.', icon: 'success', background: '#121212', color: '#fff' });
+                loadDashboardData();
+            } else {
+                Swal.fire({ title: 'Error', text: 'Verifica que el ID Artista exista.', icon: 'error', background: '#121212', color: '#fff' });
+            }
         });
-}
+};
 
-function generarReporteFirma(track, artista) {
-    Swal.fire({ title: 'Generando Contrato...', timer: 1500, didOpen: () => { Swal.showLoading() } })
-        .then(() => Swal.fire('Listo', `Contrato para ${track} enviado a cola.`, 'success'));
-}
-// ================= GENERADOR DE REPORTES (PDF REAL) =================
+function renderReleases(demos) {
+    const grid = document.getElementById('releasesGrid');
+    if (!grid) return;
 
-function generarReportePDF(tipo) {
-    // Verificar si las librerías cargaron
-    if (!window.jspdf) {
-        Swal.fire('Error', 'Librería PDF no cargada. Revisa tu conexión.', 'error');
+    const releases = demos.filter(d => d.estado === 'Aprobado');
+    if (releases.length === 0) {
+        grid.innerHTML = '<div class="col-12 text-center text-secondary py-5">No hay lanzamientos programados</div>';
         return;
     }
 
+    let htmlContent = '';
+    releases.forEach(r => {
+        const date = new Date(r.fechaEnvio);
+        date.setDate(date.getDate() + 30);
+        const fechaSalida = date.toLocaleDateString();
+
+        htmlContent += `
+            <div class="col-md-6 col-lg-4">
+                <div class="stat-card h-100 p-3 d-flex align-items-center">
+                    <div class="bg-cyan text-black rounded p-2 me-3 text-center" style="min-width: 60px; background: var(--cyan-primary);">
+                        <div class="fw-bold fs-4 mb-0">${date.getDate()}</div>
+                        <small class="text-uppercase" style="font-size:0.6rem">Lanzamiento</small>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold mb-1 text-white">${escapeHTML(r.titulo)}</h6>
+                        <p class="text-secondary small mb-0">${escapeHTML(r.artistaNombre)}</p>
+                        <span class="badge border border-info text-info mt-2">Programado: ${fechaSalida}</span>
+                    </div>
+                </div>
+            </div>`;
+    });
+    grid.innerHTML = htmlContent;
+}
+
+window.generarReportePDF = function (tipo) {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF();
 
-    // Configuración inicial
-    const fechaHoy = new Date().toLocaleDateString();
-    let titulo = "Reporte General - Submance Records";
-    let datos = [];
-    let columnas = ["Track", "Artista", "Estado", "Email", "Fecha Envio"];
+    doc.setFontSize(18);
+    doc.text(`Reporte de Sistema: ${tipo.toUpperCase()}`, 14, 22);
+    doc.setFontSize(11);
+    doc.text(`Generado el: ${new Date().toLocaleString()}`, 14, 30);
 
-    // 1. FILTRADO DE DATOS SEGÚN EL BOTÓN
-    if (tipo === 'pendientes') {
-        titulo = "Reporte de Demos Pendientes";
-        datos = globalDemos.filter(d => (d.Estado || "").toLowerCase() === 'pendiente');
-    }
-    else if (tipo === 'lanzamientos') {
-        titulo = "Calendario de Lanzamientos";
-        columnas = ["Track", "Artista", "Lanzamiento", "Email", "Link"]; // Columnas diferentes
-        datos = globalDemos.filter(d => (d.Estado || "").toLowerCase() === 'aprobada');
-    }
-    else if (tipo === 'artistas') {
-        titulo = "Directorio de Artistas";
-        columnas = ["Artista", "Tracks", "Email de Contacto"];
+    let headers = [['ID', 'Titulo', 'Artista', 'Estado']];
+    let data = [];
 
-        // Lógica especial para agrupar artistas únicos
-        const mapa = new Map();
-        globalDemos.forEach(d => {
-            const nombre = d.NombreArtistico || "Desconocido";
-            if (!mapa.has(nombre)) mapa.set(nombre, { nombre: nombre, email: d.Email, tracks: 0 });
-            mapa.get(nombre).tracks++;
-        });
-        datos = Array.from(mapa.values());
-    }
-    else {
-        datos = globalDemos; // Todos
-    }
+    const cards = document.querySelectorAll('#demosGrid .grid-item');
+    cards.forEach((c, index) => {
+        const estado = c.querySelector('.status-badge').innerText;
+        if (tipo === 'todos' ||
+            (tipo === 'pendientes' && estado === 'Pendiente') ||
+            (tipo === 'lanzamientos' && estado === 'Aprobado')) {
 
-    if (datos.length === 0) {
-        Swal.fire('Atención', 'No hay datos para generar este reporte.', 'info');
-        return;
-    }
-
-    // 2. DISEÑO DEL HEADER DEL PDF
-    doc.setFillColor(111, 66, 193); // Morado Submance
-    doc.rect(0, 0, 210, 20, 'F'); // Barra superior
-
-    doc.setTextColor(255, 255, 255);
-    doc.setFontSize(16);
-    doc.setFont("helvetica", "bold");
-    doc.text("SUBMANCE RECORDS", 14, 13);
-
-    doc.setTextColor(0, 0, 0);
-    doc.setFontSize(14);
-    doc.text(titulo, 14, 30);
-    doc.setFontSize(10);
-    doc.setTextColor(100);
-    doc.text(`Generado el: ${fechaHoy}`, 14, 36);
-
-    // 3. GENERACIÓN DE LA TABLA (Mapeo de datos)
-    let bodyData = [];
-
-    if (tipo === 'artistas') {
-        bodyData = datos.map(a => [a.nombre, a.tracks, a.email]);
-    } else if (tipo === 'lanzamientos') {
-        bodyData = datos.map(d => [
-            d.TituloDemo,
-            d.NombreArtistico,
-            d.FechaLanzamiento ? new Date(d.FechaLanzamiento).toLocaleDateString() : 'Por definir',
-            d.Email,
-            d.LinkDemo
-        ]);
-    } else {
-        bodyData = datos.map(d => [
-            d.TituloDemo,
-            d.NombreArtistico,
-            d.Estado,
-            d.Email,
-            new Date(d.FechaEnvio).toLocaleDateString()
-        ]);
-    }
-
-    doc.autoTable({
-        startY: 45,
-        head: [columnas],
-        body: bodyData,
-        theme: 'grid',
-        headStyles: { fillColor: [111, 66, 193], textColor: 255, fontStyle: 'bold' },
-        styles: { fontSize: 9, cellPadding: 3 },
-        alternateRowStyles: { fillColor: [248, 249, 250] }
+            data.push([
+                index + 1,
+                c.querySelector('.title-val').innerText,
+                c.querySelector('.artist-val').innerText,
+                estado
+            ]);
+        }
     });
 
-    // 4. GUARDAR ARCHIVO
-    doc.save(`Submance_${titulo.replace(/\s+/g, '_')}.pdf`);
+    doc.autoTable({
+        head: headers,
+        body: data,
+        startY: 40,
+        theme: 'grid',
+        styles: { fontSize: 10, cellPadding: 3 }
+    });
 
-    // Notificación
-    const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
-    Toast.fire({ icon: 'success', title: 'PDF descargado' });
-}
-
-function logoutConfirm() { Swal.fire({ title: '¿Cerrar sesión?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#121212' }).then(r => { if (r.isConfirmed) location.href = '/Auth/Login'; }); }
-function openAddDemoModal() { Swal.fire({ title: 'Nuevo Demo', html: `<input id="sw-t" class="swal2-input" placeholder="Título"><input id="sw-a" class="swal2-input" placeholder="Artista"><input id="sw-l" class="swal2-input" placeholder="Link">`, preConfirm: () => { return { TrackTitle: document.getElementById('sw-t').value, ArtistName: document.getElementById('sw-a').value, Link: document.getElementById('sw-l').value } } }).then(r => { if (r.isConfirmed) fetch(`${API_URL}/RecibirDemoPublico`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(r.value) }).then(() => { refreshAllData(); Swal.fire('Guardado', '', 'success') }); }); }
-function openAddArtistModal() { openAddDemoModal(); }
-function editarArtista(n, e) { Swal.fire({ title: 'Editar', html: `<input id="sw-n" class="swal2-input" value="${n}"><input id="sw-e" class="swal2-input" value="${e}">`, preConfirm: () => { return { NombreActual: n, NuevoNombre: document.getElementById('sw-n').value, NuevoEmail: document.getElementById('sw-e').value } } }).then(r => { if (r.isConfirmed) fetch(`${API_URL}/ActualizarArtista`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(r.value) }).then(() => { refreshAllData(); Swal.fire('Actualizado', '', 'success') }) }); }
-function eliminarArtista(n) { Swal.fire({ title: `Eliminar ${n}?`, text: 'Se borrarán sus tracks.', icon: 'warning', showCancelButton: true, confirmButtonColor: '#dc3545' }).then(r => { if (r.isConfirmed) fetch(`${API_URL}/EliminarArtista`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ NombreArtistico: n }) }).then(() => { refreshAllData(); Swal.fire('Eliminado', '', 'success') }) }); }
+    doc.save(`reporte_${tipo}_${Date.now()}.pdf`);
+};

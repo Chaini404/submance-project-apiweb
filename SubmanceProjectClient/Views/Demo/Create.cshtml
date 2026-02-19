@@ -37,7 +37,8 @@
                         <label class="form-label text-uppercase small fw-bold text-muted">Link de Audio</label>
                         <div class="input-group">
                             <span class="input-group-text bg-dark border-secondary text-muted"><i class="bi bi-link-45deg"></i></span>
-                            <input asp-for="Archivo" type="url" class="form-control form-control-lg bg-dark text-white border-secondary" placeholder="https://soundcloud.com/..." required />
+                            @* CORRECCIÓN: Se cambió asp-for="Archivo" por asp-for="UrlAudio" *@
+                            <input asp-for="UrlAudio" type="url" class="form-control form-control-lg bg-dark text-white border-secondary" placeholder="https://soundcloud.com/..." required />
                         </div>
                         <div class="form-text text-muted">Solo enlaces directos o streaming.</div>
                     </div>

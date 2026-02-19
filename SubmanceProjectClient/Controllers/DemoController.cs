@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Submance.Application.Interfaces.Repository;
+using Microsoft.AspNetCore.Http;
+using Submance.Application.Interfaces.Repositories;
 using Submance.Domain.Entities;
+using System.Threading.Tasks;
+using System;
 
 namespace SubmanceProject.Web.Controllers
 {
@@ -15,24 +18,21 @@ namespace SubmanceProject.Web.Controllers
             _artistaRepo = artistaRepo;
         }
 
-        // 1. MOSTRAR FORMULARIO
         [HttpGet]
         public IActionResult Create()
         {
-            // Seguridad: Solo Artistas
             if (HttpContext.Session.GetString("UserRole") != "Artista")
                 return RedirectToAction("Login", "Admin");
 
             return View();
         }
 
-        // 2. PROCESAR EL ENVÍO
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Cancion model)
         {
             try
             {
-                // A. Obtener el ID del Artista logueado
                 string email = HttpContext.Session.GetString("UserEmail");
                 var artista = await _artistaRepo.GetByEmailAsync(email);
 
@@ -42,15 +42,11 @@ namespace SubmanceProject.Web.Controllers
                     return View(model);
                 }
 
-                // B. Completar datos automáticos
                 model.IdArtista = artista.IdArtista;
                 model.Estado = "Pendiente";
-                // model.FechaEnvio se pone en el SQL con GETDATE(), así que no hace falta aquí
 
-                // C. Guardar en Base de Datos
                 await _cancionRepo.AddAsync(model);
 
-                // D. Redirigir al Portal
                 return RedirectToAction("Index", "ArtistPortal");
             }
             catch (Exception ex)

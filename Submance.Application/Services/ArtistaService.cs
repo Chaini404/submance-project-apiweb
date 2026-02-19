@@ -1,10 +1,10 @@
-﻿#nullable enable // 👈 OBLIGATORIO PARA USAR "Artista?"
+﻿#nullable enable 
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Submance.Application.DTOs.Artista;
-using Submance.Application.Interfaces.Repository;
+using Submance.Application.Interfaces.Repositories;
 using Submance.Application.Interfaces.Services;
 using Submance.Domain.Entities;
 
@@ -27,8 +27,8 @@ namespace Submance.Application.Services
             {
                 IdArtista = a.IdArtista,
                 NombreArtistico = a.NombreArtistico,
-                Correo = a.Correo,
-                Estado = a.Activo
+                Correo = "", // Artista ya no tiene Correo propio en BD, se deja vacío o se saca del DTO
+                Estado = a.Estado // Corregido de Activo a Estado
             });
         }
 
@@ -41,21 +41,19 @@ namespace Submance.Application.Services
             {
                 IdArtista = artista.IdArtista,
                 NombreArtistico = artista.NombreArtistico,
-                Correo = artista.Correo,
-                Estado = artista.Activo
+                Correo = "",
+                Estado = artista.Estado // Corregido
             };
         }
 
-        // 👇 LA IMPLEMENTACIÓN CORRECTA DEL MÉTODO QUE FALTABA
         public async Task CreateAsync(ArtistaRequestDto request)
         {
-            // Mapeo DTO -> Entidad
             var entity = new Artista
             {
                 NombreArtistico = request.NombreArtistico,
                 NombreReal = request.NombreReal,
-                Correo = request.Correo,
-                Activo = true, // Por defecto activo
+                // Correo eliminado ya que no existe en tabla Artistas
+                Estado = true, // Corregido de Activo a Estado
                 FechaRegistro = DateTime.Now
             };
 
@@ -68,8 +66,8 @@ namespace Submance.Application.Services
             {
                 IdArtista = id,
                 NombreArtistico = request.NombreArtistico,
-                NombreReal = request.NombreReal,
-                Correo = request.Correo
+                NombreReal = request.NombreReal
+                // Correo eliminado
             };
             await _artistaRepository.UpdateAsync(entity);
         }

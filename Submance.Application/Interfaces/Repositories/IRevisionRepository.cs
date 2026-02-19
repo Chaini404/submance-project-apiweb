@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿#nullable enable
 using Submance.Domain.Entities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Submance.Application.Interfaces.Repositories
@@ -10,10 +8,9 @@ namespace Submance.Application.Interfaces.Repositories
     public interface IRevisionRepository
     {
         Task<IEnumerable<Revision>> GetAllAsync();
-        Task<Revision> GetByIdAsync(int id);
-
+        Task<Revision?> GetByIdAsync(int id);
         Task<IEnumerable<Revision>> GetByCancionAsync(int idCancion);
 
-        Task Add(Revision revision);
+        Task AddAsync(Revision revision);
     }
 }

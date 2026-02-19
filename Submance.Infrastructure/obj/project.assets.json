@@ -2,6 +2,19 @@
   "version": 3,
   "targets": {
     "net8.0": {
+      "Dapper/2.1.66": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Dapper.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/Dapper.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/10.0.3": {
         "type": "package",
         "dependencies": {
@@ -532,6 +545,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "Dapper": "2.1.66",
           "Submance.Domain": "1.0.0"
         },
         "compile": {
@@ -545,6 +559,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
         "dependencies": {
+          "Dapper": "2.1.66",
           "Microsoft.EntityFrameworkCore": "8.0.2"
         },
         "compile": {
@@ -557,6 +572,25 @@
     }
   },
   "libraries": {
+    "Dapper/2.1.66": {
+      "sha512": "/q77jUgDOS+bzkmk3Vy9SiWMaetTw+NOoPAV0xPBsGVAyljd5S6P+4RUW7R3ZUGGr9lDRyPKgAMj2UAOwvqZYw==",
+      "type": "package",
+      "path": "dapper/2.1.66",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Dapper.png",
+        "dapper.2.1.66.nupkg.sha512",
+        "dapper.nuspec",
+        "lib/net461/Dapper.dll",
+        "lib/net461/Dapper.xml",
+        "lib/net8.0/Dapper.dll",
+        "lib/net8.0/Dapper.xml",
+        "lib/netstandard2.0/Dapper.dll",
+        "lib/netstandard2.0/Dapper.xml",
+        "readme.md"
+      ]
+    },
     "Microsoft.AspNetCore.Cryptography.Internal/10.0.3": {
       "sha512": "STkCfgCECt2cAekgBpXxFDefH5wd4ytYZKihIZSmQqY92BP8N9qN71qFyRpry8Sl/qT5A+bpwe8v7sjDtg5LEA==",
       "type": "package",
@@ -1459,11 +1493,13 @@
   },
   "projectFileDependencyGroups": {
     "net8.0": [
+      "Dapper >= 2.1.66",
       "Microsoft.Extensions.Configuration >= 10.0.3",
       "Microsoft.Extensions.Identity.Stores >= 10.0.3",
       "Microsoft.IdentityModel.Tokens >= 8.16.0",
       "Npgsql >= 10.0.1",
       "Submance.Application >= 1.0.0",
+      "Submance.Domain >= 1.0.0",
       "System.IdentityModel.Tokens.Jwt >= 8.16.0"
     ]
   },
@@ -1501,6 +1537,9 @@
           "projectReferences": {
             "C:\\Users\\Edson\\source\\repos\\submance-project-apiweb\\Submance.Application\\Submance.Application.csproj": {
               "projectPath": "C:\\Users\\Edson\\source\\repos\\submance-project-apiweb\\Submance.Application\\Submance.Application.csproj"
+            },
+            "C:\\Users\\Edson\\source\\repos\\submance-project-apiweb\\Submance.Domain\\Submance.Domain.csproj": {
+              "projectPath": "C:\\Users\\Edson\\source\\repos\\submance-project-apiweb\\Submance.Domain\\Submance.Domain.csproj"
             }
           }
         }
@@ -1516,6 +1555,10 @@
       "net8.0": {
         "targetAlias": "net8.0",
         "dependencies": {
+          "Dapper": {
+            "target": "Package",
+            "version": "[2.1.66, )"
+          },
           "Microsoft.Extensions.Configuration": {
             "target": "Package",
             "version": "[10.0.3, )"
@@ -1553,7 +1596,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

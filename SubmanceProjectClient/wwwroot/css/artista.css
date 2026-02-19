@@ -1,0 +1,248 @@
+﻿/* =========================================================
+   SUBMANCE - ARTIST MODULE STYLES (INDUSTRIAL THEME)
+   ========================================================= */
+
+:root {
+    --bg-dark: #050505;
+    --accent: #00f3ff;
+    --text-main: #ffffff;
+    --text-muted: #666666;
+    --border-color: #333333;
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Montserrat', sans-serif;
+    padding: 50px;
+}
+
+/* --- SHARED TYPOGRAPHY --- */
+.page-title {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 2.5rem;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: 2px;
+    color: white;
+}
+
+.page-subtitle {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* --- LAYOUT: INDEX --- */
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+}
+
+/* --- LAYOUT: CREATE --- */
+.admin-container {
+    max-width: 600px;
+    margin: 0 auto;
+    border-left: 1px solid var(--border-color);
+    padding-left: 40px;
+    position: relative;
+}
+
+    .admin-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -1px;
+        height: 40px;
+        width: 3px;
+        background: var(--accent);
+        box-shadow: 0 0 15px var(--accent);
+    }
+
+    .admin-container .page-title {
+        font-size: 2rem;
+        margin-bottom: 5px;
+    }
+
+    .admin-container .page-subtitle {
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        margin-bottom: 40px;
+    }
+
+/* --- BOTONES --- */
+.btn-industrial, .btn-action-primary {
+    background: white;
+    color: black;
+    border: none;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-decoration: none;
+    transition: 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-industrial {
+    padding: 10px 25px;
+}
+
+.btn-action-primary {
+    padding: 12px 30px;
+}
+
+    .btn-industrial:hover, .btn-action-primary:hover {
+        background: var(--accent);
+        box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+        color: black;
+    }
+
+.btn-action-secondary {
+    background: transparent;
+    color: var(--text-muted);
+    border: 1px solid var(--border-color);
+    padding: 12px 30px;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: 0.3s;
+    text-decoration: none;
+    display: inline-block;
+}
+
+    .btn-action-secondary:hover {
+        border-color: white;
+        color: white;
+    }
+
+/* --- TABLA INDUSTRIAL --- */
+.industrial-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+    .industrial-table thead th {
+        text-align: left;
+        padding: 15px 20px;
+        color: var(--text-muted);
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        border-bottom: 1px solid var(--border-color);
+        font-weight: 600;
+    }
+
+    .industrial-table tbody tr {
+        border-bottom: 1px solid #1a1a1a;
+        transition: 0.2s;
+    }
+
+        .industrial-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+    .industrial-table td {
+        padding: 20px;
+        color: white;
+    }
+
+.artist-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.meta-text {
+    color: #888;
+    font-size: 0.85rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* --- ESTADOS --- */
+.status-dot {
+    height: 8px;
+    width: 8px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.status-active {
+    background-color: #00ff88;
+    box-shadow: 0 0 8px #00ff88;
+}
+
+.status-inactive {
+    background-color: #444;
+}
+
+.status-text {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.action-link {
+    color: var(--text-muted);
+    transition: 0.3s;
+    font-size: 1.1rem;
+}
+
+    .action-link:hover {
+        color: var(--accent);
+    }
+
+/* --- FORMULARIOS --- */
+.form-group {
+    margin-bottom: 30px;
+}
+
+.industrial-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.industrial-input {
+    width: 100%;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border-color);
+    border-left: 2px solid var(--border-color);
+    color: white;
+    padding: 12px 15px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    border-radius: 0;
+}
+
+    .industrial-input:focus {
+        outline: none;
+        border-color: var(--text-muted);
+        border-left-color: var(--accent);
+        background: rgba(255,255,255,0.05);
+        box-shadow: 10px 0 30px -10px rgba(0,0,0,0.5);
+    }
+
+    .industrial-input::placeholder {
+        color: #444;
+        font-style: italic;
+        font-size: 0.9rem;
+    }

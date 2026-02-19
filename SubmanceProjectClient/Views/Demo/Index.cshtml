@@ -1,166 +1,303 @@
-﻿@{
-    ViewData["Title"] = "Home";
-    Layout = "~/Views/Shared/_Layout.cshtml"; // ✅ Ahora usa el Layout
+﻿<!-- Demo/Index.cshtml -->
+@model IEnumerable<Submance.Domain.Entities.Cancion>
+
+@{
+    ViewData["Title"] = "Mis Demos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<header class="fixed-header">
-    <a href="#home" class="brand-logo">SUBMANCE</a>
-    <nav class="top-nav">
-        <a href="#home">HOME</a>
-        <a href="#releases">RELEASES</a>
-        <a href="#contact">CONTACT</a>
-        <a href="/Admin/Login" style="border:1px solid #fff; padding:5px 15px;">LOGIN</a>
-    </nav>
-</header>
+<!-- Estilos Locales - Portal Artistas -->
+<style>
+    /* Header & Layout */
+    .admin-header {
+        border-bottom: 1px solid #333;
+        padding-bottom: 20px;
+        margin-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+    }
 
-<section id="home" class="full-section">
-    <h1 style="font-size: 5rem; font-weight: 800; letter-spacing: -2px;">SUBMANCE</h1>
-    <p style="letter-spacing: 5px; color: #888;">UPLIFTING TRANCE LABEL</p>
-    <i class="bi bi-arrow-down-circle" style="font-size: 2rem; margin-top: 30px; cursor:pointer;" onclick="gsap.to(window, {duration: 1, scrollTo:'#releases'});"></i>
-</section>
+    .page-title {
+        font-family: 'Oswald', sans-serif;
+        text-transform: uppercase;
+        font-size: 2.5rem;
+        color: white;
+        margin: 0;
+        line-height: 1;
+    }
 
-<section id="releases" class="full-section" style="background: #f9f9f9;">
-    <h2 style="font-weight: 800; letter-spacing: 2px;">LATEST RELEASES</h2>
-    <div class="text-muted mt-4">(Cover Arts Here)</div>
-    <i class="bi bi-arrow-down-circle" style="font-size: 2rem; margin-top: 30px; cursor:pointer;" onclick="gsap.to(window, {duration: 1, scrollTo:'#contact'});"></i>
-</section>
+    .page-subtitle {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 4px;
+        color: #00f3ff;
+        display: block;
+        margin-bottom: 5px;
+    }
 
-<section id="contact" class="full-section">
-    <div class="contact-monster-container">
-        <div class="monster-col">
-            <div class="monster-title">LIAISE</div>
-            <div class="monster-text">General Info:<br><span>info@submance.com</span></div>
-            <div class="monster-text mt-4">Demos:<br><span>demos@submance.com</span></div>
-            <div class="monster-text mt-4">Location:<br><span>Lima, Peru</span></div>
+    .header-desc {
+        color: #666;
+        font-size: 0.85rem;
+        margin-top: 5px;
+        max-width: 500px;
+    }
+
+    /* Botones */
+    .btn-industrial {
+        background: white;
+        color: black;
+        border: none;
+        padding: 10px 25px;
+        font-family: 'Oswald', sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        transition: 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+        .btn-industrial:hover {
+            background: #00f3ff;
+            color: black;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+        }
+
+    .btn-play-industrial {
+        border: 1px solid #333;
+        background: transparent;
+        color: white;
+        border-radius: 50px;
+        padding: 4px 15px;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        transition: 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+        .btn-play-industrial:hover {
+            border-color: #00f3ff;
+            color: #00f3ff;
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+    /* Tabla Industrial */
+    .industrial-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+        .industrial-table thead th {
+            text-align: left;
+            padding: 15px 20px;
+            color: #666;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #333;
+            font-weight: 600;
+        }
+
+        .industrial-table tbody tr {
+            border-bottom: 1px solid #1a1a1a;
+            transition: 0.2s;
+        }
+
+            .industrial-table tbody tr:hover {
+                background: rgba(255, 255, 255, 0.03);
+            }
+
+        .industrial-table td {
+            padding: 20px;
+            color: white;
+            vertical-align: middle;
+        }
+
+    .track-title {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.1rem;
+        letter-spacing: 1px;
+        color: white;
+        display: block;
+    }
+
+    .track-mix {
+        color: #888;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Estados */
+    .status-dot {
+        height: 6px;
+        width: 6px;
+        display: inline-block;
+        border-radius: 50%;
+        margin-right: 8px;
+        vertical-align: middle;
+    }
+
+    .st-pending {
+        background-color: #ffcc00;
+        box-shadow: 0 0 5px #ffcc00;
+    }
+
+    .st-approved {
+        background-color: #00ff88;
+        box-shadow: 0 0 5px #00ff88;
+    }
+
+    .st-rejected {
+        background-color: #ff3333;
+        opacity: 0.7;
+    }
+
+    .status-text {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #ccc;
+    }
+
+    .genre-tag {
+        border: 1px solid #333;
+        padding: 2px 8px;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        color: #888;
+    }
+
+    /* Estado Vacío */
+    .empty-state-row td {
+        text-align: center;
+        padding: 80px 20px;
+        color: #444;
+    }
+
+    .empty-state-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        display: block;
+        opacity: 0.3;
+        color: #00f3ff;
+    }
+</style>
+
+<div class="container-fluid pt-4">
+
+    <!-- Header -->
+    <div class="admin-header">
+        <div>
+            <span class="page-subtitle">Artist Portal</span>
+            <h2 class="page-title">Mis Demos</h2>
+            <div class="header-desc">Visualiza el estado de tus tracks enviados al equipo de A&R.</div>
         </div>
-
-        <div class="monster-col">
-            <div class="monster-title">DEMOS</div>
-            <p class="small text-muted mb-4">
-                We are looking for Uplifting & Progressive Trance. <br>
-                Please allow up to 14 days for us to contact you.
-            </p>
-            <button class="btn-monster-demo" data-bs-toggle="modal" data-bs-target="#demoModal">
-                SUBMIT DEMO
-            </button>
-        </div>
+        <a asp-controller="Demo" asp-action="Create" class="btn-industrial">
+            <i class="bi bi-cloud-upload"></i> Subir Nuevo Demo
+        </a>
     </div>
-</section>
 
-<footer class="fixed-footer">
-    <div>&copy; @DateTime.Now.Year SUBMANCE RECORDS</div>
-    <div>
-        <i class="bi bi-instagram me-3"></i>
-        <i class="bi bi-facebook me-3"></i>
-        <button class="btn btn-light btn-sm fw-bold" data-bs-toggle="modal" data-bs-target="#demoModal">SUBMIT DEMO</button>
-    </div>
-</footer>
+    <!-- Data Grid -->
+    <div class="table-responsive">
+        <table class="industrial-table">
+            <thead>
+                <tr>
+                    <th>Track / Info</th>
+                    <th>Género</th>
+                    <th>Audio</th>
+                    <th>Estado A&R</th>
+                    <th>Fecha Envío</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <span class="track-title">@item.Titulo</span>
+                                <span class="track-mix">Original Mix</span>
+                            </td>
+                            <td>
+                                <span class="genre-tag">
+                                    @if (item.IdGenero == 1)
+                                    {
+                                        <text>TRANCE</text>
+                                    }
+                                    else if (item.IdGenero == 2)
+                                    {
 
-<div class="modal fade" id="demoModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header border-0 pb-0 bg-secondary text-white">
-                <h5 class="modal-title fw-bold ps-4 pt-2">SUBMIT TRACK</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body p-0">
-                <div class="one-forty-container">
-                    <form id="demoFormTag">
-                        <input type="text" id="inputArtistName" class="input-one-forty" placeholder="Artist Name (e.g. John Doe)" required>
-                        <input type="text" id="inputTrackTitle" class="input-one-forty" placeholder="Track Title (e.g. Summer Sky)" required>
-                        <input type="text" id="inputRealName" class="input-one-forty" placeholder="Your Real Name" required>
-                        <input type="email" id="inputEmail" class="input-one-forty" placeholder="Email Address" required>
-                        <textarea class="input-one-forty" rows="3" placeholder="Added Information..."></textarea>
+                                        <text>HOUSE</text>
+                                    }
+                                    else
+                                    {
 
-                        <select class="input-one-forty"><option>Is Your Track Exclusive?</option><option>Yes</option><option>No</option></select>
-                        <select class="input-one-forty"><option>Target Label</option><option>Submance Main</option></select>
-
-                        <input type="url" id="inputLink" class="input-one-forty" placeholder="Soundcloud / Dropbox Link" required>
-
-                        <div class="input-one-forty d-flex align-items-center bg-white">
-                            <i class="bi bi-cloud-upload me-2"></i> Select Track MP3
-                        </div>
-
-                        <div class="form-check mt-3 mb-4">
-                            <input class="form-check-input" type="checkbox" required>
-                            <label class="form-check-label small">I confirm I have permissions...</label>
-                        </div>
-
-                        <button type="submit" id="btnSubmitDemo" class="btn-submit-track">
-                            <i class="bi bi-send-fill"></i> SUBMIT TRACK
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
+                                        <text>GENERAL</text>
+                                    }
+                                </span>
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.UrlAudio))
+                                {
+                                    <a href="@item.UrlAudio" target="_blank" class="btn-play-industrial">
+                                        <i class="bi bi-play-fill"></i> PLAY
+                                    </a>
+                                }
+                                else
+                                {
+                                    <span class="text-muted small" style="letter-spacing:1px;">NO AUDIO</span>
+                                }
+                            </td>
+                            <td>
+                                @if (item.Estado == "Pendiente")
+                                {
+                                    <span class="status-dot st-pending"></span>
+                                    <span class="status-text">Pendiente</span>
+                                }
+                                else if (item.Estado == "Aprobado")
+                                {
+                                    <span class="status-dot st-approved"></span>
+                                    <span class="status-text text-white">Aprobado</span>
+                                }
+                                else if (item.Estado == "Rechazado")
+                                {
+                                    <span class="status-dot st-rejected"></span>
+                                    <span class="status-text">Rechazado</span>
+                                }
+                                else
+                                {
+                                    <span class="status-text">@item.Estado</span>
+                                }
+                            </td>
+                            <td class="text-muted" style="font-size: 0.8rem; font-family: 'Montserrat';">
+                                @DateTime.Now.ToString("dd/MM/yyyy")
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr class="empty-state-row">
+                        <td colspan="5">
+                            <i class="bi bi-soundwave empty-state-icon"></i>
+                            <h5 style="font-family: 'Oswald'; letter-spacing: 2px; color:white;">SIN REGISTROS</h5>
+                            <div class="small mt-2">No has enviado ningún demo todavía.</div>
+                            <a asp-controller="Demo" asp-action="Create" class="btn-industrial mt-4" style="background:transparent; color:white; border:1px solid white;">
+                                Enviar Primer Track
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
-
-@section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const form = document.getElementById("demoFormTag");
-
-            if (form) {
-                form.addEventListener("submit", function(event) {
-                    event.preventDefault();
-
-                    const datos = {
-                        ArtistName: document.getElementById('inputArtistName').value,
-                        TrackTitle: document.getElementById('inputTrackTitle').value,
-                        RealName: document.getElementById('inputRealName').value,
-                        Email: document.getElementById('inputEmail').value,
-                        Link: document.getElementById('inputLink').value
-                    };
-
-                    const btn = document.getElementById("btnSubmitDemo");
-                    const textoOriginal = btn.innerHTML;
-                    btn.innerHTML = "Enviando...";
-                    btn.disabled = true;
-
-                    // NOTA: Asegúrate de que el puerto 7064 coincida con tu API en ejecución
-                    fetch('https://localhost:7064/api/Dashboard/RecibirDemoPublico', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(datos)
-                    })
-                    .then(async response => {
-                        let resultado;
-                        try { resultado = await response.json(); } catch (e) { resultado = { message: "Respuesta ilegible" }; }
-
-                        if (response.ok) {
-                            const modalEl = document.getElementById('demoModal');
-                            const modal = bootstrap.Modal.getInstance(modalEl);
-                            if (modal) modal.hide();
-
-                            Swal.fire({
-                                title: '¡Demo Enviado!',
-                                text: 'Gracias. Nuestro equipo escuchará tu track pronto.',
-                                icon: 'success',
-                                confirmButtonColor: '#000',
-                                confirmButtonText: 'Genial'
-                            });
-                            form.reset();
-                        } else {
-                            throw new Error(resultado.message || "Error al enviar");
-                        }
-                    })
-                    .catch(error => {
-                        Swal.fire({
-                            title: 'Error',
-                            text: error.message || 'No se pudo contactar al servidor.',
-                            icon: 'error',
-                            confirmButtonColor: '#d33'
-                        });
-                    })
-                    .finally(() => {
-                        btn.innerHTML = textoOriginal;
-                        btn.disabled = false;
-                    });
-                });
-            }
-        });
-    </script>
-}

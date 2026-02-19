@@ -1,16 +1,18 @@
-﻿@{
+﻿<!--Views/Staff/Index.cshtml -->
+@{
     Layout = null;
     ViewData["Title"] = "Submance Dashboard";
 }
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard - Submance Records</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />
@@ -21,65 +23,152 @@
 <body>
 
     <aside class="sidebar">
-        <a href="javascript:void(0)" class="sidebar-brand"><i class="bi bi-vinyl-fill"></i> SUBMANCE</a>
+        <a href="javascript:void(0)" class="sidebar-brand text-white text-decoration-none d-flex align-items-center gap-2 p-4 border-bottom border-secondary">
+            <i class="bi bi-vinyl-fill" style="color: var(--cyan-primary);"></i>
+            <span class="brand-text">SUBMANCE</span>
+        </a>
 
-        <nav class="flex-grow-1">
-            <a onclick="nav('home')" class="nav-item active" id="link-home"><i class="bi bi-grid-fill"></i> Overview</a>
-            <a onclick="nav('inbox')" class="nav-item" id="link-inbox"><i class="bi bi-inbox-fill"></i> Buzón <span class="badge bg-danger ms-2" id="badge-inbox">0</span></a>
-            <a onclick="nav('demos')" class="nav-item" id="link-demos"><i class="bi bi-music-note-list"></i> Demos</a>
-            <a onclick="nav('artists')" class="nav-item" id="link-artists"><i class="bi bi-people-fill"></i> Artistas</a>
-            <a onclick="nav('releases')" class="nav-item" id="link-releases"><i class="bi bi-rocket-takeoff-fill"></i> Lanzamientos</a>
-            <a onclick="nav('reports')" class="nav-item" id="link-reports"><i class="bi bi-file-text-fill"></i> Reportes</a>
+        <nav class="flex-grow-1 mt-2">
+            <a onclick="nav('home')" class="nav-item active" id="link-home">
+                <i class="bi bi-grid-fill me-2"></i> Overview
+            </a>
+            <a onclick="nav('inbox')" class="nav-item" id="link-inbox">
+                <i class="bi bi-inbox-fill me-2"></i> Buzón
+                <span class="badge bg-danger ms-2" id="badge-inbox">0</span>
+            </a>
+            <a onclick="nav('demos')" class="nav-item" id="link-demos">
+                <i class="bi bi-music-note-list me-2"></i> Demos
+            </a>
+            <a onclick="nav('artists')" class="nav-item" id="link-artists">
+                <i class="bi bi-people-fill me-2"></i> Artistas
+            </a>
+            <a onclick="nav('releases')" class="nav-item" id="link-releases">
+                <i class="bi bi-rocket-takeoff-fill me-2"></i> Lanzamientos
+            </a>
+            <a onclick="nav('reports')" class="nav-item" id="link-reports">
+                <i class="bi bi-file-text-fill me-2"></i> Reportes
+            </a>
         </nav>
 
-        <div class="mt-auto pt-3 border-top">
-            <button onclick="toggleDarkMode()" class="btn btn-outline-secondary w-100 btn-sm fw-bold border-0 text-start ps-0 mb-2">
-                <i id="theme-icon" class="bi bi-moon-fill me-2 ms-2"></i> Tema
+        <div class="mt-auto pt-3 border-top border-secondary p-3">
+            <button onclick="toggleDarkMode()" class="btn btn-outline-secondary w-100 btn-sm fw-bold border-0 text-start ps-2 mb-2">
+                <i id="theme-icon" class="bi bi-moon-fill me-2"></i> Tema
             </button>
 
-            <button onclick="logoutConfirm()" class="btn btn-outline-danger w-100 btn-sm fw-bold border-0 text-start ps-0">
-                <i class="bi bi-box-arrow-left me-2 ms-2"></i> Cerrar Sesión
-            </button>
+            <a href="@Url.Action("Logout", "Admin")" class="btn btn-outline-danger w-100 btn-sm fw-bold border-0 text-start ps-2 text-decoration-none">
+                <i class="bi bi-box-arrow-left me-2"></i> Cerrar Sesión
+            </a>
         </div>
     </aside>
 
-    <main class="main-content">
+    <main class="main-content container-fluid py-4 px-4 px-lg-5">
 
         <section id="view-home" class="view-section animate__animated animate__fadeIn">
-            <h2 class="page-title">Dashboard Overview</h2>
+            <h2 class="page-title mb-4">Dashboard Overview</h2>
             <div class="row g-4 mb-4">
-                <div class="col-md-3"><div class="stat-card border-left-purple"><div class="stat-label">Total Demos</div><div class="stat-value" id="st-total">0</div></div></div>
-                <div class="col-md-3"><div class="stat-card border-left-pink"><div class="stat-label">Pendientes</div><div class="stat-value" id="st-pend">0</div></div></div>
-                <div class="col-md-3"><div class="stat-card border-left-cyan"><div class="stat-label">Aprobados</div><div class="stat-value" id="st-aprob">0</div></div></div>
-                <div class="col-md-3"><div class="stat-card"><div class="stat-label">Artistas</div><div class="stat-value" id="st-arts">0</div></div></div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="label">Total Demos</div>
+                        <div class="value text-cyan" id="st-total">0</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="label">Pendientes</div>
+                        <div class="value text-warning" id="st-pend">0</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="label">Aprobados</div>
+                        <div class="value text-success" id="st-aprob">0</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card">
+                        <div class="label">Artistas</div>
+                        <div class="value text-white" id="st-arts">0</div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card p-4" style="height: 450px;"><h5 class="fw-bold mb-3">Distribución</h5><div style="position: relative; height: 100%;"><canvas id="chartOverview"></canvas></div></div>
+
+            <div class="stat-card p-4" style="height: 450px;">
+                <h5 class="fw-bold mb-3 text-white">Distribución</h5>
+                <div class="position-relative h-100 pb-4">
+                    <canvas id="chartOverview"></canvas>
+                </div>
+            </div>
         </section>
 
         <section id="view-inbox" class="view-section hidden animate__animated animate__fadeIn">
-            <h2 class="page-title">Buzón de Entrada</h2>
-            <div class="card border-0 shadow-sm"><div class="table-responsive"><table class="table table-hover mb-0"><thead class="table-light"><tr><th>Track / Info</th><th>Artista</th><th>Escuchar</th><th>Acciones</th></tr></thead><tbody id="inboxTableBody"></tbody></table></div></div>
+            <h2 class="page-title mb-4">Buzón de Entrada</h2>
+            <div class="content-card">
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th class="ps-4">Track / Info</th>
+                                <th>Artista</th>
+                                <th class="text-center">Escuchar</th>
+                                <th class="text-end pe-4">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inboxTableBody"></tbody>
+                    </table>
+                </div>
+            </div>
         </section>
+
         <section id="view-demos" class="view-section hidden animate__animated animate__fadeIn">
-            <div class="d-flex justify-content-between mb-4"><div><h2 class="page-title mb-1">Catálogo</h2></div><div class="d-flex gap-2"><select class="form-select form-select-sm" onchange="setFilterStatus(this.value)"><option value="Todos">Todos</option><option value="Pendiente">Pendientes</option><option value="Aprobada">Aprobados</option></select><input class="form-control form-control-sm" placeholder="Buscar..." onkeyup="setFilterText(this.value)"><button class="btn btn-dark btn-sm rounded-circle" onclick="openAddDemoModal()"><i class="bi bi-plus-lg"></i></button></div></div><div class="row g-4" id="demosGrid"></div>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+                <h2 class="page-title mb-0">Catálogo</h2>
+                <div class="d-flex gap-2">
+                    <select class="form-select form-select-sm bg-dark text-white border-secondary" onchange="setFilterStatus(this.value)">
+                        <option value="Todos">Todos</option>
+                        <option value="Pendiente">Pendientes</option>
+                        <option value="Aprobado">Aprobados</option>
+                    </select>
+                    <input class="form-control form-control-sm bg-dark text-white border-secondary" placeholder="Buscar track..." onkeyup="setFilterText(this.value)">
+                    <button class="btn btn-outline-info btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;" onclick="openAddDemoModal()">
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row g-4" id="demosGrid"></div>
         </section>
+
         <section id="view-artists" class="view-section hidden animate__animated animate__fadeIn">
-            <div class="d-flex justify-content-between mb-4"><div><h2 class="page-title mb-1">Roster</h2></div><div class="d-flex gap-2"><input class="form-control form-control-sm" placeholder="Buscar..." onkeyup="setArtistFilterText(this.value)"><button class="btn btn-dark btn-sm rounded-circle" onclick="openAddArtistModal()"><i class="bi bi-plus-lg"></i></button></div></div><div class="row g-4" id="artistsGrid"></div>
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+                <h2 class="page-title mb-0">Roster</h2>
+                <div class="d-flex gap-2">
+                    <input class="form-control form-control-sm bg-dark text-white border-secondary" placeholder="Buscar artista..." onkeyup="setArtistFilterText(this.value)">
+                    <button class="btn btn-outline-info btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;" onclick="openAddArtistModal()">
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="row g-4" id="artistsGrid"></div>
         </section>
+
         <section id="view-releases" class="view-section hidden animate__animated animate__fadeIn">
-            <div class="d-flex justify-content-between mb-4"><h2 class="page-title">Calendario</h2></div><div class="row g-4" id="releasesGrid"></div>
+            <div class="d-flex justify-content-between mb-4">
+                <h2 class="page-title">Calendario de Lanzamientos</h2>
+            </div>
+            <div class="row g-4" id="releasesGrid"></div>
         </section>
 
         <section id="view-reports" class="view-section hidden animate__animated animate__fadeIn">
             <h2 class="page-title mb-4">Centro de Reportes</h2>
 
-            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-purple-soft">
+            <div class="stat-card p-4 mb-4 report-card-master">
                 <div class="d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
                     <div>
-                        <h4 class="fw-bold text-dark mb-1"><i class="bi bi-file-earmark-pdf-fill me-2 text-purple"></i>Generador Maestro</h4>
-                        <p class="text-muted small mb-0">Descarga un reporte completo de toda la base de datos.</p>
+                        <h4 class="fw-bold text-white mb-2">
+                            <i class="bi bi-file-earmark-pdf-fill me-2" style="color: var(--cyan-primary);"></i>Generador Maestro
+                        </h4>
+                        <p class="text-secondary opacity-75 small mb-0">Descarga un reporte consolidado de toda la base de datos del sello.</p>
                     </div>
-                    <button class="btn btn-purple px-4 py-2 fw-bold shadow-sm" onclick="generarReportePDF('todos')">
+                    <button class="btn btn-premium-cyan px-4 py-2 fw-bold text-dark" onclick="generarReportePDF('todos')">
                         <i class="bi bi-download me-2"></i>Descargar Todo
                     </button>
                 </div>
@@ -87,37 +176,136 @@
 
             <div class="row g-4">
                 <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-card">
+                    <div class="stat-card h-100 p-4 d-flex flex-column report-card hover-glow-warning">
                         <div class="mb-3 text-warning"><i class="bi bi-hourglass-split fs-2"></i></div>
-                        <h5 class="fw-bold">Pendientes de Revisión</h5>
-                        <p class="text-muted small">Lista de demos que aún requieren feedback del equipo A&R.</p>
-                        <button class="btn btn-outline-warning w-100 mt-auto" onclick="generarReportePDF('pendientes')">Generar PDF</button>
+                        <h5 class="fw-bold text-white mb-2">Pendientes</h5>
+                        <p class="text-secondary opacity-75 small flex-grow-1">Lista de demos en el buzón que aún requieren revisión y feedback de los A&R.</p>
+                        <button class="btn btn-outline-warning w-100 mt-3" onclick="generarReportePDF('pendientes')">Generar PDF</button>
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-card">
+                    <div class="stat-card h-100 p-4 d-flex flex-column report-card hover-glow-success">
                         <div class="mb-3 text-success"><i class="bi bi-rocket-takeoff-fill fs-2"></i></div>
-                        <h5 class="fw-bold">Plan de Lanzamientos</h5>
-                        <p class="text-muted small">Cronograma de tracks aprobados y sus fechas de salida.</p>
-                        <button class="btn btn-outline-success w-100 mt-auto" onclick="generarReportePDF('lanzamientos')">Generar PDF</button>
+                        <h5 class="fw-bold text-white mb-2">Lanzamientos</h5>
+                        <p class="text-secondary opacity-75 small flex-grow-1">Cronograma oficial de tracks aprobados y listos para distribución.</p>
+                        <button class="btn btn-outline-success w-100 mt-3" onclick="generarReportePDF('lanzamientos')">Generar PDF</button>
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                    <div class="card h-100 border-0 shadow-sm rounded-4 p-4 hover-card">
-                        <div class="mb-3 text-primary"><i class="bi bi-people-fill fs-2"></i></div>
-                        <h5 class="fw-bold">Directorio de Artistas</h5>
-                        <p class="text-muted small">Base de datos de contactos y correos de todo el roster.</p>
-                        <button class="btn btn-outline-primary w-100 mt-auto" onclick="generarReportePDF('artistas')">Generar PDF</button>
+                    <div class="stat-card h-100 p-4 d-flex flex-column report-card hover-glow-info">
+                        <div class="mb-3" style="color: var(--cyan-primary);"><i class="bi bi-people-fill fs-2"></i></div>
+                        <h5 class="fw-bold text-white mb-2">Roster</h5>
+                        <p class="text-secondary opacity-75 small flex-grow-1">Base de datos de contactos, procedencia y perfiles del roster actual.</p>
+                        <button class="btn w-100 mt-3 btn-outline-premium" onclick="generarReportePDF('artistas')">Generar PDF</button>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
 
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <div class="modal fade" id="modalAddArtist" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-secondary shadow-lg">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-person-plus-fill me-2" style="color: var(--cyan-primary);"></i>Nuevo Artista</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="formAddArtist">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-secondary">NOMBRE ARTÍSTICO</label>
+                            <input type="text" class="form-control bg-black text-white border-secondary focus-cyan" id="newArtName" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label small fw-bold text-secondary">NOMBRE REAL</label>
+                                <input type="text" class="form-control bg-black text-white border-secondary focus-cyan" id="newArtReal" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label small fw-bold text-secondary">PAÍS</label>
+                                <input type="text" class="form-control bg-black text-white border-secondary focus-cyan" id="newArtCountry">
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-secondary">CORREO CONTACTO</label>
+                            <input type="email" class="form-control bg-black text-white border-secondary focus-cyan" id="newArtEmail" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-premium-cyan fw-bold text-dark" onclick="saveArtist()">Guardar Artista</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalAddDemo" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-secondary shadow-lg">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-disc-fill me-2" style="color: var(--cyan-primary);"></i>Subir Demo</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="formAddDemo">
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-secondary">TÍTULO DEL TRACK</label>
+                            <input type="text" class="form-control bg-black text-white border-secondary focus-cyan" id="newDemoTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-bold text-secondary">URL DEL AUDIO</label>
+                            <input type="url" class="form-control bg-black text-white border-secondary focus-cyan" id="newDemoUrl" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label small fw-bold text-secondary">ARTISTA ID</label>
+                                <input type="number" class="form-control bg-black text-white border-secondary focus-cyan" id="newDemoArtistId" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label small fw-bold text-secondary">GÉNERO ID</label>
+                                <input type="number" class="form-control bg-black text-white border-secondary focus-cyan" id="newDemoGenreId" value="1" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-premium-cyan fw-bold text-dark" onclick="saveDemo()">Subir Demo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="global-player" class="player-bar d-none animate__animated animate__slideInUp">
+        <div class="container-fluid d-flex align-items-center justify-content-between px-4 h-100">
+            <div class="d-flex align-items-center gap-3" style="width: 30%; min-width: 250px;">
+                <div class="player-disc" style="color: var(--cyan-primary); font-size: 2rem;"><i class="bi bi-vinyl-fill"></i></div>
+                <div class="text-truncate">
+                    <h6 class="mb-0 fw-bold text-white" id="player-title">--</h6>
+                    <small class="text-secondary" id="player-artist">--</small>
+                </div>
+            </div>
+            <div class="d-flex align-items-center justify-content-center flex-grow-1 px-4">
+                <button class="btn btn-link fs-2 p-0 me-3" style="color: var(--cyan-primary);" onclick="togglePlay()">
+                    <i class="bi bi-play-circle-fill" id="player-main-btn"></i>
+                </button>
+                <input type="range" class="form-range custom-range" id="player-seek" value="0" min="0" max="100" oninput="seekAudio()">
+            </div>
+            <div class="d-flex align-items-center justify-content-end gap-3" style="width: 20%; min-width: 150px;">
+                <i class="bi bi-volume-up-fill text-secondary"></i>
+                <input type="range" class="form-range custom-range w-50" oninput="setVolume(this.value)" value="100">
+                <button class="btn btn-sm btn-link text-secondary p-0 ms-2" onclick="closePlayer()">
+                    <i class="bi bi-x-lg fs-5"></i>
+                </button>
+            </div>
+            <audio id="audio-source"></audio>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="~/js/dashboard.js" asp-append-version="true"></script>

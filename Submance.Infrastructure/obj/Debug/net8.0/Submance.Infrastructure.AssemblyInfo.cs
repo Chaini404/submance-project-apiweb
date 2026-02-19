@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Submance.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4fc89ad384e0a4b3ba88c78679cbe13f6a9f748e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62984937d132bdacf0f615c038677840668caaff")]
 [assembly: System.Reflection.AssemblyProductAttribute("Submance.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Submance.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

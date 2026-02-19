@@ -1,0 +1,69 @@
+<!-- Demo/Submit.cshtml -->
+@model Submance.Application.DTOs.Demo.DemoDto
+
+@{
+    ViewData["Title"] = "Enviar Demo";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submit Demo | SUBMANCE</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/submit.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="brand-header">
+            <h1 class="brand-title">SUBMANCE</h1>
+            <p class="brand-subtitle">Upload Your Demo</p>
+        </div>
+
+        <div class="form-container">
+            @if (ViewBag.Message != null)
+            {
+                <div class="alert alert-success text-center">@ViewBag.Message</div>
+            }
+
+            <form asp-action="Submit" method="post">
+                <div class="mb-3">
+                    <label class="form-label">Artist Name</label>
+                    <input asp-for="NombreArtistico" class="form-control" placeholder="Your Stage Name" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Track Title</label>
+                    <input asp-for="NombreTrack" class="form-control" placeholder="Original Mix" required />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input asp-for="Email" type="email" class="form-control" placeholder="your@email.com" required />
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label">Private Link</label>
+                    <input asp-for="LinkAudio" class="form-control" placeholder="https://soundcloud.com/..." required />
+                </div>
+
+                <div class="d-grid">
+                    <button type="submit" class="btn-submit">Send Demo</button>
+                </div>
+            </form>
+
+            <div class="text-center">
+                <a asp-controller="Home" asp-action="Index" class="back-link">Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

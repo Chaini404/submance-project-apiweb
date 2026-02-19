@@ -24,7 +24,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Submance.Domain\Submance.Domain.csproj" />
 		<ProjectReference Include="..\Submance.Application\Submance.Application.csproj" />
 		<ProjectReference Include="..\Submance.Infrastructure\Submance.Infrastructure.csproj" />
 	</ItemGroup>

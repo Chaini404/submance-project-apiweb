@@ -1,42 +1,48 @@
 ﻿#nullable enable
-using Npgsql;
-using NpgsqlTypes; // Necesario para tipos específicos de Postgres
+using Dapper;
+using Submance.Application.Interfaces.Repositories;
+using Submance.Domain.Entities;
 using Submance.Infrastructure.Data;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Submance.Infrastructure.Repositories
 {
-    public class RevisionRepository
+    public class RevisionRepository : IRevisionRepository
     {
-        private readonly DbConnectionFactory _dbConnectionFactory;
+        private readonly DbConnectionFactory _db;
+        public RevisionRepository(DbConnectionFactory db) => _db = db;
 
-        public RevisionRepository(DbConnectionFactory dbFactory)
+        public async Task<IEnumerable<Revision>> GetAllAsync()
         {
-            _dbConnectionFactory = dbFactory;
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            return await conn.QueryAsync<Revision>(@"SELECT * FROM ""Revisiones""");
         }
 
-        public async Task AddRevisionAsync(int idDemo, string comentario, string estado)
+        public async Task<Revision?> GetByIdAsync(int id)
         {
-            using (var con = _dbConnectionFactory.CreateConnection() as NpgsqlConnection)
-            {
-                if (con == null) return;
-                await con.OpenAsync();
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            return await conn.QueryFirstOrDefaultAsync<Revision>(
+                @"SELECT * FROM ""Revisiones"" WHERE ""IdRevision"" = @Id", new { Id = id });
+        }
 
-                string sql = @"INSERT INTO ""Revisiones"" (""IdDemo"", ""Comentario"", ""Estado"", ""FechaRevision"") 
-                               VALUES (@id, @com, @est, NOW())";
+        public async Task<IEnumerable<Revision>> GetByCancionAsync(int idCancion)
+        {
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            return await conn.QueryAsync<Revision>(
+                @"SELECT * FROM ""Revisiones"" WHERE ""IdCancion"" = @IdCancion", new { IdCancion = idCancion });
+        }
 
-                using (var cmd = new NpgsqlCommand(sql, con))
-                {
-                    // Evitamos el error de constructor: NpgsqlCommand usa (sql, connection)
-                    cmd.Parameters.AddWithValue("@id", idDemo);
-
-                    // Manejo de nulos para la base de datos
-                    cmd.Parameters.AddWithValue("@com", comentario ?? (object)System.DBNull.Value);
-                    cmd.Parameters.AddWithValue("@est", estado);
-
-                    await cmd.ExecuteNonQueryAsync();
-                }
-            }
+        public async Task AddAsync(Revision revision)
+        {
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            var sql = @"INSERT INTO ""Revisiones"" (""IdCancion"", ""Observacion"", ""Resultado"", ""FechaRevision"", ""IdRevisor"") 
+                        VALUES (@IdCancion, @Observacion, @Resultado, NOW(), @IdRevisor)";
+            await conn.ExecuteAsync(sql, revision);
         }
     }
 }

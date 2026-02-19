@@ -1,0 +1,412 @@
+/* wwwroot/css/artist-portal.css */
+/* Portal de Artista - SUBMANCE Records */
+
+:root {
+    --bg-dark: #050505;
+    --accent: #00f3ff;
+    --accent-glow: rgba(0, 243, 255, 0.3);
+    --text-main: #ffffff;
+    --text-muted: #888;
+    --border-color: #222;
+    --card-bg: #0a0a0a;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(135deg, #050505 0%, #0a0a0a 100%);
+    color: var(--text-main);
+    font-family: 'Montserrat', sans-serif;
+    padding: 30px;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 20%;
+    right: -200px;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    opacity: 0.08;
+    animation: float 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(5deg); }
+}
+
+/* --- HEADER --- */
+.portal-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 25px;
+    margin-bottom: 40px;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.brand-text {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 4px;
+    color: var(--accent);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px var(--accent-glow);
+}
+
+.portal-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    margin: 0;
+    letter-spacing: 2px;
+    background: linear-gradient(to right, var(--text-main) 0%, var(--text-muted) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* --- BUTTONS --- */
+.btn-submance {
+    background: white;
+    color: black;
+    border: none;
+    padding: 12px 25px;
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-submance::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background: var(--accent);
+    border-radius: 50%;
+    transition: all 0.5s ease;
+    z-index: 0;
+}
+
+.btn-submance:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-submance:hover {
+    box-shadow: 0 0 25px var(--accent-glow);
+    color: black;
+    transform: translateY(-2px);
+}
+
+.btn-submance i {
+    position: relative;
+    z-index: 1;
+}
+
+/* --- TABLE DESIGN --- */
+.table-container {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.industrial-table {
+    width: 100%;
+    margin: 0;
+    border-collapse: collapse;
+}
+
+.industrial-table thead th {
+    background: #111;
+    padding: 18px 20px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.industrial-table tbody tr {
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+}
+
+.industrial-table tbody tr:hover {
+    background: rgba(255,255,255,0.03);
+    transform: translateX(5px);
+}
+
+.industrial-table td {
+    padding: 22px 20px;
+    vertical-align: middle;
+}
+
+/* --- STATUS BADGES --- */
+.status-pill {
+    padding: 5px 14px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.pill-Pendiente {
+    color: #ffcc00;
+    border: 1px solid #ffcc0044;
+    background: #ffcc0015;
+}
+
+.pill-Pendiente:hover {
+    background: #ffcc0025;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);
+}
+
+.pill-Aprobado {
+    color: #00ff88;
+    border: 1px solid #00ff8844;
+    background: #00ff8815;
+}
+
+.pill-Aprobado:hover {
+    background: #00ff8825;
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+}
+
+.pill-Rechazado {
+    color: #ff4444;
+    border: 1px solid #ff444444;
+    background: #ff444415;
+}
+
+.pill-Rechazado:hover {
+    background: #ff444425;
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.2);
+}
+
+/* --- TRACK TITLE STYLING --- */
+.track-title {
+    font-family: 'Oswald';
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+}
+
+.industrial-table tbody tr:hover .track-title {
+    color: var(--accent);
+}
+
+/* --- PLAY BUTTON --- */
+.play-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.play-btn:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: black;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* --- PLAYER BAR --- */
+.player-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(20px);
+    border-top: 2px solid var(--accent);
+    padding: 20px 40px;
+    z-index: 1000;
+    display: none;
+    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.player-vinyl {
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, white, #ddd);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.player-title {
+    font-family: 'Oswald';
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+.player-controls button {
+    transition: all 0.3s ease;
+}
+
+.player-controls button:hover {
+    transform: scale(1.15);
+}
+
+/* --- MODAL --- */
+.modal-content {
+    background: linear-gradient(135deg, #0a0a0a 0%, #111 100%);
+    border: 1px solid var(--accent);
+    color: white;
+    border-radius: 4px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+}
+
+.modal-header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 25px 30px;
+}
+
+.modal-title {
+    font-family: 'Oswald';
+    letter-spacing: 2px;
+}
+
+.form-control {
+    background: #151515;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 2px;
+    padding: 14px 16px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    background: #1a1a1a;
+    border-color: var(--accent);
+    color: white;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: #555;
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+/* --- ALERT --- */
+.alert-danger {
+    background: rgba(255, 68, 68, 0.15);
+    border: 1px solid #ff4444;
+    border-radius: 4px;
+}
+
+/* --- LOGOUT BUTTON --- */
+.btn-logout {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 68, 68, 0.3);
+    background: transparent;
+    color: #ff4444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-logout:hover {
+    background: #ff4444;
+    color: white;
+    border-color: #ff4444;
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 68, 68, 0.3);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    .portal-title {
+        font-size: 2rem;
+    }
+
+    .industrial-table thead th {
+        padding: 12px 10px;
+        font-size: 0.65rem;
+    }
+
+    .industrial-table td {
+        padding: 15px 10px;
+    }
+
+    .player-bar {
+        padding: 15px 20px;
+    }
+}

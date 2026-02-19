@@ -9,6 +9,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Dapper" Version="2.1.66" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\Submance.Domain\Submance.Domain.csproj" />
 	</ItemGroup>
 

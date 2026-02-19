@@ -195,3 +195,22 @@ a {
     color: #f87171 !important;
     border: 1px solid rgba(239, 68, 68, 0.3);
 }
+
+/* Asegura que el cuerpo ocupe toda la pantalla */
+body {
+    min-height: 100vh;
+    background-color: #0f0f0f; /* Fondo oscuro global */
+    color: #e0e0e0;
+}
+
+/* Estilo para el enlace activo del menú */
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    background-color: #0d6efd; /* Azul Bootstrap o tu color de marca */
+    color: white;
+}
+
+.nav-link:hover {
+    color: white;
+    background-color: rgba(255,255,255,0.1);
+}

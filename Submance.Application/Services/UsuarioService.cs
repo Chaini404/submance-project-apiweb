@@ -1,7 +1,9 @@
 ﻿using Submance.Application.DTOs.Usuario;
-using Submance.Application.Interfaces.Repository;
+using Submance.Application.Interfaces.Repositories;
 using Submance.Application.Interfaces.Services;
 using Submance.Domain.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Submance.Application.Services
 {
@@ -18,16 +20,16 @@ namespace Submance.Application.Services
         {
             var usuario = await _usuarioRepository.GetByCorreoAsync(correo);
 
-            // Validación simple
-            if (usuario != null && usuario.Password == password && usuario.Activo)
+            // Corregido: El estado en BD es TEXT ('Activo', 'Inactivo')
+            if (usuario != null && usuario.Password == password && usuario.Estado == "Activo")
             {
                 return new UsuarioResponseDto
                 {
                     IdUsuario = usuario.IdUsuario,
                     Nombre = usuario.Nombre,
                     Correo = usuario.Correo,
-                    Rol = usuario.Rol, // Ahora es directo string -> string
-                    Estado = usuario.Activo
+                    Rol = usuario.Rol,
+                    Estado = true // Asumiendo que el DTO espera bool
                 };
             }
             return null;
@@ -35,7 +37,6 @@ namespace Submance.Application.Services
 
         public async Task RegisterAsync(UsuarioRequestDto request)
         {
-            // TRADUCCIÓN: Convertimos el ID del dropdown (Frontend) a Texto (Database)
             string rolTexto = "Usuario";
             switch (request.IdRol)
             {
@@ -50,14 +51,13 @@ namespace Submance.Application.Services
                 Nombre = request.Nombre,
                 Correo = request.Correo,
                 Password = request.Password,
-                Rol = rolTexto, // Guardamos el texto
-                Activo = true
+                Rol = rolTexto,
+                Estado = "Activo" // Corregido de Activo = true
             };
 
-            await _usuarioRepository.Add(usuario);
+            await _usuarioRepository.AddAsync(usuario);
         }
 
-        // Métodos stub para cumplir interfaz
         public async Task<IEnumerable<UsuarioResponseDto>> GetAllAsync() => new List<UsuarioResponseDto>();
         public async Task<UsuarioResponseDto?> GetByIdAsync(int id) => null;
     }

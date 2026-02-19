@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Submance.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+84b8cd427c5b2e29ca920c8590d8d008287f8665")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62984937d132bdacf0f615c038677840668caaff")]
 [assembly: System.Reflection.AssemblyProductAttribute("Submance.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Submance.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

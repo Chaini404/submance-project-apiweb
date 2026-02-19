@@ -1,3 +1,4 @@
+#nullable enable
 namespace SubmanceProjectApi
 {
     public class WeatherForecast

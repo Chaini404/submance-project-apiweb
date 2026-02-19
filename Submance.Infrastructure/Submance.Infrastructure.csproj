@@ -10,6 +10,7 @@
 	</PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.66" />
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.3" />
     <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="10.0.3" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.16.0" />
@@ -17,8 +18,9 @@
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.16.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Submance.Application\Submance.Application.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Submance.Application\Submance.Application.csproj" />
+		<ProjectReference Include="..\Submance.Domain\Submance.Domain.csproj" />
+	</ItemGroup>
 
 </Project>

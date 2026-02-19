@@ -1,38 +1,31 @@
 ﻿#nullable enable
-using Npgsql;
+using Dapper;
+using Submance.Application.Interfaces.Repositories;
+using Submance.Domain.Entities;
 using Submance.Infrastructure.Data;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Submance.Infrastructure.Repositories
 {
-    public class RolRepository
+    public class RolRepository : IRolRepository
     {
-        private readonly DbConnectionFactory _dbConnectionFactory;
-        public RolRepository(DbConnectionFactory dbFactory) => _dbConnectionFactory = dbFactory;
+        private readonly DbConnectionFactory _db;
+        public RolRepository(DbConnectionFactory db) => _db = db;
 
-        public async Task<IEnumerable<string>> GetRolesAsync()
+        public async Task<IEnumerable<Rol>> GetAllAsync()
         {
-            var roles = new List<string>();
-            // Usar NpgsqlConnection para la conexión física
-            using (var con = _dbConnectionFactory.CreateConnection() as NpgsqlConnection)
-            {
-                if (con == null) return roles;
-                await con.OpenAsync();
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            return await conn.QueryAsync<Rol>(@"SELECT ""IdRol"", ""NombreRol"" FROM ""Roles""");
+        }
 
-                string sql = @"SELECT ""Nombre"" FROM ""Roles""";
-
-                // AQUÍ ESTABA EL ERROR: Debe ser NpgsqlCommand, no NpgsqlParameter
-                using (var cmd = new NpgsqlCommand(sql, con))
-                using (var reader = await cmd.ExecuteReaderAsync())
-                {
-                    while (await reader.ReadAsync())
-                    {
-                        roles.Add(reader["Nombre"].ToString() ?? "");
-                    }
-                }
-            }
-            return roles;
+        public async Task<Rol?> GetByIdAsync(int id)
+        {
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
+            return await conn.QueryFirstOrDefaultAsync<Rol>(
+                @"SELECT ""IdRol"", ""NombreRol"" FROM ""Roles"" WHERE ""IdRol"" = @Id", new { Id = id });
         }
     }
 }

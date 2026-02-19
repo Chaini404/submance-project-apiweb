@@ -50,16 +50,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVtb1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Edson/source/repos/submance-project-apiweb/SubmanceProjectClient/Views/Demo/Submit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGVtb1xTdWJtaXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Edson/source/repos/submance-project-apiweb/SubmanceProjectClient/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Edson/source/repos/submance-project-apiweb/SubmanceProjectClient/Views/Home/Privacy.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+[C:/Users/Edson/source/repos/submance-project-apiweb/SubmanceProjectClient/Views/Home/Submit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTdWJtaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Edson/source/repos/submance-project-apiweb/SubmanceProjectClient/Views/Shared/Error.cshtml]
