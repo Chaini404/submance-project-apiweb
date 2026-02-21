@@ -1,8 +1,10 @@
 ﻿using Submance.Application.DTOs.Usuario;
 using Submance.Application.Interfaces.Repositories;
+using Submance.Application.Interfaces.Security;
 using Submance.Application.Interfaces.Services;
 using Submance.Domain.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Submance.Application.Services
@@ -10,55 +12,83 @@ namespace Submance.Application.Services
     public class UsuarioService : IUsuarioService
     {
         private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IPasswordHasher _passwordHasher;
 
-        public UsuarioService(IUsuarioRepository usuarioRepository)
+        public UsuarioService(IUsuarioRepository usuarioRepository, IPasswordHasher passwordHasher)
         {
             _usuarioRepository = usuarioRepository;
+            _passwordHasher = passwordHasher;
         }
 
         public async Task<UsuarioResponseDto> LoginAsync(string correo, string password)
         {
             var usuario = await _usuarioRepository.GetByCorreoAsync(correo);
 
-            // Corregido: El estado en BD es TEXT ('Activo', 'Inactivo')
-            if (usuario != null && usuario.Password == password && usuario.Estado == "Activo")
+            if (usuario == null || usuario.Estado != "Activo")
+                return null;
+
+            // Verificar password con hash
+            if (!_passwordHasher.Verify(usuario.Password, password))
+                return null;
+
+            return new UsuarioResponseDto
             {
-                return new UsuarioResponseDto
-                {
-                    IdUsuario = usuario.IdUsuario,
-                    Nombre = usuario.Nombre,
-                    Correo = usuario.Correo,
-                    Rol = usuario.Rol,
-                    Estado = true // Asumiendo que el DTO espera bool
-                };
-            }
-            return null;
+                IdUsuario = usuario.IdUsuario,
+                Nombre = usuario.Nombre,
+                Correo = usuario.Correo,
+                Rol = usuario.Rol,
+                Estado = true
+            };
         }
 
         public async Task RegisterAsync(UsuarioRequestDto request)
         {
-            string rolTexto = "Usuario";
-            switch (request.IdRol)
+            string rolTexto = request.IdRol switch
             {
-                case 1: rolTexto = "Admin"; break;
-                case 2: rolTexto = "Staff"; break;
-                case 3: rolTexto = "Artista"; break;
-                default: rolTexto = "Usuario"; break;
-            }
+                1 => "Admin",
+                2 => "Staff",
+                3 => "Artista",
+                _ => "Artista"
+            };
 
             var usuario = new Usuario
             {
                 Nombre = request.Nombre,
                 Correo = request.Correo,
-                Password = request.Password,
+                Password = _passwordHasher.Hash(request.Password),
                 Rol = rolTexto,
-                Estado = "Activo" // Corregido de Activo = true
+                Estado = "Activo"
             };
 
             await _usuarioRepository.AddAsync(usuario);
         }
 
-        public async Task<IEnumerable<UsuarioResponseDto>> GetAllAsync() => new List<UsuarioResponseDto>();
-        public async Task<UsuarioResponseDto?> GetByIdAsync(int id) => null;
+        public async Task<IEnumerable<UsuarioResponseDto>> GetAllAsync()
+        {
+            var usuarios = await _usuarioRepository.GetAllAsync();
+            return usuarios.Select(u => new UsuarioResponseDto
+            {
+                IdUsuario = u.IdUsuario,
+                Nombre = u.Nombre,
+                Correo = u.Correo,
+                Rol = u.Rol,
+                Estado = u.Estado == "Activo"
+            });
+        }
+
+        public async Task<UsuarioResponseDto?> GetByIdAsync(int id)
+        {
+            var u = await _usuarioRepository.GetByIdAsync(id);
+            if (u == null) return null;
+
+            return new UsuarioResponseDto
+            {
+                IdUsuario = u.IdUsuario,
+                Nombre = u.Nombre,
+                Correo = u.Correo,
+                Rol = u.Rol,
+                Estado = u.Estado == "Activo"
+            };
+        }
     }
 }

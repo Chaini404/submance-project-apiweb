@@ -1,30 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
-using System.Security.Cryptography; // Necesario para la encriptación
-
+using Submance.Application.Interfaces.Security;
 
 namespace Submance.Infrastructure.Security
 {
-    public class PasswordHasher
+    public class PasswordHasher : IPasswordHasher
     {
-        // Método para crear el Hash (Encriptar)
         public string Hash(string password)
         {
-            using (var sha256 = SHA256.Create())
-            {
-                var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
-                return Convert.ToBase64String(bytes);
-            }
+            using var sha256 = SHA256.Create();
+            var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(password));
+            return Convert.ToBase64String(bytes);
         }
 
-        // Método para verificar si la contraseña coincide
-        public bool Verify(string password, string hash)
+        public bool Verify(string passwordHash, string inputPassword)
         {
-            string nuevoHash = Hash(password);
-            return nuevoHash == hash;
+            string computedHash = Hash(inputPassword);
+            return computedHash == passwordHash;
         }
     }
 }

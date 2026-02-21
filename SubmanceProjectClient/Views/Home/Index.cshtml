@@ -129,24 +129,24 @@
                 <div class="modal-body p-0">
                     <div class="one-forty-container">
                         <form id="demoFormTag">
-                            <input type="text" id="inputArtistName" class="input-one-forty" placeholder="Artist Name" required>
-                            <input type="text" id="inputTrackTitle" class="input-one-forty" placeholder="Track Title" required>
-                            <input type="email" id="inputEmail" class="input-one-forty" placeholder="Email Address" required>
+                            <input type="text" id="inputArtistName" name="ArtistName" class="input-one-forty" placeholder="Artist Name" required>
+                            <input type="text" id="inputTrackTitle" name="TrackTitle" class="input-one-forty" placeholder="Track Title" required>
+                            <input type="email" id="inputEmail" name="Email" class="input-one-forty" placeholder="Email Address" required>
 
-                            <select class="input-one-forty">
+                            <select id="inputExclusive" name="Exclusive" class="input-one-forty">
                                 <option value="" disabled selected>Is Your Track Exclusive?</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
                             </select>
 
-                            <input type="url" id="inputLink" class="input-one-forty" placeholder="Soundcloud Private Link" required>
+                            <input type="url" id="inputLink" name="DemoLink" class="input-one-forty" placeholder="Soundcloud Private Link" required>
 
                             <div class="input-one-forty d-flex align-items-center text-muted" style="border-bottom: 1px dashed #444; cursor: pointer;">
                                 <i class="bi bi-cloud-upload me-2 text-white"></i> Upload MP3 (Optional)
                             </div>
 
                             <div class="form-check mt-4 mb-4">
-                                <input class="form-check-input bg-dark border-secondary" type="checkbox" required id="checkPerm">
+                                <input class="form-check-input bg-dark border-secondary" type="checkbox" required id="checkPerm" name="ConfirmRights">
                                 <label class="form-check-label small text-muted" for="checkPerm">I confirm I own 100% of the rights to this track.</label>
                             </div>
 

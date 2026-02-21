@@ -1,47 +1,86 @@
-﻿using System;
+﻿using Submance.Application.DTOs.Album;
+using Submance.Application.Interfaces.Repositories;
+using Submance.Application.Interfaces.Services;
+using Submance.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Submance.Application.Interfaces.Services;
-using Submance.Application.DTOs.Album; // ✅ Conectamos con tus DTOs reales
-
-
 
 namespace Submance.Application.Services
 {
     public class AlbumService : IAlbumService
     {
-        // Implementación provisional para que compile (luego le pondrás la lógica real)
+        private readonly IAlbumRepository _albumRepository;
 
-        public IEnumerable<AlbumResponseDto> GetAll()
+        public AlbumService(IAlbumRepository albumRepository)
         {
-            throw new NotImplementedException();
+            _albumRepository = albumRepository;
         }
 
-        public AlbumResponseDto GetById(int id)
+        public async Task<IEnumerable<AlbumResponseDto>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var albumes = await _albumRepository.GetAllAsync();
+            return albumes.Select(a => new AlbumResponseDto
+            {
+                IdAlbum = a.IdAlbum,
+                Titulo = a.Titulo,
+                FechaLanzamiento = a.FechaLanzamiento,
+                Artista = string.Empty
+            });
         }
 
-        public IEnumerable<AlbumResponseDto> GetByArtista(int artistaId)
+        public async Task<AlbumResponseDto?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var a = await _albumRepository.GetByIdAsync(id);
+            if (a == null) return null;
+
+            return new AlbumResponseDto
+            {
+                IdAlbum = a.IdAlbum,
+                Titulo = a.Titulo,
+                FechaLanzamiento = a.FechaLanzamiento,
+                Artista = string.Empty
+            };
         }
 
-        public void Create(AlbumRequestDto request)
+        public async Task<IEnumerable<AlbumResponseDto>> GetByArtistaAsync(int idArtista)
         {
-            throw new NotImplementedException();
+            var albumes = await _albumRepository.GetByArtistaAsync(idArtista);
+            return albumes.Select(a => new AlbumResponseDto
+            {
+                IdAlbum = a.IdAlbum,
+                Titulo = a.Titulo,
+                FechaLanzamiento = a.FechaLanzamiento,
+                Artista = string.Empty
+            });
         }
 
-        public void Update(int id, AlbumRequestDto request)
+        public async Task CreateAsync(AlbumRequestDto request)
         {
-            throw new NotImplementedException();
+            var entity = new Album
+            {
+                Titulo = request.Titulo,
+                FechaLanzamiento = request.FechaLanzamiento,
+                IdArtista = request.IdArtista
+            };
+            await _albumRepository.AddAsync(entity);
         }
 
-        public void Delete(int id)
+        public async Task UpdateAsync(int id, AlbumRequestDto request)
         {
-            throw new NotImplementedException();
+            var entity = new Album
+            {
+                IdAlbum = id,
+                Titulo = request.Titulo,
+                FechaLanzamiento = request.FechaLanzamiento,
+                IdArtista = request.IdArtista
+            };
+            await _albumRepository.UpdateAsync(entity);
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            await _albumRepository.DeleteAsync(id);
         }
     }
 }

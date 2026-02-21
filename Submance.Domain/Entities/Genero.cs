@@ -10,8 +10,8 @@ namespace Submance.Domain.Entities
         public int IdGenero { get; set; }
 
         [Required]
-        public string Nombre { get; set; }
+        public string NombreGenero { get; set; } = string.Empty;
 
-        public bool Estado { get; set; } = true;
+        public string Descripcion { get; set; } = string.Empty;
     }
 }

@@ -2,6 +2,7 @@
 using Submance.Infrastructure.Data;
 using Submance.Application.Interfaces.Repositories;
 using Submance.Application.Interfaces.Services;
+using Submance.Application.Interfaces.Security;
 using Submance.Application.Services;
 using Submance.Infrastructure.Repositories;
 using Submance.Infrastructure.Security;
@@ -9,7 +10,7 @@ using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Agregar servicios con configuración de nombres (PropertyNamingPolicy = null)
+// JSON con nombres de propiedad tal cual (sin camelCase automático)
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
@@ -19,24 +20,35 @@ builder.Services.AddControllers()
 builder.Services.AddEndpointsApiExplorer();
 
 // ==========================================
-// 2. BASE DE DATOS E INFRAESTRUCTURA (Dapper + PostgreSQL)
+// 2. BASE DE DATOS E INFRAESTRUCTURA
 // ==========================================
 builder.Services.AddScoped<DbConnectionFactory>();
+builder.Services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
-// REGISTRO DEL SERVICIO DE SEGURIDAD (AÑADIDO)
-builder.Services.AddSingleton<PasswordHasher>();
-
-// Inyectamos los repositorios que usarán los controladores de la API
+// ==========================================
+// 3. REPOSITORIOS
+// ==========================================
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IArtistaRepository, ArtistaRepository>();
 builder.Services.AddScoped<ICancionRepository, CancionRepository>();
 builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
-
-// REGISTRO DEL SERVICIO DE AUTENTICACIÓN (CORREGIDO - faltaba)
-builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
+builder.Services.AddScoped<IGeneroRepository, GeneroRepository>();
+builder.Services.AddScoped<IRevisionRepository, RevisionRepository>();
+builder.Services.AddScoped<IRolRepository, RolRepository>();
 
 // ==========================================
-// 3. Swagger
+// 4. SERVICIOS DE APLICACIÓN
+// ==========================================
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IArtistaService, ArtistaService>();
+builder.Services.AddScoped<ICancionService, CancionService>();
+builder.Services.AddScoped<IAlbumService, AlbumService>();
+builder.Services.AddScoped<IGeneroService, GeneroService>();
+
+// ==========================================
+// 5. Swagger
 // ==========================================
 builder.Services.AddSwaggerGen(c =>
 {
@@ -45,7 +57,7 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 // ==========================================
-// 4. CORS
+// 6. CORS
 // ==========================================
 builder.Services.AddCors(options =>
 {
@@ -60,7 +72,6 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configuración del Pipeline
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -68,12 +79,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-// 5. ACTIVAR LA POLÍTICA CORS
 app.UseCors("AllowAll");
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

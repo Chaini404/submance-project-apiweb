@@ -1,40 +1,68 @@
-﻿using System;
+﻿using Submance.Application.DTOs.Genero;
+using Submance.Application.Interfaces.Repositories;
+using Submance.Application.Interfaces.Services;
+using Submance.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Submance.Application.Interfaces.Services;
-using Submance.Application.DTOs.Genero; // ✅ Conecta con tus DTOs reales
-
-
 
 namespace Submance.Application.Services
 {
     public class GeneroService : IGeneroService
     {
-        public IEnumerable<GeneroResponseDto> GetAll()
+        private readonly IGeneroRepository _generoRepository;
+
+        public GeneroService(IGeneroRepository generoRepository)
         {
-            throw new NotImplementedException();
+            _generoRepository = generoRepository;
         }
 
-        public GeneroResponseDto GetById(int id)
+        public async Task<IEnumerable<GeneroResponseDto>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var generos = await _generoRepository.GetAllAsync();
+            return generos.Select(g => new GeneroResponseDto
+            {
+                IdGenero = g.IdGenero,
+                NombreGenero = g.NombreGenero
+            });
         }
 
-        public void Create(GeneroRequestDto request)
+        public async Task<GeneroResponseDto?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var g = await _generoRepository.GetByIdAsync(id);
+            if (g == null) return null;
+
+            return new GeneroResponseDto
+            {
+                IdGenero = g.IdGenero,
+                NombreGenero = g.NombreGenero
+            };
         }
 
-        public void Update(int id, GeneroRequestDto request)
+        public async Task CreateAsync(GeneroRequestDto request)
         {
-            throw new NotImplementedException();
+            var entity = new Genero
+            {
+                NombreGenero = request.NombreGenero,
+                Descripcion = request.Descripcion ?? string.Empty
+            };
+            await _generoRepository.AddAsync(entity);
         }
 
-        public void Delete(int id)
+        public async Task UpdateAsync(int id, GeneroRequestDto request)
         {
-            throw new NotImplementedException();
+            var entity = new Genero
+            {
+                IdGenero = id,
+                NombreGenero = request.NombreGenero,
+                Descripcion = request.Descripcion ?? string.Empty
+            };
+            await _generoRepository.UpdateAsync(entity);
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            await _generoRepository.DeleteAsync(id);
         }
     }
 }

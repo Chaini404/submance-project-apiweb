@@ -9,8 +9,7 @@ namespace Submance.Application.Interfaces.Repositories
     {
         Task<IEnumerable<Revision>> GetAllAsync();
         Task<Revision?> GetByIdAsync(int id);
-        Task<IEnumerable<Revision>> GetByCancionAsync(int idCancion);
-
+        Task<IEnumerable<Revision>> GetByDemoAsync(int idDemo);
         Task AddAsync(Revision revision);
     }
 }

@@ -28,20 +28,20 @@ namespace Submance.Infrastructure.Repositories
                 @"SELECT * FROM ""Revisiones"" WHERE ""IdRevision"" = @Id", new { Id = id });
         }
 
-        public async Task<IEnumerable<Revision>> GetByCancionAsync(int idCancion)
+        public async Task<IEnumerable<Revision>> GetByDemoAsync(int idDemo)
         {
             await using var conn = _db.CreateConnection();
             await conn.OpenAsync();
             return await conn.QueryAsync<Revision>(
-                @"SELECT * FROM ""Revisiones"" WHERE ""IdCancion"" = @IdCancion", new { IdCancion = idCancion });
+                @"SELECT * FROM ""Revisiones"" WHERE ""IdDemo"" = @IdDemo", new { IdDemo = idDemo });
         }
 
         public async Task AddAsync(Revision revision)
         {
             await using var conn = _db.CreateConnection();
             await conn.OpenAsync();
-            var sql = @"INSERT INTO ""Revisiones"" (""IdCancion"", ""Observacion"", ""Resultado"", ""FechaRevision"", ""IdRevisor"") 
-                        VALUES (@IdCancion, @Observacion, @Resultado, NOW(), @IdRevisor)";
+            var sql = @"INSERT INTO ""Revisiones"" (""IdDemo"", ""Observacion"", ""Resultado"", ""FechaRevision"", ""IdRevisor"") 
+                        VALUES (@IdDemo, @Observacion, @Resultado, NOW(), @IdRevisor)";
             await conn.ExecuteAsync(sql, revision);
         }
     }

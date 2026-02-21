@@ -48,9 +48,24 @@ namespace Submance.Infrastructure.Repositories
         {
             await using var conn = _db.CreateConnection();
             await conn.OpenAsync();
-            var sql = @"INSERT INTO ""Demos"" (""Titulo"", ""UrlAudio"", ""IdArtista"", ""IdGenero"", ""Estado"", ""FechaEnvio"") 
-                        VALUES (@Titulo, @UrlAudio, @IdArtista, @IdGenero, @Estado, @FechaEnvio)";
-            await conn.ExecuteAsync(sql, cancion);
+
+            // Explícito: solo los campos que Postgres no autogenera
+            var sql = @"
+        INSERT INTO ""Demos"" (""Titulo"", ""UrlAudio"", ""IdArtista"", ""IdGenero"", ""Estado"", ""FechaEnvio"") 
+        VALUES (@Titulo, @UrlAudio, @IdArtista, @IdGenero, @Estado, @FechaEnvio)
+        RETURNING ""IdDemo""";
+
+            var newId = await conn.ExecuteScalarAsync<int>(sql, new
+            {
+                cancion.Titulo,
+                cancion.UrlAudio,
+                cancion.IdArtista,
+                cancion.IdGenero,
+                cancion.Estado,
+                cancion.FechaEnvio
+            });
+
+            cancion.IdDemo = newId;
         }
 
         public async Task UpdateAsync(Cancion cancion)

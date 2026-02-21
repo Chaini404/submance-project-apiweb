@@ -1,8 +1,8 @@
 ﻿using Dapper;
+using Submance.Application.Interfaces.Security;
 using Submance.Application.Interfaces.Services;
 using Submance.Application.ViewModels;
 using Submance.Infrastructure.Data;
-using Submance.Infrastructure.Security;
 using System;
 using System.Threading.Tasks;
 
@@ -11,9 +11,9 @@ namespace Submance.Application.Services
     public class AuthService : IAuthService
     {
         private readonly DbConnectionFactory _connectionFactory;
-        private readonly PasswordHasher _passwordHasher;
+        private readonly IPasswordHasher _passwordHasher;
 
-        public AuthService(DbConnectionFactory connectionFactory, PasswordHasher passwordHasher)
+        public AuthService(DbConnectionFactory connectionFactory, IPasswordHasher passwordHasher)
         {
             _connectionFactory = connectionFactory;
             _passwordHasher = passwordHasher;
@@ -24,9 +24,6 @@ namespace Submance.Application.Services
             await using var connection = _connectionFactory.CreateConnection();
             await connection.OpenAsync();
 
-            // CTE (Common Table Expression): Ejecuta todo de forma atómica en el motor BD.
-            // Si el correo existe, corta la ejecución y devuelve null. 
-            // Si no existe, inserta en Usuarios, pasa el ID a Artistas, inserta y devuelve el ID.
             string sql = @"
                 WITH check_email AS (
                     SELECT 1 FROM ""Usuarios"" WHERE ""Correo"" = @Correo
@@ -53,15 +50,12 @@ namespace Submance.Application.Services
 
             try
             {
-                // ExecuteScalarAsync devuelve la primera columna de la primera fila.
                 var result = await connection.ExecuteScalarAsync<int?>(sql, parameters);
-
-                // Si result tiene un valor > 0, la inserción fue exitosa en ambas tablas.
                 return result.HasValue && result.Value > 0;
             }
             catch (Exception ex)
             {
-                throw new Exception("🔥 ERROR FATAL BD: " + ex.Message);
+                throw new Exception("Error en registro: " + ex.Message, ex);
             }
         }
     }

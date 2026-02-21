@@ -9,20 +9,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal de Artista - @ViewBag.ArtistName</title>
-
-    <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="~/css/artist-portal.css" />
 </head>
 <body>
 
     <div class="container-fluid px-md-5">
-
         <header class="portal-header d-flex justify-content-between align-items-end flex-wrap gap-3">
             <div>
                 <span class="brand-text">Submance Records // Artist Portal</span>
@@ -37,13 +31,6 @@
                 </a>
             </div>
         </header>
-
-        @if (ViewBag.Error != null)
-        {
-            <div class="alert alert-danger text-white border-0 animate__animated animate__shakeX mb-4">
-                <i class="bi bi-exclamation-octagon me-2"></i> @ViewBag.Error
-            </div>
-        }
 
         <div class="table-container">
             <table class="industrial-table">
@@ -63,19 +50,14 @@
                             <td class="text-muted small">#@item.IdDemo</td>
                             <td>
                                 <div class="track-title">@item.Titulo</div>
-                                <span class="text-muted small">Original Mix // @item.IdGenero</span>
+                                <span class="text-muted small">Original Mix</span>
                             </td>
                             <td>
-                                <span class="status-pill pill-@item.Estado">
-                                    <i class="bi bi-circle-fill" style="font-size: 0.5rem;"></i> @item.Estado
-                                </span>
+                                <span class="status-pill pill-@item.Estado">@item.Estado</span>
                             </td>
-                            <td class="text-muted">
-                                @item.FechaEnvio.ToString("dd MMM, yyyy")
-                            </td>
+                            <td class="text-muted">@item.FechaEnvio.ToString("dd MMM, yyyy")</td>
                             <td class="text-end">
-                                <button class="play-btn"
-                                        onclick="playTrack('@item.UrlAudio', '@item.Titulo')">
+                                <button class="play-btn" onclick="playTrack('@item.UrlAudio', '@item.Titulo')">
                                     <i class="bi bi-play-fill fs-5"></i>
                                 </button>
                             </td>
@@ -86,61 +68,64 @@
         </div>
     </div>
 
-    <!-- Modal Upload -->
     <div class="modal fade" id="modalUpload" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title fw-bold text-uppercase">Subir Demo para Revisión</h5>
+                    <h5 class="modal-title fw-bold text-uppercase">Subir Demo</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label class="small text-muted mb-2 text-uppercase" style="letter-spacing: 1px;">Título de la Canción</label>
-                        <input type="text" id="t" class="form-control" placeholder="Ej: Stellar Drift">
+                <form id="formUpload">
+                    @Html.AntiForgeryToken()
+                    <div class="modal-body">
+
+                        <div class="mb-3">
+                            <label class="small text-muted mb-2 text-uppercase">Título</label>
+                            <input type="text" name="Titulo" class="form-control"
+                                   placeholder="Ej: Stellar Drift" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="small text-muted mb-2 text-uppercase">URL Audio</label>
+                            <input type="text" name="UrlAudio" class="form-control"
+                                   placeholder="https://ejemplo.com/archivo.mp3 o link de SoundCloud" required>
+
+                            <div id="url-hint" class="small mt-1"></div>
+
+                            <button type="button" id="btn-preview-upload"
+                                    class="btn btn-outline-info btn-sm mt-2"
+                                    style="display:none;">
+                                <i class="bi bi-play-circle me-1"></i> Previsualizar audio
+                            </button>
+                        </div>
+
+                        <input type="hidden" name="IdArtista" value="@ViewBag.ArtistId" />
+                        <input type="hidden" name="IdGenero" value="1" />
+
+                        <button type="button" onclick="save()" class="btn-submance w-100">
+                            Enviar a A&amp;R
+                        </button>
+
                     </div>
-                    <div class="mb-4">
-                        <label class="small text-muted mb-2 text-uppercase" style="letter-spacing: 1px;">URL del Archivo (MP3/WAV)</label>
-                        <input type="text" id="u" class="form-control" placeholder="https://ejemplo.com/archivo.mp3">
-                    </div>
-                    <button onclick="save()" class="btn-submance w-100">Enviar a A&R</button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
 
-    <!-- Player Bar -->
-    <div id="player-bar" class="player-bar animate__animated animate__slideInUp">
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-            <div class="d-flex align-items-center gap-3">
-                <div class="player-vinyl">
-                    <i class="bi bi-vinyl-fill fs-4 text-dark"></i>
-                </div>
-                <div>
-                    <div id="p-title" class="player-title">--</div>
-                    <small class="text-muted">Now Playing Preview</small>
-                </div>
+    <div id="player-bar" class="player-bar" style="display:none;">
+        <audio id="audio-main" controls class="d-none"></audio>
+        <div class="d-flex justify-content-between align-items-center px-4 py-2">
+            <div>
+                <div id="p-title" class="player-title">--</div>
+                <small class="text-muted">Preview</small>
             </div>
-            <div class="d-flex align-items-center gap-4 player-controls">
-                <audio id="audio-main" controls class="d-none"></audio>
-                <button class="btn btn-link text-white fs-2 p-0" onclick="togglePlay()">
-                    <i id="play-icon" class="bi bi-pause-circle-fill" style="color: var(--accent);"></i>
-                </button>
-                <button class="btn btn-outline-light btn-sm" onclick="closePlayer()">CERRAR</button>
-            </div>
+            <button class="btn btn-outline-light btn-sm" onclick="closePlayer()">CERRAR</button>
         </div>
     </div>
 
-    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <!-- Set Artist ID for JavaScript -->
-    <script>
-        window.artistId = @ViewBag.ArtistId;
-    </script>
-
-    <!-- Custom JavaScript -->
+    <script>window.artistId = @ViewBag.ArtistId;</script>
     <script src="~/js/artist-portal.js"></script>
 </body>
 </html>

@@ -2,10 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Submance.Application.Interfaces.Repositories;
 using Submance.Application.Interfaces.Services;
-using Submance.Application.DTOs;
+using Submance.Application.Interfaces.Security;
 using Submance.Application.ViewModels;
 using Submance.Domain.Entities;
-using Submance.Infrastructure.Security; // Requisito para PasswordHasher
 using System.Threading.Tasks;
 using System;
 
@@ -18,7 +17,7 @@ namespace SubmanceProject.Web.Controllers
         private readonly ICancionRepository _cancionRepo;
         private readonly IDashboardRepository _dashboardRepo;
         private readonly IAuthService _authService;
-        private readonly PasswordHasher _passwordHasher; // Añadido
+        private readonly IPasswordHasher _passwordHasher;
 
         public AdminController(
             IUsuarioRepository usuarioRepo,
@@ -26,14 +25,14 @@ namespace SubmanceProject.Web.Controllers
             ICancionRepository cancionRepo,
             IDashboardRepository dashboardRepo,
             IAuthService authService,
-            PasswordHasher passwordHasher) // Inyectado
+            IPasswordHasher passwordHasher)
         {
             _usuarioRepo = usuarioRepo;
             _artistaRepo = artistaRepo;
             _cancionRepo = cancionRepo;
             _dashboardRepo = dashboardRepo;
             _authService = authService;
-            _passwordHasher = passwordHasher; // Asignado
+            _passwordHasher = passwordHasher;
         }
 
         [HttpGet]
@@ -54,8 +53,7 @@ namespace SubmanceProject.Web.Controllers
 
             var usuario = await _usuarioRepo.GetByCorreoAsync(model.Correo);
 
-            // CORRECCIÓN: Se aplica el Hash a la contraseña ingresada para la comparación
-            if (usuario != null && usuario.Password == _passwordHasher.Hash(model.Password))
+            if (usuario != null && _passwordHasher.Verify(usuario.Password, model.Password))
             {
                 HttpContext.Session.SetString("UserRole", usuario.Rol);
                 HttpContext.Session.SetString("UserEmail", usuario.Correo);
@@ -88,8 +86,9 @@ namespace SubmanceProject.Web.Controllers
             return Json(data);
         }
 
+        // AJAX endpoint — no requiere AntiForgeryToken para peticiones JS con query params
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [IgnoreAntiforgeryToken]
         public async Task<IActionResult> UpdateDemoStatus(int id, string status)
         {
             var cancion = await _cancionRepo.GetByIdAsync(id);
@@ -103,7 +102,7 @@ namespace SubmanceProject.Web.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [IgnoreAntiforgeryToken]
         public async Task<IActionResult> CreateArtist([FromBody] ArtistaRequest model)
         {
             if (!ModelState.IsValid) return Json(new { success = false, message = "Datos inválidos." });
@@ -116,7 +115,7 @@ namespace SubmanceProject.Web.Controllers
                     NombreReal = model.NombreReal,
                     Pais = model.Pais,
                     Estado = true,
-                    FechaRegistro = DateTime.Now
+                    FechaRegistro = DateTime.UtcNow
                 };
 
                 await _artistaRepo.AddAsync(artista);
@@ -129,7 +128,7 @@ namespace SubmanceProject.Web.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [IgnoreAntiforgeryToken]
         public async Task<IActionResult> CreateDemo([FromBody] DemoRequest model)
         {
             if (!ModelState.IsValid) return Json(new { success = false, message = "Datos inválidos." });
@@ -143,7 +142,7 @@ namespace SubmanceProject.Web.Controllers
                     IdArtista = model.IdArtista,
                     IdGenero = model.IdGenero,
                     Estado = "Pendiente",
-                    FechaEnvio = DateTime.Now
+                    FechaEnvio = DateTime.UtcNow
                 };
 
                 await _cancionRepo.AddAsync(cancion);
@@ -157,7 +156,7 @@ namespace SubmanceProject.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Registro(Submance.Application.ViewModels.RegistroViewModel model)
+        public async Task<IActionResult> Registro(RegistroViewModel model)
         {
             if (!ModelState.IsValid) return View("Login", model);
 
@@ -191,5 +190,28 @@ namespace SubmanceProject.Web.Controllers
                 _ => RedirectToAction("Index", "Home")
             };
         }
+    }
+
+    // Request models for Admin endpoints
+    public class ArtistaRequest
+    {
+        public string NombreArtistico { get; set; } = string.Empty;
+        public string NombreReal { get; set; } = string.Empty;
+        public string Pais { get; set; } = string.Empty;
+        public string Correo { get; set; } = string.Empty;
+    }
+
+    public class DemoRequest
+    {
+        public string Titulo { get; set; } = string.Empty;
+        public string UrlAudio { get; set; } = string.Empty;
+        public int IdArtista { get; set; }
+        public int IdGenero { get; set; }
+    }
+
+    public class LoginViewModel
+    {
+        public string Correo { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Submance.Application.Interfaces.Repositories;
+using Submance.Application.Interfaces.Security;
 using Submance.Application.Interfaces.Services;
 using Submance.Application.ViewModels;
-using Submance.Infrastructure.Security;
 using System.Threading.Tasks;
 using System;
 
@@ -13,12 +13,12 @@ namespace SubmanceProject.Api.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IUsuarioRepository _usuarioRepository;
-        private readonly PasswordHasher _passwordHasher;
-        private readonly IAuthService _authService; // Ahora inyectamos el servicio limpio
+        private readonly IPasswordHasher _passwordHasher;
+        private readonly IAuthService _authService;
 
         public AuthController(
             IUsuarioRepository usuarioRepository,
-            PasswordHasher passwordHasher,
+            IPasswordHasher passwordHasher,
             IAuthService authService)
         {
             _usuarioRepository = usuarioRepository;
@@ -37,7 +37,7 @@ namespace SubmanceProject.Api.Controllers
             if (usuario == null)
                 return Unauthorized(new { message = "El usuario no existe." });
 
-            bool esValido = _passwordHasher.Verify(request.Password, usuario.Password);
+            bool esValido = _passwordHasher.Verify(usuario.Password, request.Password);
 
             if (!esValido)
                 return Unauthorized(new { message = "Contraseña incorrecta." });
@@ -53,7 +53,6 @@ namespace SubmanceProject.Api.Controllers
 
             try
             {
-                // Toda la lógica Dapper ahora vive en AuthService
                 bool result = await _authService.RegistrarArtistaAsync(dto);
 
                 if (!result)
@@ -70,7 +69,7 @@ namespace SubmanceProject.Api.Controllers
 
     public class LoginRequest
     {
-        public string NombreUsuario { get; set; }
-        public string Password { get; set; }
+        public string NombreUsuario { get; set; } = string.Empty;
+        public string Password { get; set; } = string.Empty;
     }
 }

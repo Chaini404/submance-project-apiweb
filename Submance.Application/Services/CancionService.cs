@@ -1,58 +1,98 @@
-﻿using Submance.Application.DTOs.Album;
-using Submance.Application.DTOs.Artista;
-using Submance.Application.DTOs.Cancion; // ✅ Aquí están tus DTOs reales
-using Submance.Application.DTOs.Genero;
-using Submance.Application.Interfaces.Service;
-using Submance.Application.Interfaces.Services; // Asegúrate de que sea .Services (singular o plural según tu carpeta)
-using System;
+﻿using Submance.Application.DTOs.Cancion;
+using Submance.Application.Interfaces.Repositories;
+using Submance.Application.Interfaces.Services;
+using Submance.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Submance.Application.Services
 {
     public class CancionService : ICancionService
     {
-        // CAMBIO 1: CreateCancionRequest -> CancionRequestDto
-        public void Create(CancionRequestDto request)
+        private readonly ICancionRepository _cancionRepository;
+
+        public CancionService(ICancionRepository cancionRepository)
         {
-            throw new NotImplementedException();
+            _cancionRepository = cancionRepository;
         }
 
-        public void Delete(int id)
+        public async Task<IEnumerable<CancionResponseDto>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var canciones = await _cancionRepository.GetAllAsync();
+            return canciones.Select(c => new CancionResponseDto
+            {
+                IdCancion = c.IdDemo,
+                Titulo = c.Titulo,
+                Estado = c.Estado,
+                Artista = string.Empty,
+                Genero = string.Empty,
+                Album = string.Empty
+            });
         }
 
-        // CAMBIO 2: CancionDto -> CancionResponseDto
-        public IEnumerable<CancionResponseDto> GetAll()
+        public async Task<CancionResponseDto?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var c = await _cancionRepository.GetByIdAsync(id);
+            if (c == null) return null;
+
+            return new CancionResponseDto
+            {
+                IdCancion = c.IdDemo,
+                Titulo = c.Titulo,
+                Estado = c.Estado,
+                Artista = string.Empty,
+                Genero = string.Empty,
+                Album = string.Empty
+            };
         }
 
-        // CAMBIO 3: CancionDto -> CancionResponseDto
-        public IEnumerable<CancionResponseDto> GetByAlbum(int albumId)
+        public async Task<IEnumerable<CancionResponseDto>> GetByArtistaAsync(int idArtista)
         {
-            throw new NotImplementedException();
+            var canciones = await _cancionRepository.GetByArtistaAsync(idArtista);
+            return canciones.Select(c => new CancionResponseDto
+            {
+                IdCancion = c.IdDemo,
+                Titulo = c.Titulo,
+                Estado = c.Estado,
+                Artista = string.Empty,
+                Genero = string.Empty,
+                Album = string.Empty
+            });
         }
 
-        // CAMBIO 4: CancionDto -> CancionResponseDto
-        public IEnumerable<CancionResponseDto> GetByGenero(int generoId)
+        public async Task CreateAsync(CancionRequestDto request)
         {
-            throw new NotImplementedException();
+            var entity = new Cancion
+            {
+                Titulo = request.Titulo,
+                UrlAudio = request.Archivo ?? string.Empty,
+                IdArtista = request.IdArtista,
+                IdGenero = request.IdGenero,
+                Estado = "Pendiente",
+                FechaEnvio = System.DateTime.UtcNow
+            };
+
+            await _cancionRepository.AddAsync(entity);
         }
 
-        // CAMBIO 5: CancionDto -> CancionResponseDto
-        public CancionResponseDto GetById(int id)
+        public async Task UpdateAsync(int id, CancionRequestDto request)
         {
-            throw new NotImplementedException();
+            var entity = new Cancion
+            {
+                IdDemo = id,
+                Titulo = request.Titulo,
+                UrlAudio = request.Archivo ?? string.Empty,
+                IdArtista = request.IdArtista,
+                IdGenero = request.IdGenero
+            };
+
+            await _cancionRepository.UpdateAsync(entity);
         }
 
-        // CAMBIO 6: UpdateCancionRequest -> CancionRequestDto
-        public void Update(int id, CancionRequestDto request)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            await _cancionRepository.DeleteAsync(id);
         }
     }
 }

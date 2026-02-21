@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿#nullable enable
+using Dapper;
 using Submance.Application.Interfaces.Repositories;
 using Submance.Domain.Entities;
 using Submance.Infrastructure.Data;
@@ -15,28 +16,32 @@ namespace Submance.Infrastructure.Repositories
 
         public async Task<IEnumerable<Album>> GetAllAsync()
         {
-            using var conn = _db.CreateConnection();
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
             var sql = @"SELECT ""IdAlbum"", ""Titulo"", ""FechaLanzamiento"", ""IdArtista"" FROM ""Albumes""";
             return await conn.QueryAsync<Album>(sql);
         }
 
         public async Task<Album?> GetByIdAsync(int id)
         {
-            using var conn = _db.CreateConnection();
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
             var sql = @"SELECT ""IdAlbum"", ""Titulo"", ""FechaLanzamiento"", ""IdArtista"" FROM ""Albumes"" WHERE ""IdAlbum"" = @Id";
             return await conn.QueryFirstOrDefaultAsync<Album>(sql, new { Id = id });
         }
 
         public async Task<IEnumerable<Album>> GetByArtistaAsync(int idArtista)
         {
-            using var conn = _db.CreateConnection();
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
             var sql = @"SELECT ""IdAlbum"", ""Titulo"", ""FechaLanzamiento"", ""IdArtista"" FROM ""Albumes"" WHERE ""IdArtista"" = @IdArtista";
             return await conn.QueryAsync<Album>(sql, new { IdArtista = idArtista });
         }
 
         public async Task AddAsync(Album album)
         {
-            using var conn = _db.CreateConnection();
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
             var sql = @"INSERT INTO ""Albumes"" (""Titulo"", ""FechaLanzamiento"", ""IdArtista"") 
                         VALUES (@Titulo, @FechaLanzamiento, @IdArtista)";
             await conn.ExecuteAsync(sql, album);
@@ -44,7 +49,8 @@ namespace Submance.Infrastructure.Repositories
 
         public async Task UpdateAsync(Album album)
         {
-            using var conn = _db.CreateConnection();
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
             var sql = @"UPDATE ""Albumes"" SET ""Titulo"" = @Titulo, ""FechaLanzamiento"" = @FechaLanzamiento, ""IdArtista"" = @IdArtista 
                         WHERE ""IdAlbum"" = @IdAlbum";
             await conn.ExecuteAsync(sql, album);
@@ -52,7 +58,8 @@ namespace Submance.Infrastructure.Repositories
 
         public async Task DeleteAsync(int id)
         {
-            using var conn = _db.CreateConnection();
+            await using var conn = _db.CreateConnection();
+            await conn.OpenAsync();
             var sql = @"DELETE FROM ""Albumes"" WHERE ""IdAlbum"" = @Id";
             await conn.ExecuteAsync(sql, new { Id = id });
         }

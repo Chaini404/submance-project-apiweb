@@ -2,16 +2,18 @@
     // 1. Gestión de Tema
     const htmlEl = document.documentElement;
     const themeBtn = document.getElementById('theme-toggle');
-    const savedTheme = localStorage.getItem('submance_theme') || 'dark'; // Dark por defecto para Submance
+    const savedTheme = localStorage.getItem('submance_theme') || 'dark';
 
     htmlEl.setAttribute('data-theme', savedTheme);
 
-    themeBtn.addEventListener('click', () => {
-        const currentTheme = htmlEl.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        htmlEl.setAttribute('data-theme', newTheme);
-        localStorage.setItem('submance_theme', newTheme);
-    });
+    if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+            const currentTheme = htmlEl.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            htmlEl.setAttribute('data-theme', newTheme);
+            localStorage.setItem('submance_theme', newTheme);
+        });
+    }
 
     // 2. Control de Audio
     const audio = document.getElementById('audio-source');
@@ -28,12 +30,13 @@
 
         // Resetear botón anterior
         if (activeTrackId) {
-            document.getElementById(`play-btn-${activeTrackId}`).className = 'bi bi-play-circle';
+            const prevBtn = document.getElementById(`play-btn-${activeTrackId}`);
+            if (prevBtn) prevBtn.className = 'bi bi-play-circle';
         }
 
-        // Cargar nueva pista
+        // Cargar nueva pista — usar URL directa, no prefijar /uploads/songs/
         document.getElementById('player-title').innerText = title;
-        audio.src = `/uploads/songs/${fileUrl}`; // Modificar según ruteo estático en ASP.NET
+        audio.src = fileUrl;
         activeTrackId = id;
 
         playerBar.classList.remove('d-none');
@@ -57,7 +60,8 @@
         updateUIState(false);
         playerBar.classList.add('d-none');
         if (activeTrackId) {
-            document.getElementById(`play-btn-${activeTrackId}`).className = 'bi bi-play-circle';
+            const prevBtn = document.getElementById(`play-btn-${activeTrackId}`);
+            if (prevBtn) prevBtn.className = 'bi bi-play-circle';
         }
         activeTrackId = null;
     };
@@ -65,41 +69,44 @@
     function updateUIState(isPlaying) {
         if (!activeTrackId) return;
 
-        // Actualizar botón en la tabla
         const rowBtn = document.getElementById(`play-btn-${activeTrackId}`);
-        rowBtn.className = isPlaying ? 'bi bi-pause-circle-fill' : 'bi bi-play-circle';
+        if (rowBtn) rowBtn.className = isPlaying ? 'bi bi-pause-circle-fill' : 'bi bi-play-circle';
 
-        // Actualizar botón en el reproductor
         const mainBtn = document.getElementById('play-icon-main');
-        mainBtn.className = isPlaying ? 'bi bi-pause-fill' : 'bi bi-play-fill';
+        if (mainBtn) mainBtn.className = isPlaying ? 'bi bi-pause-fill' : 'bi bi-play-fill';
 
-        // Animar disco
-        if (isPlaying) {
-            discIcon.classList.add('playing');
-        } else {
-            discIcon.classList.remove('playing');
+        if (discIcon) {
+            if (isPlaying) {
+                discIcon.classList.add('playing');
+            } else {
+                discIcon.classList.remove('playing');
+            }
         }
     }
 
     // Actualización de progreso
-    audio.addEventListener('timeupdate', () => {
-        if (!isNaN(audio.duration)) {
-            const percent = (audio.currentTime / audio.duration) * 100;
-            seekSlider.value = percent;
-        }
-    });
+    if (audio) {
+        audio.addEventListener('timeupdate', () => {
+            if (!isNaN(audio.duration) && seekSlider) {
+                const percent = (audio.currentTime / audio.duration) * 100;
+                seekSlider.value = percent;
+            }
+        });
 
-    // Seek manual
-    seekSlider.addEventListener('input', (e) => {
-        if (!isNaN(audio.duration)) {
-            const seekTo = audio.duration * (e.target.value / 100);
-            audio.currentTime = seekTo;
+        // Seek manual
+        if (seekSlider) {
+            seekSlider.addEventListener('input', (e) => {
+                if (!isNaN(audio.duration)) {
+                    const seekTo = audio.duration * (e.target.value / 100);
+                    audio.currentTime = seekTo;
+                }
+            });
         }
-    });
 
-    // Resetear al terminar la canción
-    audio.addEventListener('ended', () => {
-        updateUIState(false);
-        seekSlider.value = 0;
-    });
+        // Resetear al terminar la canción
+        audio.addEventListener('ended', () => {
+            updateUIState(false);
+            if (seekSlider) seekSlider.value = 0;
+        });
+    }
 });

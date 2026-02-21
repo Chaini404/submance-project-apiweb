@@ -2,8 +2,9 @@
 using Submance.Application.Interfaces.Repositories;
 using Submance.Infrastructure.Repositories;
 using Submance.Application.Interfaces.Services;
+using Submance.Application.Interfaces.Security;
 using Submance.Application.Services;
-using Submance.Infrastructure.Security; // Necesario para PasswordHasher
+using Submance.Infrastructure.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,18 +23,14 @@ builder.Services.AddSession(opts => {
 // 2. BASE DE DATOS E INFRAESTRUCTURA
 // ==========================================
 builder.Services.AddScoped<DbConnectionFactory>();
-
-// REGISTRO DE SEGURIDAD (Soluciona error de imagen 12339b.png)
-builder.Services.AddScoped<PasswordHasher>();
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 
 // ==========================================
-// 3. REPOSITORIOS (ACCESO A DATOS)
+// 3. REPOSITORIOS
 // ==========================================
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IArtistaRepository, ArtistaRepository>();
 builder.Services.AddScoped<ICancionRepository, CancionRepository>();
-
-// Registros de repositorios adicionales
 builder.Services.AddScoped<IAlbumRepository, AlbumRepository>();
 builder.Services.AddScoped<IGeneroRepository, GeneroRepository>();
 builder.Services.AddScoped<IRevisionRepository, RevisionRepository>();
@@ -41,10 +38,13 @@ builder.Services.AddScoped<IRolRepository, RolRepository>();
 builder.Services.AddScoped<IDashboardRepository, DashboardRepository>();
 
 // ==========================================   
-// 4. SERVICIOS (LÓGICA DE NEGOCIO / APLICACIÓN)
+// 4. SERVICIOS DE APLICACIÓN
 // ==========================================
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IArtistaService, ArtistaService>();
+builder.Services.AddScoped<ICancionService, CancionService>();
+builder.Services.AddScoped<IAlbumService, AlbumService>();
+builder.Services.AddScoped<IGeneroService, GeneroService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
 
 var app = builder.Build();

@@ -1,4 +1,4 @@
-﻿#nullable enable 
+﻿#nullable enable
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,13 +22,12 @@ namespace Submance.Application.Services
         public async Task<IEnumerable<ArtistaResponseDto>> GetAllAsync()
         {
             var artistas = await _artistaRepository.GetAllAsync();
-
             return artistas.Select(a => new ArtistaResponseDto
             {
                 IdArtista = a.IdArtista,
                 NombreArtistico = a.NombreArtistico,
-                Correo = "", // Artista ya no tiene Correo propio en BD, se deja vacío o se saca del DTO
-                Estado = a.Estado // Corregido de Activo a Estado
+                Correo = string.Empty,
+                Estado = a.Estado
             });
         }
 
@@ -41,8 +40,8 @@ namespace Submance.Application.Services
             {
                 IdArtista = artista.IdArtista,
                 NombreArtistico = artista.NombreArtistico,
-                Correo = "",
-                Estado = artista.Estado // Corregido
+                Correo = string.Empty,
+                Estado = artista.Estado
             };
         }
 
@@ -52,9 +51,9 @@ namespace Submance.Application.Services
             {
                 NombreArtistico = request.NombreArtistico,
                 NombreReal = request.NombreReal,
-                // Correo eliminado ya que no existe en tabla Artistas
-                Estado = true, // Corregido de Activo a Estado
-                FechaRegistro = DateTime.Now
+                Pais = string.Empty,
+                Estado = true,
+                FechaRegistro = DateTime.UtcNow
             };
 
             await _artistaRepository.AddAsync(entity);
@@ -67,7 +66,6 @@ namespace Submance.Application.Services
                 IdArtista = id,
                 NombreArtistico = request.NombreArtistico,
                 NombreReal = request.NombreReal
-                // Correo eliminado
             };
             await _artistaRepository.UpdateAsync(entity);
         }
